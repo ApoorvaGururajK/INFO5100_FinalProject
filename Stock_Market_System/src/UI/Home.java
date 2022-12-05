@@ -169,23 +169,13 @@ public class Home extends javax.swing.JFrame {
         dispose();
         Login log= new Login();
         log.setVisible(true);
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/rishidb","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//            String sqlS1= "INSERT INTO `rishidb`.`testtable` (`UserID`, `Name`, `Age`) VALUES ('4123', 'Tanya', '22')";
-//            stm.executeUpdate(sqlS1);
-//            
-//            showMessageDialog(this,"Record Inserted !!");
-//            con.close(); 
-//        }
-//        catch(Exception e){
-//            showMessageDialog(this,e);
-//        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterationActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Registration reg= new Registration();
+        reg.setVisible(true);
     }//GEN-LAST:event_btnRegisterationActionPerformed
 
     private void btnInspirationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspirationActionPerformed
