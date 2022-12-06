@@ -51,40 +51,41 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="70" max="32767" attributes="0"/>
+                          <EmptySpace min="70" pref="86" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="labelAdminID5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtAdminID4" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="txtPhone" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="labelAdminID" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtAdminID" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="txtName" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="labelAdminID2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtAdminID2" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="txtEmail" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="labelAdminID4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtAdminID5" min="-2" pref="171" max="-2" attributes="0"/>
+                                  <Component id="txtAddress" min="-2" pref="171" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="labelAdminID3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="labelAdminID1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelAdminID3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jPasswordField1" min="-2" pref="171" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="labelAdminID1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtAdminID1" min="-2" pref="171" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtPassword" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="txtDOB" min="-2" pref="172" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -92,37 +93,32 @@
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="labelAdminID7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtAdminID6" min="-2" pref="172" max="-2" attributes="0"/>
+                          <Component id="txtOccupation" min="-2" pref="172" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="labelAdminID6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtAdminID7" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtTradingAcc" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="labelAdminID8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtAdminID8" min="-2" pref="172" max="-2" attributes="0"/>
-                          <EmptySpace pref="103" max="32767" attributes="0"/>
+                          <Component id="txtStockBroker" min="-2" pref="172" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="labelAdminID9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtAdminID9" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtMFBroker" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="102" pref="102" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnRegister" min="-2" pref="172" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnRegister1" min="-2" pref="172" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnRegister" alignment="1" min="-2" pref="172" max="-2" attributes="0"/>
+                      <Component id="btnRegister1" alignment="1" min="-2" pref="172" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="312" pref="312" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -134,37 +130,37 @@
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAdminID" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtName" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelAdminID1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtDOB" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAdminID2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtEmail" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelAdminID3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPasswordField1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtPassword" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAdminID5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID4" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtPhone" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelAdminID4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID5" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtAddress" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAdminID7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID6" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtOccupation" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelAdminID6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID7" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtTradingAcc" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAdminID8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID8" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtStockBroker" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="labelAdminID9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAdminID9" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txtMFBroker" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="btnRegister" min="-2" pref="45" max="-2" attributes="0"/>
@@ -192,24 +188,14 @@
             <Property name="text" type="java.lang.String" value="Name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID">
+        <Component class="javax.swing.JTextField" name="txtName">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminIDActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID1">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter" size="14" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID1">
@@ -220,14 +206,14 @@
             <Property name="text" type="java.lang.String" value="DOB:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID2">
+        <Component class="javax.swing.JTextField" name="txtEmail">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID2">
@@ -246,24 +232,24 @@
             <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID4">
+        <Component class="javax.swing.JTextField" name="txtPhone">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPhoneActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID5">
+        <Component class="javax.swing.JTextField" name="txtAddress">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID5ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAddressActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID4">
@@ -290,14 +276,14 @@
             <Property name="text" type="java.lang.String" value="Trading Acc:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID6">
+        <Component class="javax.swing.JTextField" name="txtOccupation">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOccupationActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID7">
@@ -308,14 +294,14 @@
             <Property name="text" type="java.lang.String" value="Occupation:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID7">
+        <Component class="javax.swing.JTextField" name="txtTradingAcc">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID7ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTradingAccActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID8">
@@ -326,14 +312,14 @@
             <Property name="text" type="java.lang.String" value="Stock Broker:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID8">
+        <Component class="javax.swing.JTextField" name="txtStockBroker">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID8ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStockBrokerActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAdminID9">
@@ -344,14 +330,14 @@
             <Property name="text" type="java.lang.String" value="MF Broker:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtAdminID9">
+        <Component class="javax.swing.JTextField" name="txtMFBroker">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID9ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMFBrokerActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRegister">
@@ -388,7 +374,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegister1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+        <Component class="javax.swing.JPasswordField" name="txtPassword">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtDOB">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Inter" size="14" style="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDOBActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
