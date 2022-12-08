@@ -171,7 +171,7 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
         btnRegister2.setBackground(new java.awt.Color(0, 0, 0));
         btnRegister2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         btnRegister2.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister2.setText("Login");
+        btnRegister2.setText("Logout");
         btnRegister2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegister2ActionPerformed(evt);

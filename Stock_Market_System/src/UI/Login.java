@@ -77,7 +77,7 @@ public class Login extends javax.swing.JFrame {
         labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID2.setText("Role:");
 
-        userRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "System Admin", "Stock Broker", "Broker Admin" }));
+        userRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Company", "System Admin", "Broker Admin", "Company Admin", "Equity Holder", "Stock Broker", "Mutual Funds Broker", " " }));
 
         btnLogin.setBackground(new java.awt.Color(0, 0, 0));
         btnLogin.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
@@ -194,23 +194,54 @@ public class Login extends javax.swing.JFrame {
             if(rs.next()){
                 dispose();
                 switch (userRole) {
+                    
+                    // 1st Role
                     case "User":
+                                UserDashboard user=new UserDashboard();
+                                user.setVisible(true);
                                 System.out.println("User is Logging In");
                                 break;
+                                
+                     // 2nd Role
+                     case "System Admin":
+                                SystemAdminDashboard systemAd=new SystemAdminDashboard();
+                                systemAd.setVisible(true);
+                                System.out.println("System Admin is Logging In");
+                                break;
+                                                                
+                     // 3rd Role
                      case "Broker Admin":
+                                BrokerAdminDashboard brokerAd=new BrokerAdminDashboard();
+                                brokerAd.setVisible(true);
                                 System.out.println("Broker Admin is Logging In");
                                 break;
+                                                                                                
+                     // 4th Role
                      case "Company Admin":
+                                CompanyAdminDashboard companyAd=new CompanyAdminDashboard();
+                                companyAd.setVisible(true);
                                 System.out.println("Company Admin is Logging In");
                                 break;
+                                                                                                
+                     // 5th Role
                      case "Equity Holder":
+                                EquityHolderDashboard equityHolder=new EquityHolderDashboard();
+                                equityHolder.setVisible(true);
                                 System.out.println("Equity Holder is Logging In");
                                 break;
+                                                                                                 
+                     // 6th Role
                     case "Stock Broker":
+                                StockBrokerDashboard sBroker=new StockBrokerDashboard();
+                                sBroker.setVisible(true);
                                 System.out.println("Stock Broker is Logging In");
                                 break;
-                    case "Mutual Fund Broker":
-                                System.out.println("Mutual Fund Broker is Logging In");
+                                                                                                
+                     // 7th Role
+                    case "Mutual Funds Broker":
+                               MFBrokerDashboard mfBroker=new MFBrokerDashboard();
+                                mfBroker.setVisible(true);
+                                System.out.println("Mutual Funds Broker is Logging In");
                                 break;
                     default:
                       System.out.println("Login Authentication");
@@ -218,6 +249,8 @@ public class Login extends javax.swing.JFrame {
             }else{
                 showMessageDialog(this,"Incorrect Credentials! Please Try Again!");
             }
+            
+            con.close(); 
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
