@@ -85,8 +85,7 @@ public class BrokerAdminRegistration extends javax.swing.JPanel {
         txtPassword = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         BrokerAdminTable = new javax.swing.JTable();
-        btnRegister1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -151,25 +150,20 @@ public class BrokerAdminRegistration extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(BrokerAdminTable);
-
-        btnRegister1.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister1.setText("View");
-        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister1ActionPerformed(evt);
+        BrokerAdminTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BrokerAdminTableMouseClicked(evt);
             }
         });
+        jScrollPane1.setViewportView(BrokerAdminTable);
 
-        btnUpdate1.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnUpdate1.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate1.setText("Delete");
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(0, 0, 0));
+        btnDelete.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -203,10 +197,8 @@ public class BrokerAdminRegistration extends javax.swing.JPanel {
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(139, 139, 139))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(212, 212, 212))))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(335, 335, 335))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,11 +221,9 @@ public class BrokerAdminRegistration extends javax.swing.JPanel {
                         .addComponent(txtPassword)))
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -271,23 +261,89 @@ public class BrokerAdminRegistration extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
+             String username = txtUsername.getText();
+             String password = new String(txtPassword.getPassword());
+            
+            if(BrokerAdminTable.getSelectedRowCount() ==1){
+                
+                model.setValueAt(username, BrokerAdminTable.getSelectedRow(),1);
+                model.setValueAt(password, BrokerAdminTable.getSelectedRow(),2);
+                
+                 int rowIndex=BrokerAdminTable.getSelectedRow() ;
+                 String value =(BrokerAdminTable.getModel().getValueAt(rowIndex, 0).toString());
+                 String query="UPDATE `info5100_finalproject`.`authdata` SET `username` = '"+username+"', `password` = '"+password+"' WHERE (`ID` = '"+value+"')";
+                 stm.executeUpdate(query);
+                showMessageDialog(this,"Broker Admin Updated Successfully !!");
+                txtUsername.setText("");
+                txtPassword.setText("");
+            }else{
+                 showMessageDialog(this,"Please select a single row to update !!");
+            }
+            
+         con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister1ActionPerformed
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+             DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
+             
+             
+            
+        
+            if(BrokerAdminTable.getSelectedRowCount() ==1){
+                                       
+                    int rowIndex=BrokerAdminTable.getSelectedRow() ;
+                    String value =(BrokerAdminTable.getModel().getValueAt(rowIndex, 0).toString());
+                    String query=" DELETE FROM `info5100_finalproject`.`authdata` WHERE (`ID` = '"+value+"');";
+                    
+                     stm.executeUpdate(query);
+                     model.removeRow(BrokerAdminTable.getSelectedRow());
+              
+                    showMessageDialog(this,"Broker Admin Deleted Successfully !!");
+                    txtUsername.setText("");
+                    txtPassword.setText("");
+                    
+          }   else{
+                    showMessageDialog(this,"Please select a single row to delete !!");
+                     }
+             con.close(); 
+             
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+    private void BrokerAdminTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BrokerAdminTableMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
+        DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
+        
+        String selUsername= model.getValueAt(BrokerAdminTable.getSelectedRow(), 1).toString();
+        String selPassword= model.getValueAt(BrokerAdminTable.getSelectedRow(), 2).toString();
+        
+        txtUsername.setText(selUsername);
+        txtPassword.setText(selPassword);
+    }//GEN-LAST:event_BrokerAdminTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BrokerAdminTable;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelTitle;
