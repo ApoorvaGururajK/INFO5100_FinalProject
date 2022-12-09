@@ -4,12 +4,19 @@
  */
 package UI;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author rishi
  */
 public class SystemAdminDashboard extends javax.swing.JFrame {
 
+    ImageIcon icon = new ImageIcon("Logo.png");
+    Image image = icon.getImage();
+    Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
+    ImageIcon ticon= new ImageIcon(newimg);
     /**
      * Creates new form SystemAdminDashboard
      */
@@ -17,6 +24,7 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
         initComponents();
         CompanyAdminRegistration companyAdmin = new CompanyAdminRegistration();
         splitPane.setRightComponent(companyAdmin);
+        logoImg.setIcon(ticon);
     }
 
     /**
@@ -28,6 +36,9 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        logoImg = new javax.swing.JLabel();
         splitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         btnCompanyAdmin = new javax.swing.JButton();
@@ -38,56 +49,115 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1100, 750));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1100, 780));
 
-        splitPane.setDividerLocation(200);
+        jPanel3.setBackground(new java.awt.Color(255, 0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("System Admin Dashboard");
 
-        btnCompanyAdmin.setBackground(new java.awt.Color(0, 0, 0));
-        btnCompanyAdmin.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(580, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+
+        splitPane.setDividerLocation(230);
+        splitPane.setDividerSize(1);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnCompanyAdmin.setBackground(new java.awt.Color(102, 0, 0));
+        btnCompanyAdmin.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnCompanyAdmin.setForeground(new java.awt.Color(255, 255, 255));
         btnCompanyAdmin.setText("Company Admin");
+        btnCompanyAdmin.setBorder(null);
+        btnCompanyAdmin.setBorderPainted(false);
+        btnCompanyAdmin.setContentAreaFilled(false);
+        btnCompanyAdmin.setFocusPainted(false);
+        btnCompanyAdmin.setFocusable(false);
+        btnCompanyAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCompanyAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompanyAdminActionPerformed(evt);
             }
         });
 
-        btnBrokerAdmin.setBackground(new java.awt.Color(0, 0, 0));
-        btnBrokerAdmin.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnBrokerAdmin.setBackground(new java.awt.Color(102, 0, 0));
+        btnBrokerAdmin.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnBrokerAdmin.setForeground(new java.awt.Color(255, 255, 255));
         btnBrokerAdmin.setText("Broker Admin");
+        btnBrokerAdmin.setBorder(null);
+        btnBrokerAdmin.setBorderPainted(false);
+        btnBrokerAdmin.setContentAreaFilled(false);
+        btnBrokerAdmin.setFocusPainted(false);
+        btnBrokerAdmin.setFocusable(false);
+        btnBrokerAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBrokerAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBrokerAdminActionPerformed(evt);
             }
         });
 
-        btnUsers.setBackground(new java.awt.Color(0, 0, 0));
-        btnUsers.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnUsers.setBackground(new java.awt.Color(102, 0, 0));
+        btnUsers.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnUsers.setForeground(new java.awt.Color(255, 255, 255));
         btnUsers.setText(" Users");
+        btnUsers.setBorder(null);
+        btnUsers.setBorderPainted(false);
+        btnUsers.setContentAreaFilled(false);
+        btnUsers.setFocusPainted(false);
+        btnUsers.setFocusable(false);
+        btnUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsersActionPerformed(evt);
             }
         });
 
-        btnTradeRecords.setBackground(new java.awt.Color(0, 0, 0));
-        btnTradeRecords.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnTradeRecords.setBackground(new java.awt.Color(102, 0, 0));
+        btnTradeRecords.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnTradeRecords.setForeground(new java.awt.Color(255, 255, 255));
         btnTradeRecords.setText("Trade Records");
+        btnTradeRecords.setBorder(null);
+        btnTradeRecords.setBorderPainted(false);
+        btnTradeRecords.setContentAreaFilled(false);
+        btnTradeRecords.setFocusPainted(false);
+        btnTradeRecords.setFocusable(false);
+        btnTradeRecords.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnTradeRecords.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTradeRecordsActionPerformed(evt);
             }
         });
 
-        btnLogOut.setBackground(new java.awt.Color(0, 0, 0));
-        btnLogOut.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnLogOut.setBackground(new java.awt.Color(255, 0, 0));
+        btnLogOut.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
         btnLogOut.setText("Logout");
+        btnLogOut.setBorder(null);
+        btnLogOut.setBorderPainted(false);
+        btnLogOut.setFocusPainted(false);
+        btnLogOut.setFocusable(false);
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -99,29 +169,30 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTradeRecords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBrokerAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCompanyAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnTradeRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCompanyAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBrokerAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(btnCompanyAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBrokerAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTradeRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
-                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(73, 73, 73)
+                .addComponent(btnCompanyAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBrokerAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTradeRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(215, 215, 215)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         splitPane.setLeftComponent(jPanel1);
@@ -134,7 +205,7 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 619, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(jPanel2);
@@ -143,11 +214,15 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(splitPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(splitPane))
         );
 
         pack();
@@ -225,8 +300,11 @@ public class SystemAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnTradeRecords;
     private javax.swing.JButton btnUsers;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel logoImg;
     private javax.swing.JSplitPane splitPane;
     // End of variables declaration//GEN-END:variables
 }
