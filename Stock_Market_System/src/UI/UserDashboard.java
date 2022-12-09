@@ -7,6 +7,7 @@ package UI;
 /**
  *
  * @author apoorvakulkarni
+ * @author rishi
  */
 public class UserDashboard extends javax.swing.JFrame {
 

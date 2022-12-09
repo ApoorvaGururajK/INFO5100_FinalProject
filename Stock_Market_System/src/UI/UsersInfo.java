@@ -29,12 +29,8 @@ public class UsersInfo extends javax.swing.JPanel {
         labelTitle = new javax.swing.JLabel();
         txtAdminID = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
-        labelAdminID = new javax.swing.JLabel();
-        txtAdminID1 = new javax.swing.JTextField();
-        labelAdminID1 = new javax.swing.JLabel();
-        txtAdminID2 = new javax.swing.JTextField();
-        labelAdminID2 = new javax.swing.JLabel();
-        txtAdminID3 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -58,35 +54,30 @@ public class UsersInfo extends javax.swing.JPanel {
             }
         });
 
-        labelAdminID.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID.setText("User ID: ");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        txtAdminID1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID1ActionPerformed(evt);
+            },
+            new String [] {
+                "Name", "Email", "DOB", "Acc No.", "Stock Broker", "MF Broker"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        labelAdminID1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID1.setText("Name:");
-
-        txtAdminID2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID2ActionPerformed(evt);
-            }
-        });
-
-        labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID2.setText("Portfolio Value:");
-
-        txtAdminID3.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID3ActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,23 +91,13 @@ public class UsersInfo extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(321, 321, 321)
                         .addComponent(labelTitle)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(labelAdminID)
-                .addGap(18, 18, 18)
-                .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(labelAdminID1)
-                .addGap(18, 18, 18)
-                .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(labelAdminID2)
-                .addGap(18, 18, 18)
-                .addComponent(txtAdminID3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,17 +108,9 @@ public class UsersInfo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAdminID)
-                    .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelAdminID1)
-                        .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelAdminID2)
-                            .addComponent(txtAdminID3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,28 +122,12 @@ public class UsersInfo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void txtAdminID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID1ActionPerformed
-
-    private void txtAdminID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID2ActionPerformed
-
-    private void txtAdminID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel labelAdminID;
-    private javax.swing.JLabel labelAdminID1;
-    private javax.swing.JLabel labelAdminID2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtAdminID;
-    private javax.swing.JTextField txtAdminID1;
-    private javax.swing.JTextField txtAdminID2;
-    private javax.swing.JTextField txtAdminID3;
     // End of variables declaration//GEN-END:variables
 }
