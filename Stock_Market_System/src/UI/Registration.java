@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Models.User;
+
 /**
  *
  * @author rishi
@@ -333,6 +335,7 @@ public class Registration extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        User user = new User();
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
