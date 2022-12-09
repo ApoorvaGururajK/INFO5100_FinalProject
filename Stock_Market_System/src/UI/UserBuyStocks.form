@@ -54,10 +54,10 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnCalculateTotal" min="-2" pref="172" max="-2" attributes="0"/>
+                          <Component id="btnBuyStocks" min="-2" pref="172" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtAdminID" min="-2" pref="440" max="-2" attributes="0"/>
-                              <Component id="txtAdminID1" min="-2" pref="440" max="-2" attributes="0"/>
+                              <Component id="txtNoOfStocks" min="-2" pref="440" max="-2" attributes="0"/>
+                              <Component id="txtGetTotal" min="-2" pref="440" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -80,16 +80,16 @@
               <Component id="jScrollPane1" min="-2" pref="255" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtAdminID" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="txtNoOfStocks" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="labelAdminID3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtAdminID1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="txtGetTotal" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnCalculateTotal1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
-              <Component id="btnCalculateTotal" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="btnBuyStocks" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -107,14 +107,8 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Apple"/>
-            <StringItem index="1" value="Microsoft"/>
-            <StringItem index="2" value="Amazon"/>
-            <StringItem index="3" value="Netflix"/>
-            <StringItem index="4" value="Meta"/>
-            <StringItem index="5" value="Paypal"/>
-            <StringItem index="6" value=" "/>
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -143,21 +137,15 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
+              <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="Company" type="java.lang.String"/>
                 <Column editable="false" title="Price per stock" type="java.lang.Integer"/>
                 <Column editable="false" title="No.of Stocks Owned" type="java.lang.Integer"/>
                 <Column editable="true" title="Total Investment" type="java.lang.Object"/>
-                <Column editable="false" title="Profit" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -187,14 +175,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtAdminID">
+    <Component class="javax.swing.JTextField" name="txtNoOfStocks">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter" size="14" style="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminIDActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNoOfStocksActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelAdminID3">
@@ -205,17 +193,17 @@
         <Property name="text" type="java.lang.String" value="No. of Stocks to buy:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAdminID1">
+    <Component class="javax.swing.JTextField" name="txtGetTotal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter" size="14" style="0"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAdminID1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGetTotalActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCalculateTotal">
+    <Component class="javax.swing.JButton" name="btnBuyStocks">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -229,7 +217,7 @@
         <Property name="text" type="java.lang.String" value="Buy Stocks"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalculateTotalActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuyStocksActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCalculateTotal1">
