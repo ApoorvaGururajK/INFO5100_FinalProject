@@ -4,6 +4,17 @@
  */
 package UI;
 
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.UUID;
+import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.showMessageDialog;
+import model.UserAuth;
+
 /**
  *
  * @author rishi
@@ -15,8 +26,47 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
      */
     public CompanyAdminRegistration() {
         initComponents();
+        show_user();
     }
 
+    public ArrayList<UserAuth> userAuthList(){
+        
+        ArrayList<UserAuth> userAuthList = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `ID`, `username`, `password` FROM `info5100_finalproject`.`authdata`WHERE `type`='Company Admin'";
+            ResultSet rs= stm.executeQuery(dispSt);
+            UserAuth user;
+            
+            while(rs.next()){
+                user= new UserAuth(rs.getString("ID"),rs.getString("username"),rs.getString("password"));
+                userAuthList.add(user);
+            }
+            
+            con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return userAuthList;
+    }
+    
+    public void show_user(){
+        ArrayList<UserAuth> list = userAuthList();
+        DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+        Object[] row = new Object[3];
+        for (int i=0;i<list.size();i++)
+        {
+            row[0]=list.get(i).getUserID();
+             row[1]=list.get(i).getUsername();
+              row[2]=list.get(i).getPassword();
+              model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,9 +78,8 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
 
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnRegister1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
+        CompanyAdminTable = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
         labelUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         labelPassword = new javax.swing.JLabel();
@@ -40,10 +89,11 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         labelTitle.setText("Company Administrator");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        CompanyAdminTable.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        CompanyAdminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,45 +116,42 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        CompanyAdminTable.setGridColor(new java.awt.Color(255, 255, 255));
+        CompanyAdminTable.setRowHeight(30);
+        CompanyAdminTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CompanyAdminTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(CompanyAdminTable);
 
-        btnRegister1.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister1.setText("View");
-        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(0, 0, 0));
+        btnDelete.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        btnUpdate1.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnUpdate1.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate1.setText("Delete");
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
-            }
-        });
-
-        labelUsername.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelUsername.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelUsername.setText("Username:");
 
-        txtUsername.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
 
-        labelPassword.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelPassword.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelPassword.setText("Password:");
 
-        txtPassword.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
 
-        btnRegister.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnRegister.setBackground(new java.awt.Color(255, 51, 51));
+        btnRegister.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +161,7 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
         });
 
         btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -148,13 +195,11 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(205, 205, 205))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelTitle)
-                        .addGap(257, 257, 257))))
+                        .addGap(257, 257, 257))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(338, 338, 338))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,21 +222,47 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister1ActionPerformed
-
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
+         try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+             DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+             
+             
+            
+        
+            if(CompanyAdminTable.getSelectedRowCount() ==1){
+                                       
+                    int rowIndex=CompanyAdminTable.getSelectedRow() ;
+                    String value =(CompanyAdminTable.getModel().getValueAt(rowIndex, 0).toString());
+                    String query=" DELETE FROM `info5100_finalproject`.`authdata` WHERE (`ID` = '"+value+"');";
+                    
+                     stm.executeUpdate(query);
+                     model.removeRow(CompanyAdminTable.getSelectedRow());
+              
+                    showMessageDialog(this,"Company Admin Deleted Successfully !!");
+                    txtUsername.setText("");
+                    txtPassword.setText("");
+                    
+          }   else{
+                    showMessageDialog(this,"Please select a single row to delete !!");
+                     }
+             con.close(); 
+             
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
@@ -199,44 +270,82 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-//        String username = txtUsername.getText();
-//        String password = new String(txtPassword.getPassword());
-//        String adminID= UUID.randomUUID().toString();
-//
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//
-//            String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+adminID+"','"+username+"','"+password+"', 'Broker Admin')";
-//
-//            stm.executeUpdate(sqlS2);
-//
-//            DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
-//            model.setRowCount(0);
-//            //            show_
-//            showMessageDialog(this,"Broker Admin Created Successfully !!");
-//            txtUsername.setText("");
-//            txtPassword.setText("");
-//
-//            con.close();
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+        String adminID= UUID.randomUUID().toString();
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+
+            String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+adminID+"','"+username+"','"+password+"', 'Company Admin')";
+
+            stm.executeUpdate(sqlS2);
+
+            DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+            model.setRowCount(0);
+             show_user();
+            showMessageDialog(this,"Company Admin Created Successfully !!");
+            txtUsername.setText("");
+            txtPassword.setText("");
+
+            con.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+         try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+             String username = txtUsername.getText();
+             String password = new String(txtPassword.getPassword());
+            
+            if(CompanyAdminTable.getSelectedRowCount() ==1){
+                
+                model.setValueAt(username, CompanyAdminTable.getSelectedRow(),1);
+                model.setValueAt(password, CompanyAdminTable.getSelectedRow(),2);
+                
+                 int rowIndex=CompanyAdminTable.getSelectedRow() ;
+                 String value =(CompanyAdminTable.getModel().getValueAt(rowIndex, 0).toString());
+                 String query="UPDATE `info5100_finalproject`.`authdata` SET `username` = '"+username+"', `password` = '"+password+"' WHERE (`ID` = '"+value+"')";
+                 stm.executeUpdate(query);
+                showMessageDialog(this,"Company Admin Updated Successfully !!");
+                txtUsername.setText("");
+                txtPassword.setText("");
+            }else{
+                 showMessageDialog(this,"Please select a single row to update !!");
+            }
+            
+         con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void CompanyAdminTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompanyAdminTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+        
+        String selUsername= model.getValueAt(CompanyAdminTable.getSelectedRow(), 1).toString();
+        String selPassword= model.getValueAt(CompanyAdminTable.getSelectedRow(), 2).toString();
+        
+        txtUsername.setText(selUsername);
+        txtPassword.setText(selPassword);
+    }//GEN-LAST:event_CompanyAdminTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable CompanyAdminTable;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JLabel labelUsername;
