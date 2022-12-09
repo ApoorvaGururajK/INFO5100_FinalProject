@@ -89,9 +89,10 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         labelTitle.setText("Company Administrator");
 
+        CompanyAdminTable.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         CompanyAdminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -115,6 +116,8 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        CompanyAdminTable.setGridColor(new java.awt.Color(255, 255, 255));
+        CompanyAdminTable.setRowHeight(30);
         CompanyAdminTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CompanyAdminTableMouseClicked(evt);
@@ -123,7 +126,7 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
         jScrollPane1.setViewportView(CompanyAdminTable);
 
         btnDelete.setBackground(new java.awt.Color(0, 0, 0));
-        btnDelete.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -132,23 +135,23 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
             }
         });
 
-        labelUsername.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelUsername.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelUsername.setText("Username:");
 
-        txtUsername.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
 
-        labelPassword.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelPassword.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelPassword.setText("Password:");
 
-        txtPassword.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
 
-        btnRegister.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnRegister.setBackground(new java.awt.Color(255, 51, 51));
+        btnRegister.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("Register");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +161,7 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
         });
 
         btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -221,7 +224,7 @@ public class CompanyAdminRegistration extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
