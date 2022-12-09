@@ -4,6 +4,13 @@
  */
 package UI;
 
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.HashMap;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author rishi
@@ -15,6 +22,16 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+//        HashMap<String, String> dashboard = new HashMap<String, String>();
+//
+//    // Add keys and values (Country, City)
+//    dashboard.put("User", "userDash");
+//    dashboard.put("Broker Admin", "brokerDash");
+//    dashboard.put("Company Admin", "compDash");
+//    dashboard.put("Equity Holder", "equityDash");
+//    dashboard.put("Stock Broker", "sBrokerDash");
+//    dashboard.put("Mutual Fund Broker", "mfBrokerDash");
     }
 
     /**
@@ -29,13 +46,13 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         labelTitle = new javax.swing.JLabel();
         labelAdminID = new javax.swing.JLabel();
-        txtAdminID1 = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         labelAdminID1 = new javax.swing.JLabel();
-        txtAdminID2 = new javax.swing.JTextField();
         labelAdminID2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnRegister = new javax.swing.JButton();
-        btnRegister1 = new javax.swing.JButton();
+        userRoles = new javax.swing.JComboBox<>();
+        btnLogin = new javax.swing.JButton();
+        btnHome = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,45 +64,38 @@ public class Login extends javax.swing.JFrame {
         labelAdminID.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID.setText("Username / Email: ");
 
-        txtAdminID1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID1.addActionListener(new java.awt.event.ActionListener() {
+        txtUsername.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID1ActionPerformed(evt);
+                txtUsernameActionPerformed(evt);
             }
         });
 
         labelAdminID1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID1.setText("Password:");
 
-        txtAdminID2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID2ActionPerformed(evt);
-            }
-        });
-
         labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID2.setText("Role:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        userRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Company", "System Admin", "Broker Admin", "Company Admin", "Equity Holder", "Stock Broker", "Mutual Funds Broker", " " }));
 
-        btnRegister.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister.setText("Login");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogin.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
-        btnRegister1.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister1.setText("Home");
-        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
+        btnHome.setBackground(new java.awt.Color(0, 0, 0));
+        btnHome.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister1ActionPerformed(evt);
+                btnHomeActionPerformed(evt);
             }
         });
 
@@ -99,15 +109,15 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(labelAdminID1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelAdminID2)
                             .addComponent(labelAdminID))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtAdminID1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtUsername)
+                            .addComponent(userRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(282, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,8 +127,8 @@ public class Login extends javax.swing.JFrame {
                         .addGap(324, 324, 324))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegister1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(328, 328, 328))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,20 +138,20 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(labelTitle)
                 .addGap(75, 75, 75)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID)
-                    .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAdminID1)
-                    .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAdminID1))
+                .addGap(49, 49, 49)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(131, Short.MAX_VALUE))
         );
 
@@ -161,21 +171,97 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAdminID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID1ActionPerformed
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID1ActionPerformed
+    }//GEN-LAST:event_txtUsernameActionPerformed
 
-    private void txtAdminID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID2ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID2ActionPerformed
+        String userRole = userRoles.getSelectedItem().toString();
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+        
+        boolean Auth=false;
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String sql="select * from authdata where username='"+username+"' and password='"+password+"' and type='"+userRole+"'";
+            ResultSet rs= stm.executeQuery(sql);
+            
+            if(rs.next()){
+                dispose();
+                switch (userRole) {
+                    
+                    // 1st Role
+                    case "User":
+                                UserDashboard user=new UserDashboard();
+                                user.setVisible(true);
+                                System.out.println("User is Logging In");
+                                break;
+                                
+                     // 2nd Role
+                     case "System Admin":
+                                SystemAdminDashboard systemAd=new SystemAdminDashboard();
+                                systemAd.setVisible(true);
+                                System.out.println("System Admin is Logging In");
+                                break;
+                                                                
+                     // 3rd Role
+                     case "Broker Admin":
+                                BrokerAdminDashboard brokerAd=new BrokerAdminDashboard();
+                                brokerAd.setVisible(true);
+                                System.out.println("Broker Admin is Logging In");
+                                break;
+                                                                                                
+                     // 4th Role
+                     case "Company Admin":
+                                CompanyAdminDashboard companyAd=new CompanyAdminDashboard();
+                                companyAd.setVisible(true);
+                                System.out.println("Company Admin is Logging In");
+                                break;
+                                                                                                
+                     // 5th Role
+                     case "Equity Holder":
+                                EquityHolderDashboard equityHolder=new EquityHolderDashboard();
+                                equityHolder.setVisible(true);
+                                System.out.println("Equity Holder is Logging In");
+                                break;
+                                                                                                 
+                     // 6th Role
+                    case "Stock Broker":
+                                StockBrokerDashboard sBroker=new StockBrokerDashboard();
+                                sBroker.setVisible(true);
+                                System.out.println("Stock Broker is Logging In");
+                                break;
+                                                                                                
+                     // 7th Role
+                    case "Mutual Funds Broker":
+                               MFBrokerDashboard mfBroker=new MFBrokerDashboard();
+                                mfBroker.setVisible(true);
+                                System.out.println("Mutual Funds Broker is Logging In");
+                                break;
+                    default:
+                      System.out.println("Login Authentication");
+                    }
+            }else{
+                showMessageDialog(this,"Incorrect Credentials! Please Try Again!");
+            }
+            
+            con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegisterActionPerformed
-
-    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister1ActionPerformed
+        dispose();
+        Home home= new Home();
+        home.setVisible(true);
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,15 +299,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAdminID;
     private javax.swing.JLabel labelAdminID1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtAdminID1;
-    private javax.swing.JTextField txtAdminID2;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
+    private javax.swing.JComboBox<String> userRoles;
     // End of variables declaration//GEN-END:variables
 }

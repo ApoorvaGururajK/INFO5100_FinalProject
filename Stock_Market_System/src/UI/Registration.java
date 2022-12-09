@@ -361,7 +361,7 @@ public static String createID()
             Statement stm= con.createStatement();
             
             String sqlS1= "INSERT INTO `info5100_finalproject`.`users` (`UserID`, `Name`, `DOB`,`Email`, `Password`, `Phone`,`Address`, `Occupation`, `Trading Account Number`,`Stock Broker`,`MF Broker`) VALUES ('"+userID+"', '"+name+"','"+dob+"','"+email+"','"+password+"', '"+phone+"','"+address+"','"+occupation+"','"+tradingAcc+"','"+sbroker+"','"+mfbroker+"')";
-             String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+userID+"','"+email+"','"+password+"', 'user')";
+             String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+userID+"','"+email+"','"+password+"', 'User')";
             
             stm.executeUpdate(sqlS1);
             stm.executeUpdate(sqlS2);
@@ -376,6 +376,9 @@ public static String createID()
 
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Home home= new Home();
+        home.setVisible(true);
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
     private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed
