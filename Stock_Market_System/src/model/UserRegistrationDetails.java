@@ -27,6 +27,7 @@ public class UserRegistrationDetails {
     private String password;
     private Integer initialBalance;
     private Integer no_of_stocks;
+    private Integer no_of_stocks_sell;
     private Integer no_of_units;
     public Map<String, List<Integer>> StockHistory;
     public Map<String, Integer> MutualFundsHistory;

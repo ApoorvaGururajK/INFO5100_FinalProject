@@ -31,7 +31,7 @@ public class UserSellStocks extends javax.swing.JFrame {
     private int No_of_Stocks_Owned;
     private Integer Total;
     private Integer newTotal;
-    private int No_of_Stocks;
+    private int no_of_stocks_sell;
     UserSelectionDetails selections;
     UserRegistrationDetails newUser;
     
@@ -245,10 +245,10 @@ public class UserSellStocks extends javax.swing.JFrame {
     
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
-        this.No_of_Stocks = Integer.parseInt(txtNoOfStocksSell.getText());
-        this.newUser.setNo_of_stocks(this.No_of_Stocks);
-        if (this.No_of_Stocks <= this.No_of_Stocks_Owned){
-            this.Total = this.Current_Stock_price * this.No_of_Stocks;
+        this.no_of_stocks_sell = Integer.parseInt(txtNoOfStocksSell.getText());
+        this.newUser.setNo_of_stocks_sell(this.no_of_stocks_sell);
+        if (this.no_of_stocks_sell <= this.No_of_Stocks_Owned){
+            this.Total = this.Current_Stock_price * this.no_of_stocks_sell;
             txtGetTotal.setText(this.Total.toString());
         }
         else {
@@ -275,10 +275,10 @@ public class UserSellStocks extends javax.swing.JFrame {
         row[1] = this.UserStockHistory.get(this.Company_selected).get(0);
         
         
-        row[2] = this.No_of_Stocks_Owned - this.No_of_Stocks;
-        this.UserStockHistory.get(this.Company_selected).set(1, this.No_of_Stocks);
+        row[2] = this.No_of_Stocks_Owned - this.no_of_stocks_sell;
+        this.UserStockHistory.get(this.Company_selected).set(1, this.no_of_stocks_sell);
         
-        this.newTotal = (this.No_of_Stocks_Owned - this.No_of_Stocks)*this.Current_Stock_price;
+        this.newTotal = (this.No_of_Stocks_Owned - this.no_of_stocks_sell)*this.Current_Stock_price;
         row[3] = this.newTotal;
         this.UserStockHistory.get(this.Company_selected).set(2, this.Total);
         
@@ -286,7 +286,7 @@ public class UserSellStocks extends javax.swing.JFrame {
         
         this.newUser.setUserStockHistory(this.UserStockHistory);
         
-        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
+        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.no_of_stocks_sell) + " stocks of " + (this.Company_selected));
 
             
     }//GEN-LAST:event_btnSellStocksActionPerformed
