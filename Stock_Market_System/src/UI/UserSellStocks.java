@@ -12,6 +12,8 @@ import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
 
 /**
  *
@@ -30,14 +32,18 @@ public class UserSellStocks extends javax.swing.JFrame {
     private Integer Total;
     private Integer newTotal;
     private int No_of_Stocks;
+    UserSelectionDetails selections;
+    UserRegistrationDetails newUser;
     
     public UserSellStocks() {
         initComponents();
     }
     
-    public UserSellStocks (Map<String, List<Integer>> UserStockHistory) {
+    public UserSellStocks (Map<String, List<Integer>> UserStockHistory, UserRegistrationDetails newUser) {
         initComponents();
         this.UserStockHistory = UserStockHistory;
+        this.selections = selections;
+        this.newUser = newUser;
         
         populateComboBox(this.UserStockHistory);
 //        populateTable(this.UserStockHistory);
@@ -226,8 +232,10 @@ public class UserSellStocks extends javax.swing.JFrame {
             row[2] = this.UserStockHistory.get(Company_selected).get(1);
             this.No_of_Stocks_Owned = this.UserStockHistory.get(Company_selected).get(1);
             row[3] = this.UserStockHistory.get(Company_selected).get(2);
+            
+            model.addRow(row);
         }
-        model.addRow(row);
+        
         }
     
     private void populateComboBox(Map<String, List<Integer>> UserStockHistory) {
@@ -238,6 +246,7 @@ public class UserSellStocks extends javax.swing.JFrame {
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
         this.No_of_Stocks = Integer.parseInt(txtNoOfStocksSell.getText());
+        this.newUser.setNo_of_stocks(this.No_of_Stocks);
         if (this.No_of_Stocks <= this.No_of_Stocks_Owned){
             this.Total = this.Current_Stock_price * this.No_of_Stocks;
             txtGetTotal.setText(this.Total.toString());
@@ -272,6 +281,10 @@ public class UserSellStocks extends javax.swing.JFrame {
         this.newTotal = (this.No_of_Stocks_Owned - this.No_of_Stocks)*this.Current_Stock_price;
         row[3] = this.newTotal;
         this.UserStockHistory.get(this.Company_selected).set(2, this.Total);
+        
+        model.addRow(row);
+        
+        this.newUser.setUserStockHistory(this.UserStockHistory);
         
         JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
 

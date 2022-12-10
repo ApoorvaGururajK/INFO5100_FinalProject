@@ -7,6 +7,7 @@ import java.awt.Image;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.sql.*;
 import javax.swing.ImageIcon;
+import model.UserSelectionDetails;
 /**
  *
  * @author rishi
@@ -17,12 +18,17 @@ public class Home extends javax.swing.JFrame {
     Image image = icon.getImage();
     Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
     ImageIcon ticon= new ImageIcon(newimg);
+    UserSelectionDetails selections;
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
         logoImg.setIcon(ticon);
+    }
+    
+    public Home(UserSelectionDetails selections) {
+        this.selections = selections;
     }
 
     /**
@@ -199,7 +205,7 @@ public class Home extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         dispose();
-        Login log= new Login();
+        Login log= new Login(this.selections);
         log.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 

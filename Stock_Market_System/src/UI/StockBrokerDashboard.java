@@ -4,6 +4,8 @@
  */
 package UI;
 
+import model.UserSelectionDetails;
+
 /**
  *
  * @author rishi
@@ -13,8 +15,13 @@ public class StockBrokerDashboard extends javax.swing.JFrame {
     /**
      * Creates new form StockBrokerDashboard
      */
+    UserSelectionDetails selections;
     public StockBrokerDashboard() {
         initComponents();
+    }
+    
+    public StockBrokerDashboard(UserSelectionDetails selections) {
+        this.selections = selections;
     }
 
     /**
@@ -186,6 +193,8 @@ public class StockBrokerDashboard extends javax.swing.JFrame {
 
     private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
         // TODO add your handling code here:
+        BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.selections);
+        brokerBuyStocks.setVisible(true);
     }//GEN-LAST:event_btnRegister2ActionPerformed
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed

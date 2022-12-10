@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import model.UserRegistrationDetails;
 
 /**
  *
@@ -27,13 +28,15 @@ public class UserBuyMF extends javax.swing.JFrame {
     private Integer total;
     private Integer No_of_units;
     private String MFIndex_selected;
+    UserRegistrationDetails newUser;
     
     public UserBuyMF() {
         initComponents();
     }
     
-    public UserBuyMF(Map<String, Integer> UserMutualFundsHistory) {
+    public UserBuyMF(Map<String, Integer> UserMutualFundsHistory, UserRegistrationDetails newUser) {
         initComponents();
+        this.newUser = newUser;
         this.UserMutualFundsHistory = UserMutualFundsHistory;
         this.MututalFundIndex = new HashMap<>();
         this.MutualFundUnitPrice = new HashMap<>();
@@ -219,6 +222,7 @@ public class UserBuyMF extends javax.swing.JFrame {
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
         this.No_of_units = Integer.parseInt(txtNoOfUnits.getText());
+        this.newUser.setNo_of_units(this.No_of_units);
         this.total = this.No_of_units * this.index_unit_value;
         txtCalculateTotal.setText(this.total.toString());
         this.UserMutualFundsHistory.put(this.MututalFundIndex.get(MFIndex_selected), this.No_of_units);
@@ -231,7 +235,8 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_units) + " usnits of " + (this.MFIndex_selected));
+        this.newUser.setUserMutualFundsHistory(this.UserMutualFundsHistory);
+        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_units) + " units of " + (this.MFIndex_selected));
 
     }//GEN-LAST:event_btnBuyMFActionPerformed
 

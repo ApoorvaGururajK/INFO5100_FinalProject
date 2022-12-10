@@ -12,6 +12,8 @@ import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
 
 /**
  *
@@ -28,15 +30,18 @@ public class UserBuyStocks extends javax.swing.JFrame {
     private Integer Total;
     private String Company_selected;
     private int Current_Stock_price;
+    UserSelectionDetails selections;
+    UserRegistrationDetails newUser;
     
     public UserBuyStocks() {
         initComponents();
     }
     
-    public UserBuyStocks(Map<String, List<Integer>> UserStockHistory) {
+    public UserBuyStocks(Map<String, List<Integer>> UserStockHistory, UserRegistrationDetails newUser) {
         initComponents();
 //        this.SelectCompany = new ArrayList<>();
         this.UserStockHistory = UserStockHistory;
+        this.newUser = newUser;
         
         this.UserStockHistory.put("Apple", Arrays.asList(142, 0, 0));
         this.UserStockHistory.put("Microsoft", Arrays.asList(247, 0, 0));
@@ -237,10 +242,9 @@ public class UserBuyStocks extends javax.swing.JFrame {
             }
             row[i] = this.UserStockHistory.get(Company_selected).get(i-1);
             
-        }
-        
-        model.addRow(row);
-              
+            model.addRow(row);
+            
+        }       
     }
     
     
@@ -258,21 +262,35 @@ public class UserBuyStocks extends javax.swing.JFrame {
         model.setRowCount(0);
         Object[] row = new Object[4];
         row[0] = this.Company_selected;
+        
+        this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList());
         for (int i=1; i< 4; i++) {
             if (i == 1) {
                 row[i] = this.UserStockHistory.get(this.Company_selected).get(i-1);
+                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
             }
             else if (i == 2){
                 row[i] = this.No_of_Stocks;
                 this.UserStockHistory.get(this.Company_selected).set(i-1, this.No_of_Stocks);
+                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
+
             }
             else {
                 row[i] = this.Total;
                 this.UserStockHistory.get(this.Company_selected).set(i-1, this.Total);
+                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
+
             }
+            model.addRow(row);
             
         }
-        model.addRow(row);
+        this.newUser.setInitialBalance(this.newUser.getInitialBalance() - this.Total);
+        
+        
+//        this.newUser.setUserStockHistory(this.UserStockHistory); 
+        
+        
+        
         JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
 //        UserSellStocks sellStocks = new UserSellStocks(this.UserStockHistory);
     }//GEN-LAST:event_btnBuyStocksActionPerformed
@@ -280,7 +298,12 @@ public class UserBuyStocks extends javax.swing.JFrame {
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
         this.No_of_Stocks = Integer.parseInt(txtNoOfStocks.getText());
+        this.newUser.setNo_of_stocks(this.No_of_Stocks);
         this.Total = this.Current_Stock_price * this.No_of_Stocks;
+        if (this.Total > this.newUser.getInitialBalance()) {
+            JOptionPane.showMessageDialog(this, "No sufficient balance in the wallet to buy the stocks");
+
+        }
         txtGetTotal.setText(this.Total.toString());
         System.out.println("The map is " + this.UserStockHistory);
        

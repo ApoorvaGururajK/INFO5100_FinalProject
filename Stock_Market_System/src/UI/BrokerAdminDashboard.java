@@ -4,6 +4,12 @@
  */
 package UI;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import model.MutualFundsBroker;
+import model.StocksBroker;
+
 /**
  *
  * @author rishi
@@ -13,8 +19,16 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
     /**
      * Creates new form BrokerAdminDashboard
      */
+    private String Broker_Type;
+    private List<String> BrokerType;
     public BrokerAdminDashboard() {
         initComponents();
+        
+        this.BrokerType = new ArrayList<>();
+        
+        this.BrokerType.add("Mutual Funds Broker");
+        this.BrokerType.add("Stocks Broker");
+        populateComboBox();
     }
 
     /**
@@ -80,7 +94,11 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
         labelBrokerType.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelBrokerType.setText("Broker Type:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         txtPassword1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
 
@@ -293,6 +311,12 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void populateComboBox() {
+        DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox1.getModel();
+        model1.addElement(this.BrokerType.get(0));
+        model1.addElement(this.BrokerType.get(1));
+    }
     private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminIDActionPerformed
@@ -303,6 +327,13 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        if (this.Broker_Type == "Stocks Broker") {
+            StocksBroker brokerStocks = new StocksBroker();
+        }
+        else if (this.Broker_Type == "Mutual Funds Broker") {
+            MutualFundsBroker brokerMF = new MutualFundsBroker();
+        }
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -324,6 +355,11 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
     private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegister2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        this.Broker_Type = (String) jComboBox1.getSelectedItem();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -6,12 +6,14 @@ package UI;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.sql.*;
 
-import Models.User;
+import model.User;
 
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 import static javax.swing.JOptionPane.showMessageDialog;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
 /**
  *
  * @author rishi
@@ -21,6 +23,7 @@ public class Registration extends javax.swing.JFrame {
     /**
      * Creates new form Registration
      */
+    UserSelectionDetails selections;
     public Registration() {
         initComponents();
     }
@@ -65,6 +68,8 @@ public static String createID()
         btnRegister1 = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         txtDOB = new javax.swing.JTextField();
+        txtInitialBalance = new javax.swing.JTextField();
+        labelAdminID10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +191,16 @@ public static String createID()
             }
         });
 
+        txtInitialBalance.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtInitialBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInitialBalanceActionPerformed(evt);
+            }
+        });
+
+        labelAdminID10.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelAdminID10.setText("Initial balance in the wallet:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,9 +209,20 @@ public static String createID()
                 .addGap(288, 288, 288)
                 .addComponent(labelTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegister1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(312, 312, 312))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelAdminID10)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtInitialBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(70, 86, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -225,7 +251,7 @@ public static String createID()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(labelAdminID7)
                         .addGap(18, 18, 18)
@@ -234,7 +260,7 @@ public static String createID()
                         .addComponent(labelAdminID6)
                         .addGap(18, 18, 18)
                         .addComponent(txtTradingAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(labelAdminID8)
                         .addGap(18, 18, 18)
@@ -244,12 +270,6 @@ public static String createID()
                         .addGap(18, 18, 18)
                         .addComponent(txtMFBroker, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(65, 65, 65))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(312, 312, 312))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,11 +306,15 @@ public static String createID()
                     .addComponent(txtStockBroker, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID9)
                     .addComponent(txtMFBroker, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAdminID10)
+                    .addComponent(txtInitialBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -341,10 +365,9 @@ public static String createID()
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        User user = new User();
 
          String phonePattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
-        String emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$";
+         String emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$";
         
          String userID= UUID.randomUUID().toString();
          String name = txtName.getText();
@@ -357,7 +380,28 @@ public static String createID()
          String sbroker=txtStockBroker.getText();
          String mfbroker=txtMFBroker.getText();
          String password = new String(txtPassword.getPassword());
+         Integer initialBalance = Integer.parseInt(txtInitialBalance.getText());
+         
+         this.selections = new UserSelectionDetails();
+         
+        UserRegistrationDetails newUser = this.selections.addUser();
+         
+        newUser.setName(name);
+        newUser.setUserID(userID);
+        newUser.setAddress(address);
+        newUser.setDob(dob);
+        newUser.setPhone(phone);
+        newUser.setEmail(email);
+        newUser.setOccupation(occupation);
+        newUser.setTradingAcc(tradingAcc);
+        newUser.setSbroker(sbroker);
+        newUser.setMfbroker(mfbroker);
+        newUser.setPassword(password);
+        newUser.setInitialBalance(initialBalance);
         
+        User user = new User(newUser);
+        
+         
                 try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
@@ -380,13 +424,17 @@ public static String createID()
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
         dispose();
-        Home home= new Home();
+        Home home= new Home(this.selections);
         home.setVisible(true);
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
     private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDOBActionPerformed
+
+    private void txtInitialBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInitialBalanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInitialBalanceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,6 +477,7 @@ public static String createID()
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAdminID;
     private javax.swing.JLabel labelAdminID1;
+    private javax.swing.JLabel labelAdminID10;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID3;
     private javax.swing.JLabel labelAdminID4;
@@ -441,6 +490,7 @@ public static String createID()
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtInitialBalance;
     private javax.swing.JTextField txtMFBroker;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtOccupation;

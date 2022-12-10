@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.HashMap;
 import static javax.swing.JOptionPane.showMessageDialog;
+import model.UserSelectionDetails;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    UserSelectionDetails selections;
     public Login() {
         initComponents();
         
@@ -32,6 +34,11 @@ public class Login extends javax.swing.JFrame {
 //    dashboard.put("Equity Holder", "equityDash");
 //    dashboard.put("Stock Broker", "sBrokerDash");
 //    dashboard.put("Mutual Fund Broker", "mfBrokerDash");
+    }
+    
+    public Login(UserSelectionDetails selections) {
+        this.selections = selections;
+        
     }
 
     /**
@@ -232,7 +239,7 @@ public class Login extends javax.swing.JFrame {
                                                                                                  
                      // 6th Role
                     case "Stock Broker":
-                                StockBrokerDashboard sBroker=new StockBrokerDashboard();
+                                StockBrokerDashboard sBroker=new StockBrokerDashboard(this.selections);
                                 sBroker.setVisible(true);
                                 System.out.println("Stock Broker is Logging In");
                                 break;

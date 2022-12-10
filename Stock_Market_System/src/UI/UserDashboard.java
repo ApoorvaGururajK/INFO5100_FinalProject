@@ -38,6 +38,7 @@ public class UserDashboard extends javax.swing.JFrame {
         labelTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(855, 680));
 
         jSplitPane1.setDividerLocation(200);
 
