@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,10 +22,19 @@ public class UserBuyMF extends javax.swing.JFrame {
      */
     public Map<String, String> MututalFundIndex;
     public Map<String, Integer> MutualFundUnitPrice;
+    public Map<String, Integer> UserMutualFundsHistory;
     private Integer index_unit_value;
     private Integer total;
+    private Integer No_of_units;
+    private String MFIndex_selected;
+    
     public UserBuyMF() {
         initComponents();
+    }
+    
+    public UserBuyMF(Map<String, Integer> UserMutualFundsHistory) {
+        initComponents();
+        this.UserMutualFundsHistory = UserMutualFundsHistory;
         this.MututalFundIndex = new HashMap<>();
         this.MutualFundUnitPrice = new HashMap<>();
         this.MututalFundIndex.put("Fidelity ZERO Large Cap Index.", "Fidelity ZERO Large Cap Index Fund for $14.43");
@@ -77,7 +87,6 @@ public class UserBuyMF extends javax.swing.JFrame {
         labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID2.setText("Select a Stock Market Index to invest in:");
 
-        jComboBoxStockMarketIndex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fidelity ZERO Large Cap Index.", "Vanguard S&P 500 ETF.", "SPDR S&P 500 ETF Trust.", "iShares Core S&P 500 ETF.", "Schwab S&P 500 Index Fund.", "Shelton NASDAQ-100 Index Direct.", "Invesco QQQ Trust ETF.", "Vanguard Russell 2000 ETF.", " " }));
         jComboBoxStockMarketIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxStockMarketIndexActionPerformed(evt);
@@ -114,7 +123,7 @@ public class UserBuyMF extends javax.swing.JFrame {
         labelAdminID4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID4.setText("Choose a unit under the selected index:");
 
-        jComboBoxStockMarketUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fidelity ZERO Large Cap Index Fund for $14.43", "Vanguard S&P 500 ETF for $374.00", "SPDR S&P 500 ETF Trust for $406.91", "iShares Core S&P 500 ETF for $408.71", "Schwab 500 Index for $39.35", "Shelton NASDAQ-100 Index Direct for $25.90", "Invesco QQQ Trust ETF for $295.55", "Vanguard Russell 2000 ETF for $75.98", " " }));
+        jComboBoxStockMarketUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxStockMarketUnit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxStockMarketUnitActionPerformed(evt);
@@ -189,23 +198,31 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void jComboBoxStockMarketIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketIndexActionPerformed
         // TODO add your handling code here:
-        String MFIndex_selected = (String) jComboBoxStockMarketIndex.getSelectedItem();
+        System.out.println("Inside jComboBoxStockMarketIndexActionPerformed");
+        this.MFIndex_selected = (String) jComboBoxStockMarketIndex.getSelectedItem();
+        System.out.println(MFIndex_selected);
         DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxStockMarketUnit.getModel();
         model2.addElement(this.MututalFundIndex.get(MFIndex_selected));
+        System.out.println("After initialising next combobox");
          
     }//GEN-LAST:event_jComboBoxStockMarketIndexActionPerformed
     
     private void populateComboBox() {
+        System.out.println("Inside populateComboBox");
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBoxStockMarketIndex.getModel();
+        System.out.println("Before initialising combobox");
         model1.addAll(this.MututalFundIndex.keySet());
+        System.out.println("After initialising combobox");
     }
     
     
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
-        Integer No_of_units = Integer.parseInt(txtNoOfUnits.getText());
-        total = No_of_units * index_unit_value;
-        txtCalculateTotal.setText(total.toString());
+        this.No_of_units = Integer.parseInt(txtNoOfUnits.getText());
+        this.total = this.No_of_units * this.index_unit_value;
+        txtCalculateTotal.setText(this.total.toString());
+        this.UserMutualFundsHistory.put(this.MututalFundIndex.get(MFIndex_selected), this.No_of_units);
+        System.out.println("The UserMutualFundsHistory map is " + this.UserMutualFundsHistory);
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
     private void txtCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalculateTotalActionPerformed
@@ -214,12 +231,14 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_units) + " usnits of " + (this.MFIndex_selected));
+
     }//GEN-LAST:event_btnBuyMFActionPerformed
 
     private void jComboBoxStockMarketUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketUnitActionPerformed
         // TODO add your handling code here:
         String MFIndex_unit_selected = (String) jComboBoxStockMarketUnit.getSelectedItem();
-        index_unit_value = (this.MutualFundUnitPrice.get(MFIndex_unit_selected));
+        this.index_unit_value = (this.MutualFundUnitPrice.get(MFIndex_unit_selected));
     }//GEN-LAST:event_jComboBoxStockMarketUnitActionPerformed
 
     private void txtNoOfUnitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfUnitsActionPerformed

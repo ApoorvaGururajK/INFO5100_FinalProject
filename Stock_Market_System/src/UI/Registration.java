@@ -6,6 +6,8 @@ package UI;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.sql.*;
 
+import Models.User;
+
 import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -339,6 +341,7 @@ public static String createID()
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        User user = new User();
 
          String phonePattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
         String emailPattern = "^[A-Za-z0-9+_.-]+@(.+)$";

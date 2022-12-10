@@ -4,6 +4,15 @@
  */
 package UI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author apoorvakulkarni
@@ -13,8 +22,25 @@ public class UserSellStocks extends javax.swing.JFrame {
     /**
      * Creates new form UserSellStocks
      */
+    public List<String> SelectCompany;
+    public Map<String, List<Integer>> UserStockHistory;
+    private int Current_Stock_price;
+    private String Company_selected;
+    private int No_of_Stocks_Owned;
+    private Integer Total;
+    private Integer newTotal;
+    private int No_of_Stocks;
+    
     public UserSellStocks() {
         initComponents();
+    }
+    
+    public UserSellStocks (Map<String, List<Integer>> UserStockHistory) {
+        initComponents();
+        this.UserStockHistory = UserStockHistory;
+        
+        populateComboBox(this.UserStockHistory);
+//        populateTable(this.UserStockHistory);
     }
 
     /**
@@ -29,10 +55,10 @@ public class UserSellStocks extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         btnCalculateTotal1 = new javax.swing.JButton();
         labelAdminID3 = new javax.swing.JLabel();
-        txtAdminID = new javax.swing.JTextField();
-        txtAdminID1 = new javax.swing.JTextField();
+        txtNoOfStocksSell = new javax.swing.JTextField();
+        txtGetTotal = new javax.swing.JTextField();
         labelTitle = new javax.swing.JLabel();
-        btnCalculateTotal = new javax.swing.JButton();
+        btnSellStocks = new javax.swing.JButton();
         labelAdminID2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -59,30 +85,30 @@ public class UserSellStocks extends javax.swing.JFrame {
         labelAdminID3.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         labelAdminID3.setText("No. of Stocks to sell:");
 
-        txtAdminID.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID.addActionListener(new java.awt.event.ActionListener() {
+        txtNoOfStocksSell.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtNoOfStocksSell.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminIDActionPerformed(evt);
+                txtNoOfStocksSellActionPerformed(evt);
             }
         });
 
-        txtAdminID1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID1.addActionListener(new java.awt.event.ActionListener() {
+        txtGetTotal.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtGetTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID1ActionPerformed(evt);
+                txtGetTotalActionPerformed(evt);
             }
         });
 
         labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
         labelTitle.setText("User Dashboard to sell Stocks");
 
-        btnCalculateTotal.setBackground(new java.awt.Color(0, 0, 0));
-        btnCalculateTotal.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnCalculateTotal.setForeground(new java.awt.Color(255, 255, 255));
-        btnCalculateTotal.setText("Sell Stocks");
-        btnCalculateTotal.addActionListener(new java.awt.event.ActionListener() {
+        btnSellStocks.setBackground(new java.awt.Color(0, 0, 0));
+        btnSellStocks.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnSellStocks.setForeground(new java.awt.Color(255, 255, 255));
+        btnSellStocks.setText("Sell Stocks");
+        btnSellStocks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalculateTotalActionPerformed(evt);
+                btnSellStocksActionPerformed(evt);
             }
         });
 
@@ -144,10 +170,10 @@ public class UserSellStocks extends javax.swing.JFrame {
                                         .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(38, 38, 38)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSellStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtNoOfStocksSell, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -164,14 +190,14 @@ public class UserSellStocks extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoOfStocksSell, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID3))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(btnCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSellStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
 
@@ -180,24 +206,77 @@ public class UserSellStocks extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-
+        this.Company_selected = (String) jComboBox1.getSelectedItem();
+        System.out.println(this.Company_selected);
+        populateTable(this.Company_selected);
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void populateTable(String Company_selected) {
+        System.out.println("Inside populate Table");
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        System.out.println("before");
+        Object[] row = new Object[4];
+
+        for (String s: this.UserStockHistory.keySet()) {
+            row[0] = s;
+            row[1] = this.UserStockHistory.get(Company_selected).get(0);
+            this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
+            row[2] = this.UserStockHistory.get(Company_selected).get(1);
+            this.No_of_Stocks_Owned = this.UserStockHistory.get(Company_selected).get(1);
+            row[3] = this.UserStockHistory.get(Company_selected).get(2);
+        }
+        model.addRow(row);
+        }
+    
+    private void populateComboBox(Map<String, List<Integer>> UserStockHistory) {
+        DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox1.getModel();
+        model1.addAll(this.UserStockHistory.keySet());
+    }
+    
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
+        this.No_of_Stocks = Integer.parseInt(txtNoOfStocksSell.getText());
+        if (this.No_of_Stocks <= this.No_of_Stocks_Owned){
+            this.Total = this.Current_Stock_price * this.No_of_Stocks;
+            txtGetTotal.setText(this.Total.toString());
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Select stocks to sell less than stocks owned: " +  (this.No_of_Stocks_Owned));
+        }
+        
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
-    private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed
+    private void txtNoOfStocksSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfStocksSellActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminIDActionPerformed
+    }//GEN-LAST:event_txtNoOfStocksSellActionPerformed
 
-    private void txtAdminID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID1ActionPerformed
+    private void txtGetTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGetTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID1ActionPerformed
+    }//GEN-LAST:event_txtGetTotalActionPerformed
 
-    private void btnCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotalActionPerformed
+    private void btnSellStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellStocksActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCalculateTotalActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[4];
+        row[0] = this.Company_selected;
+        
+        row[1] = this.UserStockHistory.get(this.Company_selected).get(0);
+        
+        
+        row[2] = this.No_of_Stocks_Owned - this.No_of_Stocks;
+        this.UserStockHistory.get(this.Company_selected).set(1, this.No_of_Stocks);
+        
+        this.newTotal = (this.No_of_Stocks_Owned - this.No_of_Stocks)*this.Current_Stock_price;
+        row[3] = this.newTotal;
+        this.UserStockHistory.get(this.Company_selected).set(2, this.Total);
+        
+        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
+
+            
+    }//GEN-LAST:event_btnSellStocksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,15 +314,15 @@ public class UserSellStocks extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalculateTotal;
     private javax.swing.JButton btnCalculateTotal1;
+    private javax.swing.JButton btnSellStocks;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID3;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtAdminID;
-    private javax.swing.JTextField txtAdminID1;
+    private javax.swing.JTextField txtGetTotal;
+    private javax.swing.JTextField txtNoOfStocksSell;
     // End of variables declaration//GEN-END:variables
 }
