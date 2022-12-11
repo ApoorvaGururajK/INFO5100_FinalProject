@@ -108,8 +108,8 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         logoImg = new javax.swing.JLabel();
         labelBrokerType1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        txtPassword1 = new javax.swing.JPasswordField();
+        txtType = new javax.swing.JComboBox<>();
+        txtBrokerage = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +196,11 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        BrokerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BrokerTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(BrokerTable);
 
         btnDelete.setBackground(new java.awt.Color(0, 0, 0));
@@ -250,9 +255,14 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
         labelBrokerType1.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelBrokerType1.setText("Broker Type:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stock", "Mutual Funds" }));
+        txtType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Stock", "Mutual Funds" }));
 
-        txtPassword1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtBrokerage.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtBrokerage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrokerageActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,34 +285,33 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(labelBrokerType)
-                                        .addComponent(labelUsername))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(77, 77, 77)
-                                            .addComponent(labelBrokerType1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(46, 46, 46)
-                                            .addComponent(labelUsername1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtRegFee, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(71, 71, 71)
-                                    .addComponent(labelPassword)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(53, 53, 53)
-                                    .addComponent(labelPassword1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelBrokerType)
+                                    .addComponent(labelUsername))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(77, 77, 77)
+                                        .addComponent(labelBrokerType1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(labelUsername1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtRegFee, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(labelPassword)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(labelPassword1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBrokerage, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -314,7 +323,7 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelBrokerType1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -334,7 +343,7 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
                     .addComponent(labelPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPassword1)
-                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBrokerage, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,14 +379,122 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        String BrokerID= UUID.randomUUID().toString();
+        String Username = txtUsername.getText();
+        String Organization = txtOrganization.getSelectedItem().toString();
+         String Type = txtType.getSelectedItem().toString();
+        Float RegFee =  Float.valueOf(txtRegFee.getText());
+        Float BRate =  Float.valueOf(txtBrokerage.getText());
+        String password = new String(txtPassword.getPassword());
+//        String[] selections = { "", "Service", "Technology", "Product-based", "Financial", "Puclic", "Non- Profits"};
+        
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+
+            String sqlS2= "INSERT INTO `info5100_finalproject`.`brokers` (`Broker ID`, `Username`,`Organization`,`Type`,`Brokerage Rate`,`Broker Fee`,`Password`)VALUES('"+BrokerID+"','"+Username+"','"+Organization+"','"+Type+"','"+RegFee+"','"+BRate+"','"+password+"')";
+
+            stm.executeUpdate(sqlS2);
+
+            DefaultTableModel model=(DefaultTableModel)BrokerTable.getModel();
+            model.setRowCount(0);
+            show_broker();
+            showMessageDialog(this,"Broker Added Successfully !!");
+            txtUsername.setText("");
+            txtPassword.setText("");
+            txtRegFee.setText("");
+            txtBrokerage.setText("");
+            txtOrganization.setSelectedIndex(0);
+            txtType.setSelectedIndex(0);
+            con.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+                try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)BrokerTable.getModel();
+            String Username = txtUsername.getText();
+        String Organization = txtOrganization.getSelectedItem().toString();
+         String Type = txtType.getSelectedItem().toString();
+        Float RegFee =  Float.valueOf(txtRegFee.getText());
+        Float BRate =  Float.valueOf(txtBrokerage.getText());
+        String password = new String(txtPassword.getPassword());
+
+            if(BrokerTable.getSelectedRowCount() ==1){
+
+                model.setValueAt(Username, BrokerTable.getSelectedRow(),1);
+                model.setValueAt(Organization, BrokerTable.getSelectedRow(),2);
+                model.setValueAt(Type, BrokerTable.getSelectedRow(),3);
+                model.setValueAt(BRate, BrokerTable.getSelectedRow(),4);
+                model.setValueAt(RegFee, BrokerTable.getSelectedRow(),5);
+                model.setValueAt(password, BrokerTable.getSelectedRow(),6);
+
+                int rowIndex=BrokerTable.getSelectedRow() ;
+                String value =(BrokerTable.getModel().getValueAt(rowIndex, 0).toString());
+                String query="UPDATE `info5100_finalproject`.`brokers` SET `Username` = '"+Username+"' ,`Organization` = '"+Organization+"',`Type` = '"+Type+"',`Brokerage Rate` = '"+BRate+"',`Broker Fee` = '"+RegFee+"', `Password` = '"+password+"' WHERE (`Broker ID` = '"+value+"')";
+                stm.executeUpdate(query);
+                showMessageDialog(this,"Broker Details Updated Successfully !!");
+                txtUsername.setText("");
+            txtPassword.setText("");
+            txtRegFee.setText("");
+            txtBrokerage.setText("");
+            txtOrganization.setSelectedIndex(0);
+            txtType.setSelectedIndex(0);
+                
+            }else{
+                showMessageDialog(this,"Please select a single row to update !!");
+            }
+
+            con.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+                try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)BrokerTable.getModel();
+
+            if(BrokerTable.getSelectedRowCount() ==1){
+
+                int rowIndex=BrokerTable.getSelectedRow() ;
+                String value =(BrokerTable.getModel().getValueAt(rowIndex, 0).toString());
+                String query=" DELETE FROM `info5100_finalproject`.`brokers` WHERE (`Broker ID` = '"+value+"');";
+
+                stm.executeUpdate(query);
+                model.removeRow(BrokerTable.getSelectedRow());
+
+                showMessageDialog(this,"Broker Deleted Successfully !!");
+           
+            txtUsername.setText("");
+            txtPassword.setText("");
+            txtRegFee.setText("");
+            txtBrokerage.setText("");
+            txtOrganization.setSelectedIndex(0);
+            txtType.setSelectedIndex(0);
+
+            }   else{
+                showMessageDialog(this,"Please select a single row to delete !!");
+            }
+            con.close();
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtRegFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegFeeActionPerformed
@@ -391,6 +508,27 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
     private void txtOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrganizationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrganizationActionPerformed
+
+    private void txtBrokerageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrokerageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBrokerageActionPerformed
+
+    private void BrokerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BrokerTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model=(DefaultTableModel)BrokerTable.getModel();
+
+        String selRegFee= model.getValueAt(BrokerTable.getSelectedRow(), 5).toString();
+        String selUserName= model.getValueAt(BrokerTable.getSelectedRow(), 1).toString();
+        String selRate= model.getValueAt(BrokerTable.getSelectedRow(), 4).toString();
+        String selPassword= model.getValueAt(BrokerTable.getSelectedRow(), 6).toString();
+
+        txtUsername.setText(selUserName);
+        txtRegFee.setText(selRegFee);
+        txtPassword.setText(selPassword);
+        txtBrokerage.setText(selRate);
+        txtOrganization.setSelectedIndex(0);
+        txtType.setSelectedIndex(0);
+    }//GEN-LAST:event_BrokerTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -434,7 +572,6 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -445,10 +582,11 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelUsername1;
     private javax.swing.JLabel logoImg;
+    private javax.swing.JTextField txtBrokerage;
     private javax.swing.JComboBox<String> txtOrganization;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JTextField txtRegFee;
+    private javax.swing.JComboBox<String> txtType;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
