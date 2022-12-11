@@ -4,9 +4,18 @@
  */
 package UI;
 
+import java.sql.*;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import static javax.swing.JOptionPane.showMessageDialog;
+import model.Company;
 
 /**
  *
@@ -24,6 +33,47 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     public CompanyAdminDashboard() {
         initComponents();
         logoImg.setIcon(ticon);
+         show_company();
+    }
+    
+        public ArrayList<Company> companyList(){
+        
+        ArrayList<Company> companyList = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `Company ID`,`Name`, `Organization`, `username`, `password` FROM `info5100_finalproject`.`companies`";
+            ResultSet rs= stm.executeQuery(dispSt);
+            Company company;
+            
+            while(rs.next()){
+                company= new Company(rs.getString("Company ID"),rs.getString("Name"),rs.getString("Organization"),rs.getString("username"),rs.getString("password"));
+                companyList.add(company);
+            }
+            
+            con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return companyList;
+    }
+    
+    public void show_company(){
+        ArrayList<Company> list = companyList();
+        DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
+        Object[] row = new Object[4];
+        for (int i=0;i<list.size();i++)
+        {
+            row[0]=list.get(i).getCompanyID();
+             row[1]=list.get(i).getName();
+             row[2]=list.get(i).getUsername();
+             row[3]=list.get(i).getOrganization();
+              model.addRow(row);
+        }
     }
 
     /**
@@ -42,18 +92,18 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         labelUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         labelPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         labelUsername1 = new javax.swing.JLabel();
         labelPassword1 = new javax.swing.JLabel();
-        txtPassword1 = new javax.swing.JPasswordField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtPassword = new javax.swing.JPasswordField();
+        txtOrganization = new javax.swing.JComboBox<>();
         btnUpdate = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        BrokerAdminTable = new javax.swing.JTable();
+        CompanyTable = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         btnDelete1 = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 800));
@@ -102,22 +152,20 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         labelPassword.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelPassword.setText("Username:");
 
-        txtPassword.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Create A New Company");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         labelUsername1.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
-        labelUsername1.setText("Organisation Type:");
+        labelUsername1.setText("Organization Type:");
 
         labelPassword1.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelPassword1.setText("Password:");
 
-        txtPassword1.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service", "Technology", "Product-based", "Financial", "Puclic", "Non- Profits" }));
+        txtOrganization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Service", "Technology", "Product-based", "Financial", "Puclic", "Non- Profits" }));
 
         btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
         btnUpdate.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
@@ -139,12 +187,12 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        BrokerAdminTable.setModel(new javax.swing.table.DefaultTableModel(
+        CompanyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Organization", "Username", "Password"
+                "ID", "Name", "Username", "Organization"
             }
         ) {
             Class[] types = new Class [] {
@@ -162,12 +210,12 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        BrokerAdminTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        CompanyTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BrokerAdminTableMouseClicked(evt);
+                CompanyTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(BrokerAdminTable);
+        jScrollPane1.setViewportView(CompanyTable);
 
         btnDelete.setBackground(new java.awt.Color(0, 0, 0));
         btnDelete.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
@@ -189,6 +237,13 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             }
         });
 
+        txtName.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -199,21 +254,19 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelPassword)
                     .addComponent(labelUsername))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPassword)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(298, 298, 298)
                         .addComponent(labelUsername1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labelPassword1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPassword1)
-                    .addComponent(jComboBox1, 0, 191, Short.MAX_VALUE))
+                    .addComponent(txtPassword)
+                    .addComponent(txtOrganization, 0, 191, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,6 +288,11 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                                 .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(185, 185, 185)))
                         .addGap(80, 80, 80))))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(225, 225, 225)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(512, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,15 +303,14 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUsername)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUsername1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                    .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPassword)
-                    .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPassword1))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword1)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,6 +322,11 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(248, 248, 248)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(504, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -319,42 +381,47 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        String CompanyID= UUID.randomUUID().toString();
+        String Name = txtName.getText();
+        String Organization = txtOrganization.getSelectedItem().toString();
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
-        String adminID= UUID.randomUUID().toString();
+//        String[] selections = { "", "Service", "Technology", "Product-based", "Financial", "Puclic", "Non- Profits"};
+        
 
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//
-//            String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+adminID+"','"+username+"','"+password+"', 'Broker Admin')";
-//
-//            stm.executeUpdate(sqlS2);
-//
-//            DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
-//            model.setRowCount(0);
-//            show_user();
-//            showMessageDialog(this,"Broker Admin Created Successfully !!");
-//            txtUsername.setText("");
-//            txtPassword.setText("");
-//
-//            con.close();
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+
+            String sqlS2= "INSERT INTO `info5100_finalproject`.`companies` (`Company ID`, `Name`, `Organization`, `username`, `password`) VALUES('"+CompanyID+"','"+Name+"','"+Organization+"','"+username+"','"+password+"')";
+
+            stm.executeUpdate(sqlS2);
+
+            DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
+            model.setRowCount(0);
+            show_company();
+            showMessageDialog(this,"Company Added Successfully !!");
+            txtUsername.setText("");
+            txtPassword.setText("");
+            txtName.setText("");
+            txtOrganization.setSelectedIndex(0);
+            con.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
-    private void BrokerAdminTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BrokerAdminTableMouseClicked
+    private void CompanyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompanyTableMouseClicked
         // TODO add your handling code here:
-//        DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
+        DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
 //
 //        String selUsername= model.getValueAt(BrokerAdminTable.getSelectedRow(), 1).toString();
 //        String selPassword= model.getValueAt(BrokerAdminTable.getSelectedRow(), 2).toString();
 //
 //        txtUsername.setText(selUsername);
 //        txtPassword.setText(selPassword);
-    }//GEN-LAST:event_BrokerAdminTableMouseClicked
+    }//GEN-LAST:event_CompanyTableMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -393,6 +460,10 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDelete1ActionPerformed
 
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,13 +500,12 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable BrokerAdminTable;
+    private javax.swing.JTable CompanyTable;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
@@ -445,8 +515,9 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelUsername1;
     private javax.swing.JLabel logoImg;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JComboBox<String> txtOrganization;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
