@@ -22,6 +22,8 @@ public class User {
     private UserBuyMF buyMututalFunds;
     public Map<String, List<Integer>> UserStockHistory;
     public Map<String, Integer> UserMutualFundsHistory;
+
+    
     private String name;
     
     StocksBroker brokerStocks;
@@ -45,14 +47,13 @@ public class User {
 //        this.UserStockHistory = brokerStocks.getUserStockHistory();
 //        this.UserMutualFundsHistory = brokerMF.getUserMutualFundsHistory();
           
-        this.UserStockHistory = new HashMap<>();
-        this.UserMutualFundsHistory = new HashMap<>();
        
         
-        this.sellStocks = new UserSellStocks(this.UserStockHistory, this.newUser);
-        this.buyStocks = new UserBuyStocks(this.UserStockHistory, this.newUser);
-        this.buyMututalFunds = new UserBuyMF(this.UserMutualFundsHistory, this.newUser);
- 
+//        this.sellStocks = new UserSellStocks(this.UserStockHistory, this.newUser);
+//        this.buyStocks = new UserBuyStocks(this.UserStockHistory, this.newUser);
+//        this.buyMututalFunds = new UserBuyMF(this.UserMutualFundsHistory, this.newUser);
+// 
     }   
+    
     
 }

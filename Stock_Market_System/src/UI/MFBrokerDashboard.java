@@ -4,6 +4,8 @@
  */
 package UI;
 
+import model.UserSelectionDetails;
+
 /**
  *
  * @author rishi
@@ -13,8 +15,14 @@ public class MFBrokerDashboard extends javax.swing.JFrame {
     /**
      * Creates new form MFBrokerDashboard
      */
+    UserSelectionDetails selections;
     public MFBrokerDashboard() {
         initComponents();
+    }
+    
+    public MFBrokerDashboard(UserSelectionDetails selections) {
+        initComponents();
+        this.selections = selections;
     }
 
     /**
@@ -150,6 +158,7 @@ public class MFBrokerDashboard extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
+        BrokerInvestMF brokerBuyMF = new BrokerInvestMF(this.selections);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed

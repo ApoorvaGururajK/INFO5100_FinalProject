@@ -7,6 +7,7 @@ import java.awt.Image;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.sql.*;
 import javax.swing.ImageIcon;
+import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
 /**
  *
@@ -14,11 +15,12 @@ import model.UserSelectionDetails;
  */
 public class Home extends javax.swing.JFrame {
 
-     ImageIcon icon = new ImageIcon("Logo.png");
+    ImageIcon icon = new ImageIcon("Logo.png");
     Image image = icon.getImage();
     Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
     ImageIcon ticon= new ImageIcon(newimg);
-    UserSelectionDetails selections;
+//    UserSelectionDetails selections;
+//    UserRegistrationDetails newUser;
     /**
      * Creates new form Home
      */
@@ -27,9 +29,11 @@ public class Home extends javax.swing.JFrame {
         logoImg.setIcon(ticon);
     }
     
-    public Home(UserSelectionDetails selections) {
-        this.selections = selections;
-    }
+//    public Home(UserSelectionDetails selections, UserRegistrationDetails newUser) {
+//        initComponents();
+//        this.selections = selections;
+//        this.newUser = newUser;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -204,16 +208,18 @@ public class Home extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
         // TODO add your handling code here:
-        dispose();
-        Login log= new Login(this.selections);
+        
+        Login log= new Login();
         log.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegisterationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterationActionPerformed
         // TODO add your handling code here:
-        dispose();
+        
         Registration reg= new Registration();
         reg.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegisterationActionPerformed
 
     private void btnInspirationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspirationActionPerformed

@@ -24,6 +24,8 @@ public class Registration extends javax.swing.JFrame {
      * Creates new form Registration
      */
     UserSelectionDetails selections;
+    User user;
+    UserRegistrationDetails newUser;
     public Registration() {
         initComponents();
     }
@@ -381,40 +383,40 @@ public static String createID()
          String mfbroker=txtMFBroker.getText();
          String password = new String(txtPassword.getPassword());
          Integer initialBalance = Integer.parseInt(txtInitialBalance.getText());
-         
+         System.out.println("Before creating the selections");
          this.selections = new UserSelectionDetails();
-         
-        UserRegistrationDetails newUser = this.selections.addUser();
-         
-        newUser.setName(name);
-        newUser.setUserID(userID);
-        newUser.setAddress(address);
-        newUser.setDob(dob);
-        newUser.setPhone(phone);
-        newUser.setEmail(email);
-        newUser.setOccupation(occupation);
-        newUser.setTradingAcc(tradingAcc);
-        newUser.setSbroker(sbroker);
-        newUser.setMfbroker(mfbroker);
-        newUser.setPassword(password);
-        newUser.setInitialBalance(initialBalance);
-        
-        User user = new User(newUser);
-        
+         System.out.println("After creating the selections");
          
                 try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
             Statement stm= con.createStatement();
             
-            String sqlS1= "INSERT INTO `info5100_finalproject`.`users` (`UserID`, `Name`, `DOB`,`Email`, `Password`, `Phone`,`Address`, `Occupation`, `Trading Account Number`,`Stock Broker`,`MF Broker`) VALUES ('"+userID+"', '"+name+"','"+dob+"','"+email+"','"+password+"', '"+phone+"','"+address+"','"+occupation+"','"+tradingAcc+"','"+sbroker+"','"+mfbroker+"')";
-             String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+userID+"','"+email+"','"+password+"', 'User')";
+            String sqlS1= "INSERT INTO `info5100_finalproject`.`users` (`UserID`, `Name`, `DOB`,`Email`, `Password`, `Phone`,`Address`, `Occupation`, `Trading Account Number`,`Stock Broker`,`MF Broker`, `Initial Wallet Balance`) VALUES ('"+userID+"', '"+name+"','"+dob+"','"+email+"','"+password+"', '"+phone+"','"+address+"','"+occupation+"','"+tradingAcc+"','"+sbroker+"','"+mfbroker+"', '"+initialBalance+"')";
+            String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+userID+"','"+email+"','"+password+"', 'User')";
             
             stm.executeUpdate(sqlS1);
             stm.executeUpdate(sqlS2);
             
             showMessageDialog(this,"User Registered Successfully !!");
             con.close(); 
+            System.out.println("After passing the data to  the DB");
+            
+            this.newUser = this.selections.addUser();
+         
+            this.newUser.setName(name);
+            this.newUser.setUserID(userID);
+            this.newUser.setAddress(address);
+            this.newUser.setDob(dob);
+            this.newUser.setPhone(phone);
+            this.newUser.setEmail(email);
+            this.newUser.setOccupation(occupation);
+            this.newUser.setTradingAcc(tradingAcc);
+            this.newUser.setSbroker(sbroker);
+            this.newUser.setMfbroker(mfbroker);
+            this.newUser.setPassword(password);
+            this.newUser.setInitialBalance(initialBalance);
+            
         }
         catch(Exception e){
             showMessageDialog(this,e);
@@ -423,9 +425,11 @@ public static String createID()
 
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
-        dispose();
-        Home home= new Home(this.selections);
+        
+        System.out.println(this.newUser.toString());
+        Home home= new Home();
         home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
     private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed

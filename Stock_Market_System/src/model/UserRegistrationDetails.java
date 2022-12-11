@@ -29,11 +29,37 @@ public class UserRegistrationDetails {
     private Integer no_of_stocks;
     private Integer no_of_stocks_sell;
     private Integer no_of_units;
+    private String MFIndex_unit_selected;
+    private Integer index_unit_value;
     public Map<String, List<Integer>> StockHistory;
     public Map<String, Integer> MutualFundsHistory;
 
     public String getUserID() {
         return userID;
+    }
+
+    public Integer getNo_of_stocks_sell() {
+        return no_of_stocks_sell;
+    }
+
+    public void setNo_of_stocks_sell(Integer no_of_stocks_sell) {
+        this.no_of_stocks_sell = no_of_stocks_sell;
+    }
+
+    public String getMFIndex_unit_selected() {
+        return MFIndex_unit_selected;
+    }
+
+    public Integer getIndex_unit_value() {
+        return index_unit_value;
+    }
+
+    public void setIndex_unit_value(Integer index_unit_value) {
+        this.index_unit_value = index_unit_value;
+    }
+
+    public void setMFIndex_unit_selected(String MFIndex_unit_selected) {
+        this.MFIndex_unit_selected = MFIndex_unit_selected;
     }
 
     public void setUserID(String userID) {
@@ -158,6 +184,11 @@ public class UserRegistrationDetails {
 
     public void setUserMutualFundsHistory(Map<String, Integer> MutualFundsHistory) {
         this.MutualFundsHistory = MutualFundsHistory;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegistrationDetails{" + "userID=" + userID + ", name=" + name + ", dob=" + dob + ", address=" + address + ", phone=" + phone + ", email=" + email + ", occupation=" + occupation + ", tradingAcc=" + tradingAcc + ", sbroker=" + sbroker + ", mfbroker=" + mfbroker + ", password=" + password + ", initialBalance=" + initialBalance + ", no_of_stocks=" + no_of_stocks + ", no_of_stocks_sell=" + no_of_stocks_sell + ", no_of_units=" + no_of_units + ", MFIndex_unit_selected=" + MFIndex_unit_selected + ", index_unit_value=" + index_unit_value + ", StockHistory=" + StockHistory + ", MutualFundsHistory=" + MutualFundsHistory + '}';
     }
     
 

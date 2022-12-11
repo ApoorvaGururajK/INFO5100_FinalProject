@@ -201,21 +201,21 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void jComboBoxStockMarketIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketIndexActionPerformed
         // TODO add your handling code here:
-        System.out.println("Inside jComboBoxStockMarketIndexActionPerformed");
+//        System.out.println("Inside jComboBoxStockMarketIndexActionPerformed");
         this.MFIndex_selected = (String) jComboBoxStockMarketIndex.getSelectedItem();
         System.out.println(MFIndex_selected);
         DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxStockMarketUnit.getModel();
         model2.addElement(this.MututalFundIndex.get(MFIndex_selected));
-        System.out.println("After initialising next combobox");
+//        System.out.println("After initialising next combobox");
          
     }//GEN-LAST:event_jComboBoxStockMarketIndexActionPerformed
     
     private void populateComboBox() {
-        System.out.println("Inside populateComboBox");
+//        System.out.println("Inside populateComboBox");
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBoxStockMarketIndex.getModel();
-        System.out.println("Before initialising combobox");
+//        System.out.println("Before initialising combobox");
         model1.addAll(this.MututalFundIndex.keySet());
-        System.out.println("After initialising combobox");
+//        System.out.println("After initialising combobox");
     }
     
     
@@ -226,7 +226,7 @@ public class UserBuyMF extends javax.swing.JFrame {
         this.total = this.No_of_units * this.index_unit_value;
         txtCalculateTotal.setText(this.total.toString());
         this.UserMutualFundsHistory.put(this.MututalFundIndex.get(MFIndex_selected), this.No_of_units);
-        System.out.println("The UserMutualFundsHistory map is " + this.UserMutualFundsHistory);
+//        System.out.println("The UserMutualFundsHistory map is " + this.UserMutualFundsHistory);
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
     private void txtCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalculateTotalActionPerformed
@@ -243,7 +243,9 @@ public class UserBuyMF extends javax.swing.JFrame {
     private void jComboBoxStockMarketUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketUnitActionPerformed
         // TODO add your handling code here:
         String MFIndex_unit_selected = (String) jComboBoxStockMarketUnit.getSelectedItem();
+        this.newUser.setMFIndex_unit_selected(MFIndex_unit_selected);
         this.index_unit_value = (this.MutualFundUnitPrice.get(MFIndex_unit_selected));
+        this.newUser.setIndex_unit_value(index_unit_value);
     }//GEN-LAST:event_jComboBoxStockMarketUnitActionPerformed
 
     private void txtNoOfUnitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfUnitsActionPerformed

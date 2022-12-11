@@ -4,6 +4,12 @@
  */
 package UI;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
+
 /**
  *
  * @author apoorvakulkarni
@@ -14,9 +20,26 @@ public class UserDashboard extends javax.swing.JFrame {
     /**
      * Creates new form UserDashboard
      */
+    UserSelectionDetails selections;
+    UserRegistrationDetails newUser;
+    public Map<String, List<Integer>> UserStockHistory;
+    public Map<String, Integer> UserMutualFundsHistory;
+    public Map<String, Integer> no_of_stocks_owned_company;
     public UserDashboard() {
         initComponents();
+        this.UserStockHistory = new HashMap<>();
+        this.UserMutualFundsHistory = new HashMap<>();
+//        this.no_of_stocks_owned = 40;
+        this.no_of_stocks_owned_company = new HashMap<>();
     }
+    
+//    public UserDashboard(UserSelectionDetails selections, UserRegistrationDetails newUser){
+//        initComponents();
+//        this.selections = selections;
+//        this.newUser = newUser;  
+//        this.UserStockHistory = new HashMap<>();
+//        this.UserMutualFundsHistory = new HashMap<>();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,13 +191,16 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void btnBuyStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyStocksActionPerformed
         // TODO add your handling code here:
-        UserBuyStocks buyStocks = new UserBuyStocks();
+        UserBuyStocks buyStocks = new UserBuyStocks(this.no_of_stocks_owned_company);
         buyStocks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     private void btnSellStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellStocksActionPerformed
         // TODO add your handling code here:
+        UserSellStocks sellStocks = new UserSellStocks(this.no_of_stocks_owned_company);
+        sellStocks.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSellStocksActionPerformed
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed

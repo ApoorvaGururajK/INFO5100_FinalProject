@@ -4,11 +4,19 @@
  */
 package UI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
@@ -26,47 +34,63 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
     UserSelectionDetails selections;
     public Map<String, List<Integer>> UserStockHistory;
     public List<String> UserNames;
+    public Set<String> Companies;
     private String User_selected;
     private String Company_selected;
     private Integer Current_Stock_price;
     private Integer Total;
+    private Integer No_of_Stocks;
+    private Integer Initial_wallet_balance;
+    private Integer Stocks_of_Apple;
+    private Integer Stocks_of_Microsoft;
+    private Integer Stocks_of_Amazon;
+    private Integer Stocks_of_Netflix;
     
     public BrokerBuyStocks() {
         initComponents();
         this.UserNames = new ArrayList<>();
+        this.Companies = new HashSet<>();
+        //TODO: After the user buys the stocks, directly come to the broker buy stocks page. Update the table with 
+        // the same values for comapnay selected(Send company selected as string) and no of stocks bought (as an int).
+        // Cut the brokerage fee after the user buys the stock. Give a filed to indicate the brokerage fee and update the balance in DB
+        //Same with Broker sell stocks. Get the Stocks broker name in user buy stocks and display it on BRoker buy stocks.
+        //Dont update the DB in user, update it on Broker. Remove S/MF Broker Dashboard.
 
     }
     
-    public BrokerBuyStocks(UserSelectionDetails selections) {
-        this.selections = selections;
-        populateComBox(this.selections.getSelections());
-    }
-    
-    
-    private void populateComBox(List<UserRegistrationDetails> selections) {
+    public BrokerBuyStocks(String Company_selected, Integer No_of_Stocks, Integer Initial_wallet_balance) {
+        initComponents();
+        this.Company_selected = Company_selected;
+        this.No_of_Stocks = No_of_Stocks;
+        this.Initial_wallet_balance = Initial_wallet_balance;
         
-        for (UserRegistrationDetails index : selections) {
-            this.UserNames.add(index.getName());
-        }
-        DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox1.getModel();
-        model1.addAll(this.UserNames);
+        this.Stocks_of_Apple = 0;
+        this.Stocks_of_Microsoft = 0;
+        this.Stocks_of_Amazon = 0;
+        this.Stocks_of_Netflix = 0;
+        
+        this.UserStockHistory = new HashMap<>();
+        
+        this.UserStockHistory.put("Apple", Arrays.asList(142, 0, 0));
+        this.UserStockHistory.put("Microsoft", Arrays.asList(247, 0, 0));
+        this.UserStockHistory.put("Amazon", Arrays.asList(90, 0, 0));
+        this.UserStockHistory.put("Netflix", Arrays.asList(310, 0, 0));
+        
+        populateTable();
+        
     }
     
-    private void populateTable(String User_selected, String Company_selected, List<UserRegistrationDetails> selections) {
+    
+    private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         
-        for (UserRegistrationDetails index : selections) {
-            if (index.getName().equals(this.User_selected)){
-                Object[] row = new Object[10];
-                row[0] = this.User_selected;
-                row[1] = this.Company_selected;
-                row[2] = index.getStockHistory().get(this.Company_selected).get(0);
-                this.Current_Stock_price = index.getStockHistory().get(this.Company_selected).get(0);
-                row[3] = index.getNo_of_stocks();
-            }
-        }
-        
+        Object[] row = new Object[10];
+        row[0] = this.Company_selected;
+        row[1] = this.UserStockHistory.get(Company_selected).get(0);
+        this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
+        row[2] = this.No_of_Stocks;
+            
     }
 
     /**
@@ -82,10 +106,6 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        labelBrokerType = new javax.swing.JLabel();
-        labelBrokerType1 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         btnCalculateTotal1 = new javax.swing.JButton();
         txtGetTotal = new javax.swing.JTextField();
         btnBuyStocks = new javax.swing.JButton();
@@ -116,20 +136,20 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "User Name", "Company", "Price per stock", "No.of Stocks to buy"
+                "Company", "Price per stock", "No.of Stocks to buy"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -141,24 +161,6 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        labelBrokerType.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelBrokerType.setText("Select User:");
-
-        labelBrokerType1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelBrokerType1.setText("Select Company");
-
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
 
         btnCalculateTotal1.setBackground(new java.awt.Color(0, 0, 0));
         btnCalculateTotal1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
@@ -195,38 +197,22 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelBrokerType)
-                        .addGap(24, 24, 24)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelBrokerType1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBrokerType)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelBrokerType1))
-                .addGap(90, 90, 90)
+                .addGap(97, 97, 97)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -238,22 +224,11 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        this.User_selected = (String) jComboBox1.getSelectedItem();
-        
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-        this.Company_selected = (String) jComboBox2.getSelectedItem();
-        populateTable(this.User_selected, this.Company_selected, this.selections.getSelections());
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
-        this.Total = this.Current_Stock_price * this.newUser.getNo_of_stocks();
+        this.Total = this.Current_Stock_price * this.No_of_Stocks;
         txtGetTotal.setText(this.Total.toString());
+        this.Initial_wallet_balance = Initial_wallet_balance - 1;
 
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
@@ -261,10 +236,50 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGetTotalActionPerformed
 
+    private void populateDB() {
+        if (this.Company_selected == "Apple") {
+            this.Stocks_of_Apple = this.No_of_Stocks;
+        }
+        else if (this.Company_selected == "Microsoft") {
+            this.Stocks_of_Microsoft = this.No_of_Stocks;
+        }
+        else if (this.Company_selected == "Amazon") {
+            this.Stocks_of_Amazon = this.No_of_Stocks;
+        }
+        else if (this.Company_selected == "Netflix") {
+            this.Stocks_of_Netflix = this.No_of_Stocks;
+        }
+        
+        try {
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Statement stm= con.createStatement();
+            
+            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
+            
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `Name`='Apoorva'";
+            
+            stm.executeUpdate(sqlS1);
+            con.close();
+            
+        }
+        catch (Exception e) {
+            System.out.println("Inside catch of populate DB");
+            showMessageDialog(this,e);
+
+        }
+        
+    }
+    
+    
+    
     private void btnBuyStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyStocksActionPerformed
         // TODO add your handling code here:
         
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.newUser.getNo_of_stocks()) + " stocks of " + (this.Company_selected) + "for user: " + this.User_selected);
+        //TODO Update DB
+        populateDB();
+        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.newUser.getNo_of_stocks()) + " stocks of " + (this.Company_selected));
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     /**
@@ -305,13 +320,9 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyStocks;
     private javax.swing.JButton btnCalculateTotal1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel labelBrokerType;
-    private javax.swing.JLabel labelBrokerType1;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtGetTotal;
     // End of variables declaration//GEN-END:variables

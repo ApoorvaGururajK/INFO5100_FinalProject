@@ -189,12 +189,16 @@ public class StockBrokerDashboard extends javax.swing.JFrame {
 
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
+        BrokerSellStocks brokerSellStocks = new BrokerSellStocks(this.selections);
+        brokerSellStocks.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
     private void btnRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister2ActionPerformed
         // TODO add your handling code here:
         BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.selections);
         brokerBuyStocks.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegister2ActionPerformed
 
     private void btnRegister3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister3ActionPerformed

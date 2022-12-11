@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.HashMap;
 import static javax.swing.JOptionPane.showMessageDialog;
+import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
 
 /**
@@ -22,6 +23,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     UserSelectionDetails selections;
+    UserRegistrationDetails newUser;
     public Login() {
         initComponents();
         
@@ -36,10 +38,12 @@ public class Login extends javax.swing.JFrame {
 //    dashboard.put("Mutual Fund Broker", "mfBrokerDash");
     }
     
-    public Login(UserSelectionDetails selections) {
-        this.selections = selections;
-        
-    }
+//    public Login(UserSelectionDetails selections, UserRegistrationDetails newUser) {
+//        initComponents();
+//        this.selections = selections;
+//        this.newUser = newUser;
+//        
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,7 +196,7 @@ public class Login extends javax.swing.JFrame {
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
             Statement stm= con.createStatement();
             
             String sql="select * from authdata where username='"+username+"' and password='"+password+"' and type='"+userRole+"'";
@@ -239,7 +243,7 @@ public class Login extends javax.swing.JFrame {
                                                                                                  
                      // 6th Role
                     case "Stock Broker":
-                                StockBrokerDashboard sBroker=new StockBrokerDashboard(this.selections);
+                                StockBrokerDashboard sBroker=new StockBrokerDashboard();
                                 sBroker.setVisible(true);
                                 System.out.println("Stock Broker is Logging In");
                                 break;
@@ -265,9 +269,10 @@ public class Login extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        dispose();
+        
         Home home= new Home();
         home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**

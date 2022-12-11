@@ -57,6 +57,7 @@
                                       <Component id="txtNoOfStocksSell" alignment="1" min="-2" pref="440" max="-2" attributes="0"/>
                                       <Component id="txtGetTotal" alignment="1" min="-2" pref="440" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="btnSignOut" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane1" alignment="1" min="-2" pref="706" max="-2" attributes="0"/>
@@ -89,9 +90,11 @@
                   <Component id="txtGetTotal" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnCalculateTotal1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="btnSellStocks" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <Component id="btnSignOut" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,15 +103,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="7">
-            <StringItem index="0" value="Apple"/>
-            <StringItem index="1" value="Microsoft"/>
-            <StringItem index="2" value="Amazon"/>
-            <StringItem index="3" value="Netflix"/>
-            <StringItem index="4" value="Meta"/>
-            <StringItem index="5" value="Paypal"/>
-            <StringItem index="6" value=" "/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
@@ -206,13 +201,36 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
+              <Table columnCount="4" rowCount="4">
                 <Column editable="false" title="Company" type="java.lang.String"/>
                 <Column editable="false" title="Price per stock" type="java.lang.Integer"/>
                 <Column editable="false" title="No.of Stocks Owned" type="java.lang.Integer"/>
                 <Column editable="true" title="Total Investment" type="java.lang.Object"/>
-                <Column editable="false" title="Profit" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -221,5 +239,22 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnSignOut">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Inter" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sign Out"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSignOutActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

@@ -4,6 +4,10 @@
  */
 package UI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +16,7 @@ import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.UserAuth;
 import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
 
@@ -34,20 +39,39 @@ public class UserSellStocks extends javax.swing.JFrame {
     private int no_of_stocks_sell;
     UserSelectionDetails selections;
     UserRegistrationDetails newUser;
+    private Integer Initial_wallet_balance;
+    private Integer Stocks_of_Apple;
+    private Integer Stocks_of_Microsoft;
+    private Integer Stocks_of_Amazon;
+    private Integer Stocks_of_Netflix;
+    public Map<String, Integer> no_of_stocks_owned_company;
     
     public UserSellStocks() {
         initComponents();
     }
     
-    public UserSellStocks (Map<String, List<Integer>> UserStockHistory, UserRegistrationDetails newUser) {
+    public UserSellStocks(Map<String, Integer> no_of_stocks_owned_company) {
         initComponents();
-        this.UserStockHistory = UserStockHistory;
-        this.selections = selections;
-        this.newUser = newUser;
+        this.no_of_stocks_owned_company = no_of_stocks_owned_company;
+        System.out.println("Inside the UserSellStocks parameterized constructor");
+        System.out.println("no_of_stocks_owned: " + this.no_of_stocks_owned_company);
         
-        populateComboBox(this.UserStockHistory);
-//        populateTable(this.UserStockHistory);
+        this.Stocks_of_Apple = 0;
+        this.Stocks_of_Microsoft = 0;
+        this.Stocks_of_Amazon = 0;
+        this.Stocks_of_Netflix = 0;
+        
+        this.UserStockHistory = new HashMap<>();
+        
+        this.UserStockHistory.put("Apple", Arrays.asList(142, 0, 0));
+        this.UserStockHistory.put("Microsoft", Arrays.asList(247, 0, 0));
+        this.UserStockHistory.put("Amazon", Arrays.asList(90, 0, 0));
+        this.UserStockHistory.put("Netflix", Arrays.asList(310, 0, 0));
+        
+        populateComboBox();
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,10 +92,10 @@ public class UserSellStocks extends javax.swing.JFrame {
         labelAdminID2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        btnSignOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apple", "Microsoft", "Amazon", "Netflix", "Meta", "Paypal", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -123,20 +147,20 @@ public class UserSellStocks extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Company", "Price per stock", "No.of Stocks Owned", "Total Investment", "Profit"
+                "Company", "Price per stock", "No.of Stocks Owned", "Total Investment"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -148,6 +172,16 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
+        btnSignOut.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnSignOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnSignOut.setText("Sign Out");
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +213,8 @@ public class UserSellStocks extends javax.swing.JFrame {
                                     .addComponent(btnSellStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(txtNoOfStocksSell, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -202,9 +237,11 @@ public class UserSellStocks extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(btnSellStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -219,26 +256,73 @@ public class UserSellStocks extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void populateTable(String Company_selected) {
-        System.out.println("Inside populate Table");
+//        System.out.println("Inside populate Table");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        System.out.println("before");
+//        System.out.println("before");
         Object[] row = new Object[4];
 
-        for (String s: this.UserStockHistory.keySet()) {
-            row[0] = s;
-            row[1] = this.UserStockHistory.get(Company_selected).get(0);
-            this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
-            row[2] = this.UserStockHistory.get(Company_selected).get(1);
-            this.No_of_Stocks_Owned = this.UserStockHistory.get(Company_selected).get(1);
-            row[3] = this.UserStockHistory.get(Company_selected).get(2);
+        
+            row[0] = this.Company_selected;
+            row[1] = this.UserStockHistory.get(Company_selected).get(0); 
+            this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0); 
+            try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            if (this.Company_selected == "Apple") {
+                String dispSt="SELECT `Stocks_of_Apple` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                ResultSet rs= stm.executeQuery(dispSt);
+            
+                if (rs.next()) {
+                    this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Apple");
+                }
+            }
+            
+            if (this.Company_selected == "Microsoft") {
+                String dispSt="SELECT `Stocks_of_Microsoft` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                ResultSet rs= stm.executeQuery(dispSt);
+            
+                if (rs.next()) {
+                    this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Microsoft");
+                }
+            }
+            
+            if (this.Company_selected == "Amazon") {
+                String dispSt="SELECT `Stocks_of_Amazon` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                ResultSet rs= stm.executeQuery(dispSt);
+            
+                if (rs.next()) {
+                    this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Amazon");
+                }
+            }
+            
+            if (this.Company_selected == "Netflix") {
+                String dispSt="SELECT `Stocks_of_Netflix` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                ResultSet rs= stm.executeQuery(dispSt);
+            
+                if (rs.next()) {
+                    this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Netflix");
+                }
+            }
+            
+            con.close(); 
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            
+            
+            row[2] = this.No_of_Stocks_Owned;
+            row[3] = this.No_of_Stocks_Owned * this.Current_Stock_price;
             
             model.addRow(row);
-        }
+        
         
         }
     
-    private void populateComboBox(Map<String, List<Integer>> UserStockHistory) {
+    private void populateComboBox() {
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox1.getModel();
         model1.addAll(this.UserStockHistory.keySet());
     }
@@ -246,10 +330,11 @@ public class UserSellStocks extends javax.swing.JFrame {
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
         this.no_of_stocks_sell = Integer.parseInt(txtNoOfStocksSell.getText());
-        this.newUser.setNo_of_stocks_sell(this.no_of_stocks_sell);
+//        this.newUser.setNo_of_stocks_sell(this.no_of_stocks_sell);
         if (this.no_of_stocks_sell <= this.No_of_Stocks_Owned){
             this.Total = this.Current_Stock_price * this.no_of_stocks_sell;
             txtGetTotal.setText(this.Total.toString());
+            this.Initial_wallet_balance = this.Initial_wallet_balance + this.Total;
         }
         else {
             JOptionPane.showMessageDialog(this, "Select stocks to sell less than stocks owned: " +  (this.No_of_Stocks_Owned));
@@ -276,20 +361,31 @@ public class UserSellStocks extends javax.swing.JFrame {
         
         
         row[2] = this.No_of_Stocks_Owned - this.no_of_stocks_sell;
-        this.UserStockHistory.get(this.Company_selected).set(1, this.no_of_stocks_sell);
+        this.No_of_Stocks_Owned = this.No_of_Stocks_Owned - this.no_of_stocks_sell;
         
-        this.newTotal = (this.No_of_Stocks_Owned - this.no_of_stocks_sell)*this.Current_Stock_price;
+        this.newTotal = (this.No_of_Stocks_Owned)*this.Current_Stock_price;
         row[3] = this.newTotal;
-        this.UserStockHistory.get(this.Company_selected).set(2, this.Total);
+        this.Initial_wallet_balance = this.Initial_wallet_balance + this.newTotal;
         
         model.addRow(row);
         
-        this.newUser.setUserStockHistory(this.UserStockHistory);
-        
+        //TODO ; UPdate DB with new No_of_Stocks_Owned;
+        //TODO: Calculate Wallet balance and update that too to the DB.
         JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.no_of_stocks_sell) + " stocks of " + (this.Company_selected));
-
+        
+        BrokerSellStocks brokerSellStocks = new BrokerSellStocks(this.Company_selected, this.No_of_Stocks_Owned, this.Initial_wallet_balance, this.no_of_stocks_sell);
+        brokerSellStocks.setVisible(true);
+        this.setVisible(false);
             
     }//GEN-LAST:event_btnSellStocksActionPerformed
+
+    private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
+        // TODO add your handling code here:
+        Home home = new Home();
+        home.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnSignOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,6 +425,7 @@ public class UserSellStocks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculateTotal1;
     private javax.swing.JButton btnSellStocks;
+    private javax.swing.JButton btnSignOut;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
