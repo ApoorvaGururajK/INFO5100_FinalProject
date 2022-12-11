@@ -32,7 +32,6 @@ public class CompanyDashboard extends javax.swing.JFrame {
         btnPortfolio1 = new javax.swing.JButton();
         btnPortfolio2 = new javax.swing.JButton();
         btnPortfolio3 = new javax.swing.JButton();
-        btnPortfolio4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -81,16 +80,6 @@ public class CompanyDashboard extends javax.swing.JFrame {
             }
         });
 
-        btnPortfolio4.setBackground(new java.awt.Color(0, 0, 0));
-        btnPortfolio4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnPortfolio4.setForeground(new java.awt.Color(255, 255, 255));
-        btnPortfolio4.setText("Balance Sheet");
-        btnPortfolio4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPortfolio4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -101,8 +90,7 @@ public class CompanyDashboard extends javax.swing.JFrame {
                     .addComponent(btnPortfolio2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPortfolio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPortfolio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPortfolio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPortfolio4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnPortfolio3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,10 +103,8 @@ public class CompanyDashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnPortfolio1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnPortfolio4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnPortfolio2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -166,10 +152,6 @@ public class CompanyDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPortfolio3ActionPerformed
 
-    private void btnPortfolio4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPortfolio4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPortfolio4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -210,7 +192,6 @@ public class CompanyDashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnPortfolio1;
     private javax.swing.JButton btnPortfolio2;
     private javax.swing.JButton btnPortfolio3;
-    private javax.swing.JButton btnPortfolio4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;

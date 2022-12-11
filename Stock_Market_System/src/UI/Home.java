@@ -34,6 +34,7 @@ public final class Home extends javax.swing.JFrame {
      * Creates new form Home
      */
     public ArrayList<Article> news= new ArrayList<>();
+    public ArrayList<Article> news_= new ArrayList<>();
 
     public ArrayList<Article> getNews() {
         return news;
@@ -46,13 +47,36 @@ public final class Home extends javax.swing.JFrame {
     public Home(int n){
     }
     
-            
+   
     
     public Home() {
         initComponents();
         logoImg.setIcon(ticon);
         Home a= new Home(1);
-        a.news_fetch();
+//        ArrayList<Article> news_fin= new ArrayList<>();
+        news_=a.news_fetch();
+        
+         StringBuilder sb1 = new StringBuilder("");
+        		for(Article art: news_) {
+			 sb1.append("\n").append(art).append("\n");	
+        }
+//                jLabel2.setText("Make");
+//                news_=news;
+String val= sb1.toString();
+//            jLabel2.setText(val);
+                System.out.println(sb1.toString());
+               String tim="<html>";
+                for(Article sap:news_){
+                    tim += sap.getTitle() + "<br>";
+                    tim += sap.getDesc() + "<br>";
+                    tim += sap.getUrl() + "<br>";
+                    
+                }
+                jLabel2.setText(tim);
+                
+        
+//        jLabel2.setText("Make");
+        
 //        for(Article art: a.news) {	
 //                val=art.getTitle();
 ////                System.out.println("Val in Home.java"+val + "\n");
@@ -96,16 +120,7 @@ public final class Home extends javax.swing.JFrame {
         logoImg = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
-        jPaneNews_1 = new javax.swing.JPanel();
-        image_1 = new javax.swing.JLabel();
-        title_1 = new javax.swing.JLabel();
-        desc_1 = new javax.swing.JLabel();
-        url_1 = new javax.swing.JLabel();
-        jPaneNews_2 = new javax.swing.JPanel();
-        image_2 = new javax.swing.JLabel();
-        title_2 = new javax.swing.JLabel();
-        desc_2 = new javax.swing.JLabel();
-        url_2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -214,111 +229,22 @@ public final class Home extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPaneNews_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        image_1.setText("jLabel3");
-        image_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        title_1.setText("jLabel2");
-        title_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        desc_1.setText("jLabel5");
-        desc_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        url_1.setText("jLabel6");
-        url_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPaneNews_1Layout = new javax.swing.GroupLayout(jPaneNews_1);
-        jPaneNews_1.setLayout(jPaneNews_1Layout);
-        jPaneNews_1Layout.setHorizontalGroup(
-            jPaneNews_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPaneNews_1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPaneNews_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(desc_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(url_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
-                .addComponent(image_1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPaneNews_1Layout.setVerticalGroup(
-            jPaneNews_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPaneNews_1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPaneNews_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPaneNews_1Layout.createSequentialGroup()
-                        .addComponent(title_1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(desc_1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(url_1))
-                    .addComponent(image_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
-        );
-
-        jPaneNews_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        image_2.setText("jLabel3");
-        image_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        title_2.setText("jLabel2");
-        title_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        desc_2.setText("jLabel5");
-        desc_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        url_2.setText("jLabel6");
-        url_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPaneNews_2Layout = new javax.swing.GroupLayout(jPaneNews_2);
-        jPaneNews_2.setLayout(jPaneNews_2Layout);
-        jPaneNews_2Layout.setHorizontalGroup(
-            jPaneNews_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPaneNews_2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPaneNews_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(desc_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(url_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10)
-                .addComponent(image_2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPaneNews_2Layout.setVerticalGroup(
-            jPaneNews_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPaneNews_2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPaneNews_2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPaneNews_2Layout.createSequentialGroup()
-                        .addComponent(title_2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(desc_2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(url_2))
-                    .addComponent(image_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
-        );
+        jLabel2.setText("Value");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPaneNews_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPaneNews_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPaneNews_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPaneNews_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         jScrollPane1.setViewportView(jPanel4);
@@ -449,17 +375,10 @@ public final class Home extends javax.swing.JFrame {
         
     }
     
-    public ImageIcon image(String path){
-        ImageIcon i= new ImageIcon(path);
-        Image img=i.getImage();
-        Image newImg=img.getScaledInstance(image_1.getWidth(),image_1.getHeight(),Image.SCALE_SMOOTH);
-        ImageIcon image= new ImageIcon(newImg);
-        return image;
-    }
     
-      public void news_fetch() {
+      public ArrayList<Article> news_fetch() {
       
-//      ArrayList<Article> news_fin= new ArrayList<>();
+      ArrayList<Article> news_fin= new ArrayList<>();
 	  
 //	  HttpRequest request = HttpRequest.newBuilder()
 //				.uri(URI.create("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=amazon"))
@@ -471,16 +390,11 @@ public final class Home extends javax.swing.JFrame {
 //		System.out.println(response.body());
 	  
 	  try{
-              
-             
 	  HttpRequest request = HttpRequest.newBuilder()
 			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1047e1b7d1d4419c9d2047b7c880f6f6"))
 				.header("apikey", "1047e1b7d1d4419c9d2047b7c880f6f6")
 //				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
 //				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
-			  
-			  
-			  
 				// 1047e1b7d1d4419c9d2047b7c880f6f6
 //				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
 				.method("GET", HttpRequest.BodyPublishers.noBody())
@@ -533,9 +447,11 @@ public final class Home extends javax.swing.JFrame {
 			
 			
 			t.news.add(art);
+                        
 			
 			i++;
 		}
+                news_fin=t.news;
 //		for(int j=0;j<1;j++){
 ////			raw.forEach(System.out::println);
 //			raw_title.forEach(System.out::println);
@@ -543,20 +459,19 @@ public final class Home extends javax.swing.JFrame {
 //			raw_url.forEach(System.out::println);
 //			raw_img.forEach(System.out::println);
 //		}
-		
+
 		
         StringBuilder sb1 = new StringBuilder("");
         
 		
 		for(Article a: t.news) {
-			
-			 sb1.append("\n").append(a).append("\n");
-			
-			
+			 sb1.append("\n").append(a).append("\n");	
 		}
-//                news_fin=news;
-        System.out.println(sb1.toString());
+////                jLabel2.setText("Make");
+////                news_fin=news;
+                System.out.println(sb1.toString());
 		
+//                news_=t.news;
 		
 //		System.out.println("\n" + ans);
 //		System.out.println(ans.split("source"));
@@ -575,6 +490,9 @@ public final class Home extends javax.swing.JFrame {
               System.out.println("not working");
             e.printStackTrace();
           }
+       
+          return news_fin;
+      }
 	  
 	  
 //	  HttpRequest request = HttpRequest.newBuilder()
@@ -728,7 +646,8 @@ public final class Home extends javax.swing.JFrame {
 //      .build();
 //    Response response = client.newCall(request).execute();
 //    System.out.println(response.body().string());
-  }
+
+      
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -736,14 +655,9 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisteration;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JLabel desc_1;
-    private javax.swing.JLabel desc_2;
-    private javax.swing.JLabel image_1;
-    private javax.swing.JLabel image_2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPaneNews_1;
-    private javax.swing.JPanel jPaneNews_2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -751,10 +665,6 @@ public final class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCurrency;
     private javax.swing.JLabel logoImg;
-    private javax.swing.JLabel title_1;
-    private javax.swing.JLabel title_2;
     private javax.swing.JTextField txtAdminID;
-    private javax.swing.JLabel url_1;
-    private javax.swing.JLabel url_2;
     // End of variables declaration//GEN-END:variables
 }
