@@ -47,6 +47,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
     private Integer Stocks_of_Amazon;
     private Integer Stocks_of_Netflix;
     private int no_of_stocks_sell;
+    public String UserID;
     
     public BrokerSellStocks() {
         initComponents();
@@ -54,7 +55,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
         this.Companies = new HashSet<>();
     }
     
-    public BrokerSellStocks(String Company_selected, int No_of_Stocks_Owned, Integer Initial_wallet_balance, int no_of_stocks_sell) {
+    public BrokerSellStocks(String Company_selected, int No_of_Stocks_Owned, Integer Initial_wallet_balance, int no_of_stocks_sell, String UserID) {
         initComponents();
         this.Company_selected = Company_selected;
         this.No_of_Stocks_Owned = No_of_Stocks_Owned;
@@ -65,6 +66,8 @@ public class BrokerSellStocks extends javax.swing.JFrame {
         this.Stocks_of_Microsoft = 0;
         this.Stocks_of_Amazon = 0;
         this.Stocks_of_Netflix = 0;
+        
+        this.UserID = UserID;
         
         this.UserStockHistory = new HashMap<>();
         
@@ -260,7 +263,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
             
             String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `Name`='Apoorva'";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE UserID`='"+this.UserID+"'";
             
             stm.executeUpdate(sqlS1);
             con.close();

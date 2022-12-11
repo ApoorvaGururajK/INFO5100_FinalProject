@@ -44,6 +44,7 @@ public class UserBuyStocks extends javax.swing.JFrame {
     private Integer Stocks_of_Amazon;
     private Integer Stocks_of_Netflix;
     public Integer no_of_stocks_owned;
+    public String UserID;
     public Map<String, Integer> no_of_stocks_owned_company;
     
     public UserBuyStocks() {
@@ -51,11 +52,13 @@ public class UserBuyStocks extends javax.swing.JFrame {
         
     }
     
-    public UserBuyStocks(Map<String, Integer> no_of_stocks_owned_company) {
+    public UserBuyStocks(Map<String, Integer> no_of_stocks_owned_company, String UserID) {
         initComponents();
         this.no_of_stocks_owned_company = no_of_stocks_owned_company;
         System.out.println("Inside the UserBuyStocks parameterized constructor");
         System.out.println("no_of_stocks_owne: " + this.no_of_stocks_owned_company);
+        
+        this.UserID = UserID;
         
         this.Stocks_of_Apple = 0;
         this.Stocks_of_Microsoft = 0;
@@ -321,9 +324,9 @@ public class UserBuyStocks extends javax.swing.JFrame {
         
         
         
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
+        JOptionPane.showMessageDialog(this, "Navigating to broker page to buy" +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
 
-        BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.Company_selected, this.No_of_Stocks, this.Initial_wallet_balance);
+        BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.Company_selected, this.No_of_Stocks, this.Initial_wallet_balance, this.UserID);
         brokerBuyStocks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBuyStocksActionPerformed
@@ -340,7 +343,7 @@ public class UserBuyStocks extends javax.swing.JFrame {
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
             Statement stm= con.createStatement();
             
-            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
             ResultSet rs= stm.executeQuery(dispSt);
             
             if (rs.next()) {

@@ -45,12 +45,13 @@ public class UserSellStocks extends javax.swing.JFrame {
     private Integer Stocks_of_Amazon;
     private Integer Stocks_of_Netflix;
     public Map<String, Integer> no_of_stocks_owned_company;
+    public String UserID;
     
     public UserSellStocks() {
         initComponents();
     }
     
-    public UserSellStocks(Map<String, Integer> no_of_stocks_owned_company) {
+    public UserSellStocks(Map<String, Integer> no_of_stocks_owned_company, String UserID) {
         initComponents();
         this.no_of_stocks_owned_company = no_of_stocks_owned_company;
         System.out.println("Inside the UserSellStocks parameterized constructor");
@@ -61,6 +62,7 @@ public class UserSellStocks extends javax.swing.JFrame {
         this.Stocks_of_Amazon = 0;
         this.Stocks_of_Netflix = 0;
         
+        this.UserID = UserID;
         this.UserStockHistory = new HashMap<>();
         
         this.UserStockHistory.put("Apple", Arrays.asList(142, 0, 0));
@@ -272,7 +274,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             Statement stm= con.createStatement();
             
             if (this.Company_selected == "Apple") {
-                String dispSt="SELECT `Stocks_of_Apple` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Apple` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -281,7 +283,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Microsoft") {
-                String dispSt="SELECT `Stocks_of_Microsoft` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Microsoft` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -290,7 +292,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Amazon") {
-                String dispSt="SELECT `Stocks_of_Amazon` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Amazon` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -299,7 +301,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Netflix") {
-                String dispSt="SELECT `Stocks_of_Netflix` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Netflix` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -371,9 +373,9 @@ public class UserSellStocks extends javax.swing.JFrame {
         
         //TODO ; UPdate DB with new No_of_Stocks_Owned;
         //TODO: Calculate Wallet balance and update that too to the DB.
-        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.no_of_stocks_sell) + " stocks of " + (this.Company_selected));
+        JOptionPane.showMessageDialog(this, "Navigating to broker page to sell " +  (this.no_of_stocks_sell) + " stocks of " + (this.Company_selected));
         
-        BrokerSellStocks brokerSellStocks = new BrokerSellStocks(this.Company_selected, this.No_of_Stocks_Owned, this.Initial_wallet_balance, this.no_of_stocks_sell);
+        BrokerSellStocks brokerSellStocks = new BrokerSellStocks(this.Company_selected, this.No_of_Stocks_Owned, this.Initial_wallet_balance, this.no_of_stocks_sell, this.UserID);
         brokerSellStocks.setVisible(true);
         this.setVisible(false);
             

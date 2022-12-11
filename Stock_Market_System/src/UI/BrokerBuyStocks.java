@@ -45,6 +45,7 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
     private Integer Stocks_of_Microsoft;
     private Integer Stocks_of_Amazon;
     private Integer Stocks_of_Netflix;
+    public String UserID;
     
     public BrokerBuyStocks() {
         initComponents();
@@ -58,11 +59,12 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
 
     }
     
-    public BrokerBuyStocks(String Company_selected, Integer No_of_Stocks, Integer Initial_wallet_balance) {
+    public BrokerBuyStocks(String Company_selected, Integer No_of_Stocks, Integer Initial_wallet_balance, String UserID) {
         initComponents();
         this.Company_selected = Company_selected;
         this.No_of_Stocks = No_of_Stocks;
         this.Initial_wallet_balance = Initial_wallet_balance;
+        this.UserID = UserID;
         
         this.Stocks_of_Apple = 0;
         this.Stocks_of_Microsoft = 0;
@@ -258,7 +260,7 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
             
             String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `Name`='Apoorva'";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `UserID`='"+this.UserID+"'";
             
             stm.executeUpdate(sqlS1);
             con.close();

@@ -22,6 +22,7 @@ public class UserDashboard extends javax.swing.JFrame {
      */
     UserSelectionDetails selections;
     UserRegistrationDetails newUser;
+    public String UserID;
     public Map<String, List<Integer>> UserStockHistory;
     public Map<String, Integer> UserMutualFundsHistory;
     public Map<String, Integer> no_of_stocks_owned_company;
@@ -31,6 +32,10 @@ public class UserDashboard extends javax.swing.JFrame {
         this.UserMutualFundsHistory = new HashMap<>();
 //        this.no_of_stocks_owned = 40;
         this.no_of_stocks_owned_company = new HashMap<>();
+    }
+    
+    public UserDashboard(String UserID) {
+        this.UserID = UserID;
     }
     
     /**
@@ -183,20 +188,23 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void btnBuyStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyStocksActionPerformed
         // TODO add your handling code here:
-        UserBuyStocks buyStocks = new UserBuyStocks(this.no_of_stocks_owned_company);
+        UserBuyStocks buyStocks = new UserBuyStocks(this.no_of_stocks_owned_company, this.UserID);
         buyStocks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     private void btnSellStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellStocksActionPerformed
         // TODO add your handling code here:
-        UserSellStocks sellStocks = new UserSellStocks(this.no_of_stocks_owned_company);
+        UserSellStocks sellStocks = new UserSellStocks(this.no_of_stocks_owned_company, this.UserID);
         sellStocks.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSellStocksActionPerformed
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
+        UserBuyMF buyMF = new UserBuyMF(this.UserID);
+        buyMF.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuyMFActionPerformed
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed

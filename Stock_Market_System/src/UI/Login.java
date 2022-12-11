@@ -203,12 +203,13 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs= stm.executeQuery(sql);
             
             if(rs.next()){
+                String UserID = rs.getString("ID");
                 dispose();
                 switch (userRole) {
                     
                     // 1st Role
                     case "User":
-                                UserDashboard user=new UserDashboard();
+                                UserDashboard user=new UserDashboard(String UserID);
                                 user.setVisible(true);
                                 System.out.println("User is Logging In");
                                 break;
