@@ -33,14 +33,6 @@ public class UserDashboard extends javax.swing.JFrame {
         this.no_of_stocks_owned_company = new HashMap<>();
     }
     
-//    public UserDashboard(UserSelectionDetails selections, UserRegistrationDetails newUser){
-//        initComponents();
-//        this.selections = selections;
-//        this.newUser = newUser;  
-//        this.UserStockHistory = new HashMap<>();
-//        this.UserMutualFundsHistory = new HashMap<>();
-//    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
