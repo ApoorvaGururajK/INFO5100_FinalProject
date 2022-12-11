@@ -91,7 +91,7 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnDelete" min="-2" pref="172" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnDelete1" min="-2" pref="172" max="-2" attributes="0"/>
+                                  <Component id="btnLogout" min="-2" pref="172" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -137,7 +137,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnDelete" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="btnDelete1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btnLogout" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
@@ -387,7 +387,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDelete1">
+        <Component class="javax.swing.JButton" name="btnLogout">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -401,7 +401,7 @@
             <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDelete1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtName">

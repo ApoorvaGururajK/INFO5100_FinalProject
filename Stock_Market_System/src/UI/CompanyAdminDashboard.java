@@ -103,7 +103,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         CompanyTable = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -228,13 +228,13 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        btnDelete1.setBackground(new java.awt.Color(0, 0, 0));
-        btnDelete1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnDelete1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete1.setText("Log Out");
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogout.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Log Out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -286,7 +286,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(185, 185, 185)))
                         .addGap(80, 80, 80))))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +321,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -436,40 +436,45 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//            DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
-//
-//            if(BrokerAdminTable.getSelectedRowCount() ==1){
-//
-//                int rowIndex=BrokerAdminTable.getSelectedRow() ;
-//                String value =(BrokerAdminTable.getModel().getValueAt(rowIndex, 0).toString());
-//                String query=" DELETE FROM `info5100_finalproject`.`authdata` WHERE (`ID` = '"+value+"');";
-//
-//                stm.executeUpdate(query);
-//                model.removeRow(BrokerAdminTable.getSelectedRow());
-//
-//                showMessageDialog(this,"Broker Admin Deleted Successfully !!");
-//                txtUsername.setText("");
-//                txtPassword.setText("");
-//
-//            }   else{
-//                showMessageDialog(this,"Please select a single row to delete !!");
-//            }
-//            con.close();
-//
-//        }
-//        catch(Exception e)
-//        {
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
+
+            if(CompanyTable.getSelectedRowCount() ==1){
+
+                int rowIndex=CompanyTable.getSelectedRow() ;
+                String value =(CompanyTable.getModel().getValueAt(rowIndex, 0).toString());
+                String query=" DELETE FROM `info5100_finalproject`.`companies` WHERE (`Company ID` = '"+value+"');";
+
+                stm.executeUpdate(query);
+                model.removeRow(CompanyTable.getSelectedRow());
+
+                showMessageDialog(this,"Company Deleted Successfully !!");
+                txtUsername.setText("");
+            txtPassword.setText("");
+            txtName.setText("");
+            txtOrganization.setSelectedIndex(0);
+
+            }   else{
+                showMessageDialog(this,"Please select a single row to delete !!");
+            }
+            con.close();
+
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDelete1ActionPerformed
+        dispose();
+        Home home= new Home();
+        home.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
@@ -513,7 +518,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CompanyTable;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel header;
