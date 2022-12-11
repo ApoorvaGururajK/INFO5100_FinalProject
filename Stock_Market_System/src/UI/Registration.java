@@ -389,7 +389,7 @@ public static String createID()
          
                 try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
             String sqlS1= "INSERT INTO `info5100_finalproject`.`users` (`UserID`, `Name`, `DOB`,`Email`, `Password`, `Phone`,`Address`, `Occupation`, `Trading Account Number`,`Stock Broker`,`MF Broker`, `Initial Wallet Balance`) VALUES ('"+userID+"', '"+name+"','"+dob+"','"+email+"','"+password+"', '"+phone+"','"+address+"','"+occupation+"','"+tradingAcc+"','"+sbroker+"','"+mfbroker+"', '"+initialBalance+"')";

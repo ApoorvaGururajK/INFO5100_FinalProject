@@ -267,20 +267,23 @@ public class BrokerInvestMF extends javax.swing.JFrame {
         else if (this.MFIndex_selected == "iShares Core S&P 500 ETF") {
             this.iShares_Core_SP_500_ETF = this.No_of_units;
         }
-        else if (this.MFIndex_selected == "Schwab S&P 500 Index Fund") {
+        else if (this.MFIndex_selected == "Shelton NASDAQ-100 Index Direct") {
             this.Shelton_NASDAQ_100_Index_Direct = this.No_of_units;
+            System.out.println(this.Shelton_NASDAQ_100_Index_Direct);
         }
+        
+        
         
         
         try {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
-            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
+//            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `UserID`='"+this.UserID+"'";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Fidelity ZERO Large Cap Index Fund` = '"+this.Fidelity_ZERO_Large_Cap_Index+"', `Vanguard S&P 500 ETF` = '"+this.Vanguard_SP_500_ETF+"', `SPDR S&P 500 ETF Trust` = '"+this.SPDR_SP_500_ETF_Trust+"', `iShares Core S&P 500 ETF` = '"+this.iShares_Core_SP_500_ETF+"', `Shelton NASDAQ-100 Index Direct` = '"+this.Shelton_NASDAQ_100_Index_Direct+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`Name`='apoorva')";
             
             stm.executeUpdate(sqlS1);
             con.close();

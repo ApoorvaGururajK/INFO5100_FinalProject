@@ -66,6 +66,10 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         this.Initial_wallet_balance = Initial_wallet_balance;
         this.UserID = UserID;
         
+        System.out.print("Inside Broker Constructor");
+        System.out.print(this.Company_selected);
+        System.out.print(this.No_of_Stocks);
+        System.out.print(this.Initial_wallet_balance);
         this.Stocks_of_Apple = 0;
         this.Stocks_of_Microsoft = 0;
         this.Stocks_of_Amazon = 0;
@@ -86,13 +90,15 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        
+        System.out.print("Inside Populate func");
+        System.out.print(this.Company_selected);
+        System.out.print(this.No_of_Stocks);
         Object[] row = new Object[10];
         row[0] = this.Company_selected;
         row[1] = this.UserStockHistory.get(Company_selected).get(0);
         this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
         row[2] = this.No_of_Stocks;
-            
+        model.addRow(row);
     }
 
     /**
@@ -255,12 +261,12 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         try {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
-            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
+//            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `UserID`='"+this.UserID+"'";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Stocks_of_Apple` = '"+this.Stocks_of_Apple+"', `Stocks_of_Microsoft` = '"+this.Stocks_of_Microsoft+"', `Stocks_of_Amazon` = '"+this.Stocks_of_Amazon+"', `Stocks_of_Netflix` = '"+this.Stocks_of_Netflix+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`Name`='apoorva')";
             
             stm.executeUpdate(sqlS1);
             con.close();
@@ -281,7 +287,7 @@ public class BrokerBuyStocks extends javax.swing.JFrame {
         
         //TODO Update DB
         populateDB();
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.newUser.getNo_of_stocks()) + " stocks of " + (this.Company_selected));
+        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     /**

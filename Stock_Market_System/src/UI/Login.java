@@ -196,7 +196,7 @@ public class Login extends javax.swing.JFrame {
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
             String sql="select * from authdata where username='"+username+"' and password='"+password+"' and type='"+userRole+"'";

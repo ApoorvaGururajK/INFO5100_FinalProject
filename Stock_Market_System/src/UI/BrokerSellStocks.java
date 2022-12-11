@@ -226,6 +226,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
                 row[1] = this.UserStockHistory.get(Company_selected).get(0);
                 this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
                 row[2] = this.no_of_stocks_sell; 
+                 model.addRow(row);
     }
     
     
@@ -258,12 +259,12 @@ public class BrokerSellStocks extends javax.swing.JFrame {
         try {
             
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
-            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
+//            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE UserID`='"+this.UserID+"'";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Stocks_of_Apple` = '"+this.Stocks_of_Apple+"', `Stocks_of_Microsoft` = '"+this.Stocks_of_Microsoft+"', `Stocks_of_Amazon` = '"+this.Stocks_of_Amazon+"', `Stocks_of_Netflix` = '"+this.Stocks_of_Netflix+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`Name`='apoorva')";
             
             stm.executeUpdate(sqlS1);
             con.close();
@@ -281,7 +282,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
     private void btnBuyStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyStocksActionPerformed
         // TODO add your handling code here:
         populateDB();
-        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.newUser.getNo_of_stocks_sell()) + " stocks of " + (this.Company_selected));
+        JOptionPane.showMessageDialog(this, "Successfully sold " +  (this.no_of_stocks_sell) + " stocks of " + (this.Company_selected));
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     /**

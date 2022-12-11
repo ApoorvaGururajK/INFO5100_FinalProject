@@ -274,38 +274,42 @@ public class UserSellStocks extends javax.swing.JFrame {
             Statement stm= con.createStatement();
             
             if (this.Company_selected == "Apple") {
-                String dispSt="SELECT `Stocks_of_Apple` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+                String dispSt="SELECT `Stocks_of_Apple`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
                     this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Apple");
+                    this.Initial_wallet_balance=rs.getInt("Initial Wallet Balance");
                 }
             }
             
             if (this.Company_selected == "Microsoft") {
-                String dispSt="SELECT `Stocks_of_Microsoft` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+                String dispSt="SELECT `Stocks_of_Microsoft`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
                     this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Microsoft");
+                     this.Initial_wallet_balance=rs.getInt("Initial Wallet Balance");
                 }
             }
             
             if (this.Company_selected == "Amazon") {
-                String dispSt="SELECT `Stocks_of_Amazon` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+                String dispSt="SELECT `Stocks_of_Amazon`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
                     this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Amazon");
+                     this.Initial_wallet_balance=rs.getInt("Initial Wallet Balance");
                 }
             }
             
             if (this.Company_selected == "Netflix") {
-                String dispSt="SELECT `Stocks_of_Netflix` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+                String dispSt="SELECT `Stocks_of_Netflix`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
                     this.No_of_Stocks_Owned = rs.getInt("Stocks_of_Netflix");
+                    this.Initial_wallet_balance=rs.getInt("Initial Wallet Balance");
                 }
             }
             
