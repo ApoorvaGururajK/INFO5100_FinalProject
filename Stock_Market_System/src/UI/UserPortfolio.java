@@ -108,10 +108,10 @@ public class UserPortfolio extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 136, 706, 255));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 706, 255));
 
         panelLineChart.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(panelLineChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 560, 190));
+        getContentPane().add(panelLineChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 560, 190));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

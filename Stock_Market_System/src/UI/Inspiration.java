@@ -21,17 +21,39 @@ public class Inspiration extends javax.swing.JFrame {
     Image image_w = icon_w.getImage();
     Image newimgW=image_w.getScaledInstance(166, 180,Image.SCALE_SMOOTH);
     ImageIcon wIcon= new ImageIcon(newimgW);
+    
+    ImageIcon icon_s = new ImageIcon("Seth.png");
+    Image image_s = icon_s.getImage();
+    Image newimgS=image_s.getScaledInstance(166, 180,Image.SCALE_SMOOTH);
+    ImageIcon sIcon= new ImageIcon(newimgS);
+    
     public Inspiration() {
         initComponents();
         jLabel2.setIcon(wIcon);
+        jLabel4.setIcon(sIcon);
+        
         String val1="<html>";
         val1+= "Rule No.1: Never lose money. <br>";
         val1+="Rule No.2: Never forget rule No.1. - Warren Buffett <br>";
         jLabel3.setText(val1);
         
+//        The Stock market is the story of cycles
+//and of the human behavior that is
+//responsible for overreactions
+//in both directions.
+//- Seth Klarman
         
+        
+        String val2="<html>";
+        val2+= "The Stock market is the story of cycles and of the human behavior that is responsible for overreactions\n" +
+"in both directions.\n" +
+"- Seth Klarman<br>";
+//        val2+= "<br>";
+        jLabel5.setText(val2);
     }
-
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,9 +84,16 @@ public class Inspiration extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 900));
+        setResizable(false);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 900));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 1200));
+        jPanel1.setRequestFocusEnabled(false);
+        jPanel1.setSize(new java.awt.Dimension(800, 900));
 
         btnHome.setBackground(new java.awt.Color(0, 0, 0));
         btnHome.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
@@ -84,11 +113,9 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -114,10 +141,7 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 251, 242));
         jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel5.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -143,12 +167,6 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 251, 242));
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jLabel6.setText("jLabel2");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel7.setText("jLabel3");
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -173,12 +191,6 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 251, 242));
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jLabel10.setText("jLabel2");
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel11.setText("jLabel3");
-        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -202,12 +214,6 @@ public class Inspiration extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 251, 242));
         jPanel7.setBorder(new javax.swing.border.MatteBorder(null));
-
-        jLabel12.setText("jLabel2");
-        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel13.setText("jLabel3");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -235,7 +241,7 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -266,7 +272,7 @@ public class Inspiration extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -275,11 +281,15 @@ public class Inspiration extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addGap(0, 51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
