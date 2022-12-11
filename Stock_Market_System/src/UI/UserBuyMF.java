@@ -4,6 +4,10 @@
  */
 package UI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,26 +32,22 @@ public class UserBuyMF extends javax.swing.JFrame {
     private Integer total;
     private Integer No_of_units;
     private String MFIndex_selected;
-    UserRegistrationDetails newUser;
+    private Integer Initial_wallet_balance;
+    
+//    public UserBuyMF() {
+//        initComponents();
+//    }
     
     public UserBuyMF() {
         initComponents();
-    }
-    
-    public UserBuyMF(Map<String, Integer> UserMutualFundsHistory, UserRegistrationDetails newUser) {
-        initComponents();
-        this.newUser = newUser;
         this.UserMutualFundsHistory = UserMutualFundsHistory;
         this.MututalFundIndex = new HashMap<>();
         this.MutualFundUnitPrice = new HashMap<>();
-        this.MututalFundIndex.put("Fidelity ZERO Large Cap Index.", "Fidelity ZERO Large Cap Index Fund for $14.43");
-        this.MututalFundIndex.put( "Vanguard S&P 500 ETF." ,"Vanguard S&P 500 ETF for $374.00");
-        this.MututalFundIndex.put( "SPDR S&P 500 ETF Trust.", "SPDR S&P 500 ETF Trust for $406.91");
-        this.MututalFundIndex.put("iShares Core S&P 500 ETF.", "iShares Core S&P 500 ETF for $408.71");
-        this.MututalFundIndex.put("Schwab S&P 500 Index Fund." , "Schwab 500 Index for $39.35");
-        this.MututalFundIndex.put( "Shelton NASDAQ-100 Index Direct.", "Shelton NASDAQ-100 Index Direct for $25.90");
-        this.MututalFundIndex.put("Invesco QQQ Trust ETF.", "Invesco QQQ Trust ETF for $295.55");
-        this.MututalFundIndex.put("Vanguard Russell 2000 ETF.", "Vanguard Russell 2000 ETF for $75.98");
+        this.MututalFundIndex.put("Fidelity ZERO Large Cap Index", "Fidelity ZERO Large Cap Index Fund for $14.43");
+        this.MututalFundIndex.put( "Vanguard S&P 500 ETF" ,"Vanguard S&P 500 ETF for $374.00");
+        this.MututalFundIndex.put( "SPDR S&P 500 ETF Trust", "SPDR S&P 500 ETF Trust for $406.91");
+        this.MututalFundIndex.put("iShares Core S&P 500 ETF", "iShares Core S&P 500 ETF for $408.71");
+        this.MututalFundIndex.put( "Shelton NASDAQ-100 Index Direct", "Shelton NASDAQ-100 Index Direct for $25.90");
 
        
        
@@ -55,10 +55,7 @@ public class UserBuyMF extends javax.swing.JFrame {
         this.MutualFundUnitPrice.put("Vanguard S&P 500 ETF for $374.00", 374);
         this.MutualFundUnitPrice.put("SPDR S&P 500 ETF Trust for $406.91", 406);
         this.MutualFundUnitPrice.put("iShares Core S&P 500 ETF for $408.71", 407);
-        this.MutualFundUnitPrice.put("Schwab 500 Index for $39.35", 39);
         this.MutualFundUnitPrice.put("Shelton NASDAQ-100 Index Direct for $25.90", 25);
-        this.MutualFundUnitPrice.put("Invesco QQQ Trust ETF for $295.55", 295);
-        this.MutualFundUnitPrice.put("Vanguard Russell 2000 ETF for $75.98", 75);
         populateComboBox();
     }
 
@@ -163,12 +160,12 @@ public class UserBuyMF extends javax.swing.JFrame {
                             .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelAdminID5))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNoOfUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxStockMarketIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxStockMarketIndex, 0, 392, Short.MAX_VALUE)
+                            .addComponent(txtNoOfUnits)
+                            .addComponent(jComboBoxStockMarketUnit, 0, 392, Short.MAX_VALUE)
+                            .addComponent(txtCalculateTotal))))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,22 +208,54 @@ public class UserBuyMF extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxStockMarketIndexActionPerformed
     
     private void populateComboBox() {
-//        System.out.println("Inside populateComboBox");
+         System.out.println("Inside populateComboBox");
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBoxStockMarketIndex.getModel();
 //        System.out.println("Before initialising combobox");
         model1.addAll(this.MututalFundIndex.keySet());
-//        System.out.println("After initialising combobox");
+        System.out.println("After initialising combobox");
     }
     
     
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
         this.No_of_units = Integer.parseInt(txtNoOfUnits.getText());
-        this.newUser.setNo_of_units(this.No_of_units);
         this.total = this.No_of_units * this.index_unit_value;
-        txtCalculateTotal.setText(this.total.toString());
-        this.UserMutualFundsHistory.put(this.MututalFundIndex.get(MFIndex_selected), this.No_of_units);
-//        System.out.println("The UserMutualFundsHistory map is " + this.UserMutualFundsHistory);
+//        txtCalculateTotal.setText(this.total.toString());
+        
+        try {
+            System.out.println("Inside Calculate total function try bolck");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+            ResultSet rs= stm.executeQuery(dispSt);
+            
+            if (rs.next()) {
+                this.Initial_wallet_balance = rs.getInt("Initial Wallet Balance");
+            }
+            
+            con.close();
+            
+            System.out.println("this.Initial_wallet_balance" + this.Initial_wallet_balance);
+            if (this.total > this.Initial_wallet_balance) {
+            JOptionPane.showMessageDialog(this, "No sufficient balance in the wallet to buy the units");
+            }
+            else{
+            System.out.println("Inside Calculate total function else condition");
+   
+            txtCalculateTotal.setText(this.total.toString());
+            
+    //        System.out.println("The map is " + this.UserStockHistory);
+            }
+
+        }
+        catch (Exception e) {
+            
+            System.out.println("In catch bolck of calculate function of User Buy Mutual Funds " + e.getMessage());
+        }
+        
+
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
     private void txtCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalculateTotalActionPerformed
@@ -235,17 +264,18 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
-        this.newUser.setUserMutualFundsHistory(this.UserMutualFundsHistory);
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_units) + " units of " + (this.MFIndex_selected));
-
+        this.Initial_wallet_balance = this.Initial_wallet_balance - this.total;
+        JOptionPane.showMessageDialog(this, "Navigating to broker page to buy" +  (this.No_of_units) + " units of " + (this.MFIndex_selected));
+        
+        BrokerInvestMF brokerMFbuy = new BrokerInvestMF(this.MFIndex_selected, this.No_of_units, this.index_unit_value, this.Initial_wallet_balance);
+        brokerMFbuy.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuyMFActionPerformed
 
     private void jComboBoxStockMarketUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketUnitActionPerformed
         // TODO add your handling code here:
         String MFIndex_unit_selected = (String) jComboBoxStockMarketUnit.getSelectedItem();
-        this.newUser.setMFIndex_unit_selected(MFIndex_unit_selected);
         this.index_unit_value = (this.MutualFundUnitPrice.get(MFIndex_unit_selected));
-        this.newUser.setIndex_unit_value(index_unit_value);
     }//GEN-LAST:event_jComboBoxStockMarketUnitActionPerformed
 
     private void txtNoOfUnitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfUnitsActionPerformed

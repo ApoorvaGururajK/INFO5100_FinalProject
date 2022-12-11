@@ -42,15 +42,15 @@
                           <Component id="labelAdminID5" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNoOfUnits" min="-2" pref="440" max="-2" attributes="0"/>
-                          <Component id="jComboBoxStockMarketIndex" min="-2" pref="392" max="-2" attributes="0"/>
-                          <Component id="jComboBoxStockMarketUnit" min="-2" pref="392" max="-2" attributes="0"/>
-                          <Component id="txtCalculateTotal" min="-2" pref="440" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jComboBoxStockMarketIndex" pref="392" max="32767" attributes="0"/>
+                          <Component id="txtNoOfUnits" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jComboBoxStockMarketUnit" alignment="0" pref="392" max="32767" attributes="0"/>
+                          <Component id="txtCalculateTotal" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="123" max="32767" attributes="0"/>
+              <EmptySpace pref="171" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

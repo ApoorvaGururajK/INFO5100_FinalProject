@@ -197,6 +197,9 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
+        UserBuyMF buyMF = new UserBuyMF();
+        buyMF.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuyMFActionPerformed
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
