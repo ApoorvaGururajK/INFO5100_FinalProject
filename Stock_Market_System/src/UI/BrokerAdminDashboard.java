@@ -503,6 +503,9 @@ public class BrokerAdminDashboard extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Home home= new Home();
+        home.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void txtOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrganizationActionPerformed
