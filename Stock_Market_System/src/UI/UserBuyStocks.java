@@ -321,7 +321,7 @@ public class UserBuyStocks extends javax.swing.JFrame {
         
         
         
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
+//        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
 
         BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.Company_selected, this.No_of_Stocks, this.Initial_wallet_balance);
         brokerBuyStocks.setVisible(true);
@@ -337,7 +337,7 @@ public class UserBuyStocks extends javax.swing.JFrame {
         try {
             System.out.println("Inside Calculate total function try bolck");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
             String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
@@ -387,7 +387,7 @@ public class UserBuyStocks extends javax.swing.JFrame {
 //        try {
 //            
 //            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Darklord77@");
+//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
 //            Statement stm= con.createStatement();
 //            
 //            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
