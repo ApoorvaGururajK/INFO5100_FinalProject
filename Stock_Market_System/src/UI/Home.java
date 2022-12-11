@@ -35,20 +35,14 @@ public final class Home extends javax.swing.JFrame {
      */
     public ArrayList<Article> news= new ArrayList<>();
     public ArrayList<Article> news_= new ArrayList<>();
-
     public ArrayList<Article> getNews() {
         return news;
     }
-
     public void setNews(ArrayList<Article> news) {
         this.news = news;
     }
-    
     public Home(int n){
     }
-    
-   
-    
     public Home() {
         initComponents();
         logoImg.setIcon(ticon);
@@ -146,6 +140,7 @@ String val= sb1.toString();
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 825));
 
         labelCurrency.setBackground(new java.awt.Color(0, 0, 0));
         labelCurrency.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
@@ -210,9 +205,14 @@ String val= sb1.toString();
                 .addGap(20, 20, 20))
         );
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setBackground(new java.awt.Color(255, 204, 204));
         jLabel2.setFont(new java.awt.Font("Yuppy SC", 0, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -234,7 +234,7 @@ String val= sb1.toString();
 
         jLabel3.setFont(new java.awt.Font("October Tamil", 0, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Top 10 Business Headlines");
+        jLabel3.setText("Top News Headlines");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -257,9 +257,9 @@ String val= sb1.toString();
                                 .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 483, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,14 +276,14 @@ String val= sb1.toString();
                 .addComponent(jLabel3)
                 .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,6 +310,9 @@ String val= sb1.toString();
 
     private void btnInspirationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspirationActionPerformed
         // TODO add your handling code here:
+                dispose();
+        Inspiration I= new Inspiration();
+        I.setVisible(true);
     }//GEN-LAST:event_btnInspirationActionPerformed
 
     /**
@@ -366,8 +369,8 @@ String val= sb1.toString();
 	  
 	  try{
 	  HttpRequest request = HttpRequest.newBuilder()
-			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1047e1b7d1d4419c9d2047b7c880f6f6"))
-				.header("apikey", "1047e1b7d1d4419c9d2047b7c880f6f6")
+			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&apiKey=35b728f919ec471eaa48b80c208b46b1"))
+				.header("apikey", "35b728f919ec471eaa48b80c208b46b1")
 //				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
 //				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
 				// 1047e1b7d1d4419c9d2047b7c880f6f6
@@ -382,6 +385,7 @@ String val= sb1.toString();
 		ArrayList<String> raw_url= new ArrayList<>();
 		ArrayList<String> raw_img= new ArrayList<>();
 		String ans = response.body();
+                System.out.println("\n" + ans);
 		Home t= new Home(1);
 		String tokens[] = ans.split("source");
 		int i=1;
@@ -391,6 +395,13 @@ String val= sb1.toString();
 			temp=tokens[i];
 			String tokens_title[] = temp.split("title");
 			raw.add(temp);
+//                     for(int j=0;j<1;j++){
+			raw.forEach(System.out::println);
+//			raw_title.forEach(System.out::println);
+//			raw_desc.forEach(System.out::println);
+//			raw_url.forEach(System.out::println);
+//			raw_img.forEach(System.out::println);
+		
 			val1=tokens_title[1];
 			String tokens_desc[] = val1.split("description");
 			val2=tokens_desc[0];
@@ -422,7 +433,6 @@ String val= sb1.toString();
 			
 			
 			t.news.add(art);
-                        
 			
 			i++;
 		}
@@ -450,11 +460,11 @@ String val= sb1.toString();
 		
 //		System.out.println("\n" + ans);
 //		System.out.println(ans.split("source"));
-                for(Article art: t.news) {	
-                val=art.getTitle();
-//                System.out.println("Val in Home.java"+val + "\n");
-                
-                }
+//                for(Article art: t.news) {	
+//                val=art.getTitle();
+////                System.out.println("Val in Home.java"+val + "\n");
+//                
+//                }
              //   JOptionPane.showMessageDialog(null, val);    
 //                title_1.setText(val);
 
