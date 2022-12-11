@@ -65,13 +65,14 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     public void show_company(){
         ArrayList<Company> list = companyList();
         DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[5];
         for (int i=0;i<list.size();i++)
         {
             row[0]=list.get(i).getCompanyID();
              row[1]=list.get(i).getName();
              row[2]=list.get(i).getUsername();
              row[3]=list.get(i).getOrganization();
+             row[4]=list.get(i).getPassword();
               model.addRow(row);
         }
     }
@@ -192,14 +193,14 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Username", "Organization"
+                "ID", "Name", "Username", "Organization", "Password"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -349,34 +350,41 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-//        try{
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//            DefaultTableModel model=(DefaultTableModel)BrokerAdminTable.getModel();
-//            String username = txtUsername.getText();
-//            String password = new String(txtPassword.getPassword());
-//
-//            if(BrokerAdminTable.getSelectedRowCount() ==1){
-//
-//                model.setValueAt(username, BrokerAdminTable.getSelectedRow(),1);
-//                model.setValueAt(password, BrokerAdminTable.getSelectedRow(),2);
-//
-//                int rowIndex=BrokerAdminTable.getSelectedRow() ;
-//                String value =(BrokerAdminTable.getModel().getValueAt(rowIndex, 0).toString());
-//                String query="UPDATE `info5100_finalproject`.`authdata` SET `username` = '"+username+"', `password` = '"+password+"' WHERE (`ID` = '"+value+"')";
-//                stm.executeUpdate(query);
-//                showMessageDialog(this,"Broker Admin Updated Successfully !!");
-//                txtUsername.setText("");
-//                txtPassword.setText("");
-//            }else{
-//                showMessageDialog(this,"Please select a single row to update !!");
-//            }
-//
-//            con.close();
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
+            String username = txtUsername.getText();
+            String Name = txtName.getText();
+            String Organization = txtOrganization.getSelectedItem().toString();
+            String password = new String(txtPassword.getPassword());
+
+            if(CompanyTable.getSelectedRowCount() ==1){
+
+                model.setValueAt(username, CompanyTable.getSelectedRow(),1);
+                model.setValueAt(Name, CompanyTable.getSelectedRow(),2);
+                model.setValueAt(Organization, CompanyTable.getSelectedRow(),3);
+                model.setValueAt(password, CompanyTable.getSelectedRow(),4);
+
+                int rowIndex=CompanyTable.getSelectedRow() ;
+                String value =(CompanyTable.getModel().getValueAt(rowIndex, 0).toString());
+                String query="UPDATE `info5100_finalproject`.`companies` SET `Name` = '"+Name+"' ,`Organization` = '"+Organization+"',`username` = '"+username+"', `password` = '"+password+"' WHERE (`Company ID` = '"+value+"')";
+                stm.executeUpdate(query);
+                showMessageDialog(this,"Company Details Updated Successfully !!");
+                txtUsername.setText("");
+            txtPassword.setText("");
+            txtName.setText("");
+            txtOrganization.setSelectedIndex(0);
+                
+            }else{
+                showMessageDialog(this,"Please select a single row to update !!");
+            }
+
+            con.close();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -415,12 +423,15 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     private void CompanyTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CompanyTableMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
-//
-//        String selUsername= model.getValueAt(BrokerAdminTable.getSelectedRow(), 1).toString();
-//        String selPassword= model.getValueAt(BrokerAdminTable.getSelectedRow(), 2).toString();
-//
-//        txtUsername.setText(selUsername);
-//        txtPassword.setText(selPassword);
+
+        String selName= model.getValueAt(CompanyTable.getSelectedRow(), 1).toString();
+        String selUserName= model.getValueAt(CompanyTable.getSelectedRow(), 2).toString();
+        String selPassword= model.getValueAt(CompanyTable.getSelectedRow(), 4).toString();
+
+        txtUsername.setText(selUserName);
+        txtName.setText(selName);
+        txtPassword.setText(selPassword);
+        txtOrganization.setSelectedIndex(0);
     }//GEN-LAST:event_CompanyTableMouseClicked
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
