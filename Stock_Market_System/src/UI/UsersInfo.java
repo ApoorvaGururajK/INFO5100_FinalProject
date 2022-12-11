@@ -3,6 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UI;
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.UserSystemData;
 
 /**
  *
@@ -15,6 +23,49 @@ public class UsersInfo extends javax.swing.JPanel {
      */
     public UsersInfo() {
         initComponents();
+        show_user();
+    }
+    
+        public ArrayList<UserSystemData> userList(){
+        
+        ArrayList<UserSystemData> userList = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `Name`, `Email`, `DOB`,`Trading Account Number`,`Stock Broker`,`MF Broker` FROM `info5100_finalproject`.`users`";
+            ResultSet rs= stm.executeQuery(dispSt);
+            UserSystemData user;
+            
+            while(rs.next()){
+                user= new UserSystemData(rs.getString("Name"),rs.getString("Email"),rs.getString("DOB"),rs.getDouble("Trading Account Number"),rs.getString("Stock Broker"),rs.getString("MF Broker"));
+                userList.add(user);
+            }
+            
+            con.close(); 
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return userList;
+    }
+        
+         public void show_user(){
+        ArrayList<UserSystemData> list = userList();
+        DefaultTableModel model=(DefaultTableModel)userTable.getModel();
+        Object[] row = new Object[6];
+        for (int i=0;i<list.size();i++)
+        {
+             row[0]=list.get(i).getName();
+             row[1]=list.get(i).getEmail();
+             row[2]=list.get(i).getDOB();
+             row[3]=list.get(i).getAccNo();
+             row[4]=list.get(i).getStockBroker();
+             row[5]=list.get(i).getMFBroker();
+              model.addRow(row);
+        }
     }
 
     /**
@@ -30,7 +81,7 @@ public class UsersInfo extends javax.swing.JPanel {
         txtAdminID = new javax.swing.JTextField();
         btnRegister = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        userTable = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -54,7 +105,7 @@ public class UsersInfo extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,7 +128,7 @@ public class UsersInfo extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(userTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,8 +177,8 @@ public class UsersInfo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtAdminID;
+    private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
 }

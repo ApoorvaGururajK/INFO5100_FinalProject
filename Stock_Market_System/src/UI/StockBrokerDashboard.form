@@ -96,7 +96,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnRegister4" min="-2" pref="172" max="-2" attributes="0"/>
+                          <Component id="btnLogout" min="-2" pref="172" max="-2" attributes="0"/>
                           <Component id="btnRegister" alignment="0" min="-2" pref="172" max="-2" attributes="0"/>
                           <Component id="btnRegister1" min="-2" pref="172" max="-2" attributes="0"/>
                           <Component id="btnRegister2" min="-2" pref="172" max="-2" attributes="0"/>
@@ -118,7 +118,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRegister3" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace pref="165" max="32767" attributes="0"/>
-                      <Component id="btnRegister4" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btnLogout" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -193,7 +193,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegister3ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnRegister4">
+            <Component class="javax.swing.JButton" name="btnLogout">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -207,7 +207,7 @@
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegister4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
