@@ -110,18 +110,8 @@ public class UserPortfolio extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 136, 706, 255));
 
-        javax.swing.GroupLayout panelLineChartLayout = new javax.swing.GroupLayout(panelLineChart);
-        panelLineChart.setLayout(panelLineChartLayout);
-        panelLineChartLayout.setHorizontalGroup(
-            panelLineChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
-        );
-        panelLineChartLayout.setVerticalGroup(
-            panelLineChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(panelLineChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 690, 320));
+        panelLineChart.setLayout(new java.awt.BorderLayout());
+        getContentPane().add(panelLineChart, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 560, 190));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

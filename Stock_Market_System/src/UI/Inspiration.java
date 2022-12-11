@@ -62,7 +62,6 @@ public class Inspiration extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);
@@ -112,13 +111,12 @@ public class Inspiration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 244, 244));
+        jPanel3.setBackground(new java.awt.Color(255, 251, 242));
         jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jLabel4.setText("jLabel2");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel5.setText("jLabel3");
+        jLabel5.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -142,7 +140,7 @@ public class Inspiration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 244, 244));
+        jPanel4.setBackground(new java.awt.Color(255, 251, 242));
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel6.setText("jLabel2");
@@ -172,7 +170,7 @@ public class Inspiration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 244, 244));
+        jPanel6.setBackground(new java.awt.Color(255, 251, 242));
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel10.setText("jLabel2");
@@ -202,7 +200,7 @@ public class Inspiration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel7.setBackground(new java.awt.Color(255, 244, 244));
+        jPanel7.setBackground(new java.awt.Color(255, 251, 242));
         jPanel7.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel12.setText("jLabel2");
