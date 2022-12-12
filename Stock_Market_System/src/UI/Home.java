@@ -123,6 +123,7 @@ String val= sb1.toString();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnInspiration1 = new javax.swing.JButton();
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -245,6 +246,16 @@ String val= sb1.toString();
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Top News Headlines");
 
+        btnInspiration1.setBackground(new java.awt.Color(0, 0, 0));
+        btnInspiration1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnInspiration1.setForeground(new java.awt.Color(255, 255, 255));
+        btnInspiration1.setText("Graphs");
+        btnInspiration1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInspiration1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -326,6 +337,13 @@ String val= sb1.toString();
         Inspiration I= new Inspiration();
         I.setVisible(true);
     }//GEN-LAST:event_btnInspirationActionPerformed
+
+    private void btnInspiration1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspiration1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Graph G= new Graph();
+        G.setVisible(true);
+    }//GEN-LAST:event_btnInspiration1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,6 +667,7 @@ String val= sb1.toString();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInspiration;
+    private javax.swing.JButton btnInspiration1;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisteration;
     private javax.swing.JPanel header;
