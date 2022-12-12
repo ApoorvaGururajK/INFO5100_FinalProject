@@ -435,10 +435,11 @@ public static String createID()
     private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
         // TODO add your handling code here:
         
-        System.out.println(this.newUser.toString());
+//        System.out.println(this.newUser.toString());
+        
         Home home= new Home();
         home.setVisible(true);
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnRegister1ActionPerformed
 
     private void txtDOBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDOBActionPerformed

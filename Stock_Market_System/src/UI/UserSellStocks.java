@@ -97,6 +97,7 @@ public class UserSellStocks extends javax.swing.JFrame {
         btnSignOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,11 +132,11 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
         });
 
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         labelTitle.setText("User Dashboard to sell Stocks");
 
-        btnSellStocks.setBackground(new java.awt.Color(0, 0, 0));
-        btnSellStocks.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnSellStocks.setBackground(new java.awt.Color(255, 0, 0));
+        btnSellStocks.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnSellStocks.setForeground(new java.awt.Color(255, 255, 255));
         btnSellStocks.setText("Sell Stocks");
         btnSellStocks.addActionListener(new java.awt.event.ActionListener() {
@@ -176,9 +177,9 @@ public class UserSellStocks extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
-        btnSignOut.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnSignOut.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnSignOut.setForeground(new java.awt.Color(255, 255, 255));
-        btnSignOut.setText("Sign Out");
+        btnSignOut.setText("Go Back");
         btnSignOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignOutActionPerformed(evt);
@@ -241,7 +242,7 @@ public class UserSellStocks extends javax.swing.JFrame {
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(btnSellStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -387,7 +388,7 @@ public class UserSellStocks extends javax.swing.JFrame {
 
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
         // TODO add your handling code here:
-        Home home = new Home();
+        UserDashboard home = new UserDashboard();
         home.setVisible(true);
         this.setVisible(false);
 

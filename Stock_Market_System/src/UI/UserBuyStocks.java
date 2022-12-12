@@ -157,8 +157,8 @@ public class UserBuyStocks extends javax.swing.JFrame {
             }
         });
 
-        btnBuyStocks.setBackground(new java.awt.Color(0, 0, 0));
-        btnBuyStocks.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnBuyStocks.setBackground(new java.awt.Color(255, 0, 0));
+        btnBuyStocks.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnBuyStocks.setForeground(new java.awt.Color(255, 255, 255));
         btnBuyStocks.setText("Buy Stocks");
         btnBuyStocks.addActionListener(new java.awt.event.ActionListener() {
@@ -178,9 +178,9 @@ public class UserBuyStocks extends javax.swing.JFrame {
         });
 
         btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
-        btnSignOut.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnSignOut.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnSignOut.setForeground(new java.awt.Color(255, 255, 255));
-        btnSignOut.setText("Sign Out");
+        btnSignOut.setText("Go Back");
         btnSignOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignOutActionPerformed(evt);
@@ -242,10 +242,10 @@ public class UserBuyStocks extends javax.swing.JFrame {
                     .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -373,48 +373,11 @@ public class UserBuyStocks extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
-//    private void populateDB() {
-//        if (this.Company_selected == "Apple") {
-//            this.Stocks_of_Apple = this.No_of_Stocks;
-//        }
-//        else if (this.Company_selected == "Microsoft") {
-//            this.Stocks_of_Microsoft = this.No_of_Stocks;
-//        }
-//        else if (this.Company_selected == "Amazon") {
-//            this.Stocks_of_Amazon = this.No_of_Stocks;
-//        }
-//        else if (this.Company_selected == "Netflix") {
-//            this.Stocks_of_Netflix = this.No_of_Stocks;
-//        }
-//        
-//        try {
-//            
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
-//            Statement stm= con.createStatement();
-//            
-//            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
-//            
-//            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET (`Stocks_of_Apple`, `Stocks_of_Microsoft`, `Stocks_of_Amazon`,`Stocks_of_Netflix`, `Initial Wallet Balance`) VALUES ('"+this.Stocks_of_Apple+"', '"+this.Stocks_of_Microsoft+"','"+this.Stocks_of_Amazon+"','"+this.Stocks_of_Netflix+"', '"+this.Initial_wallet_balance+"')WHERE `Name`='Apoorva'";
-//            
-//            stm.executeUpdate(sqlS1);
-//            con.close();
-//            
-//        }
-//        catch (Exception e) {
-//            System.out.println("Inside catch of populate DB");
-//            showMessageDialog(this,e);
-//
-//        }
-//        
-//    }
-//    
     private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
         // TODO add your handling code here:
-        Home home = new Home();
+        UserDashboard home = new UserDashboard();
         home.setVisible(true);
         this.setVisible(false);
-        
     }//GEN-LAST:event_btnSignOutActionPerformed
 
     /**
