@@ -33,14 +33,15 @@ public class UserBuyMF extends javax.swing.JFrame {
     private Integer No_of_units;
     private String MFIndex_selected;
     private Integer Initial_wallet_balance;
-    
-//    public UserBuyMF() {
-//        initComponents();
-//    }
+    public String UserID;
     
     public UserBuyMF() {
         initComponents();
-        this.UserMutualFundsHistory = UserMutualFundsHistory;
+    }
+    
+    public UserBuyMF(String UserID) {
+        initComponents();
+        //this.UserMutualFundsHistory = UserMutualFundsHistory;
         this.MututalFundIndex = new HashMap<>();
         this.MutualFundUnitPrice = new HashMap<>();
         this.MututalFundIndex.put("Fidelity ZERO Large Cap Index", "Fidelity ZERO Large Cap Index Fund for $14.43");
@@ -48,7 +49,8 @@ public class UserBuyMF extends javax.swing.JFrame {
         this.MututalFundIndex.put( "SPDR S&P 500 ETF Trust", "SPDR S&P 500 ETF Trust for $406.91");
         this.MututalFundIndex.put("iShares Core S&P 500 ETF", "iShares Core S&P 500 ETF for $408.71");
         this.MututalFundIndex.put( "Shelton NASDAQ-100 Index Direct", "Shelton NASDAQ-100 Index Direct for $25.90");
-
+        
+        this.UserID=UserID;
        
        
         this.MutualFundUnitPrice.put("Fidelity ZERO Large Cap Index Fund for $14.43", 14);
@@ -228,7 +230,7 @@ public class UserBuyMF extends javax.swing.JFrame {
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             
-            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
             ResultSet rs= stm.executeQuery(dispSt);
             
             if (rs.next()) {
@@ -267,7 +269,7 @@ public class UserBuyMF extends javax.swing.JFrame {
         this.Initial_wallet_balance = this.Initial_wallet_balance - this.total;
         JOptionPane.showMessageDialog(this, "Navigating to broker page to buy" +  (this.No_of_units) + " units of " + (this.MFIndex_selected));
         
-        BrokerInvestMF brokerMFbuy = new BrokerInvestMF(this.MFIndex_selected, this.No_of_units, this.index_unit_value, this.Initial_wallet_balance);
+        BrokerInvestMF brokerMFbuy = new BrokerInvestMF(this.MFIndex_selected, this.No_of_units, this.index_unit_value, this.Initial_wallet_balance, this.UserID);
         brokerMFbuy.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnBuyMFActionPerformed

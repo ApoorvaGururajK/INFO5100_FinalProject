@@ -35,7 +35,9 @@ public class UserDashboard extends javax.swing.JFrame {
     }
     
     public UserDashboard(String UserID) {
+        initComponents();
         this.UserID = UserID;
+        
     }
     
     /**

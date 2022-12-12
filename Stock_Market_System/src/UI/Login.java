@@ -209,7 +209,7 @@ public class Login extends javax.swing.JFrame {
                     
                     // 1st Role
                     case "User":
-                                UserDashboard user=new UserDashboard(String UserID);
+                                UserDashboard user=new UserDashboard(UserID);
                                 user.setVisible(true);
                                 System.out.println("User is Logging In");
                                 break;

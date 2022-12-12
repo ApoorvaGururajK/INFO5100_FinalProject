@@ -274,7 +274,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             Statement stm= con.createStatement();
             
             if (this.Company_selected == "Apple") {
-                String dispSt="SELECT `Stocks_of_Apple`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Apple`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -284,7 +284,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Microsoft") {
-                String dispSt="SELECT `Stocks_of_Microsoft`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Microsoft`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -294,7 +294,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Amazon") {
-                String dispSt="SELECT `Stocks_of_Amazon`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Amazon`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
@@ -304,7 +304,7 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
             
             if (this.Company_selected == "Netflix") {
-                String dispSt="SELECT `Stocks_of_Netflix`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `Name`='apoorva'";
+                String dispSt="SELECT `Stocks_of_Netflix`,`Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
                 ResultSet rs= stm.executeQuery(dispSt);
             
                 if (rs.next()) {
