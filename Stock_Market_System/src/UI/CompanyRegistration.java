@@ -34,7 +34,8 @@ public class CompanyRegistration extends javax.swing.JPanel {
         labelAdminID = new javax.swing.JLabel();
         txtAdminID = new javax.swing.JTextField();
         labelAdminID1 = new javax.swing.JLabel();
-        txtAdminID1 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        btnRegister = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -65,12 +66,17 @@ public class CompanyRegistration extends javax.swing.JPanel {
         });
 
         labelAdminID1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID1.setText("DOB:");
+        labelAdminID1.setText("Type:");
 
-        txtAdminID1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Service Sector", "Technology", "Product based", "Financial Corp", "Public", "Non-profits" }));
+
+        btnRegister.setBackground(new java.awt.Color(255, 51, 51));
+        btnRegister.setFont(new java.awt.Font("Poppins", 1, 16)); // NOI18N
+        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminID1ActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
 
@@ -78,32 +84,36 @@ public class CompanyRegistration extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitle)
-                .addGap(268, 268, 268))
             .addGroup(layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelAdminID)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelAdminID2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
                         .addComponent(labelAdminID3)
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelAdminID1)
+                        .addComponent(jPasswordField1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelAdminID2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(txtAdminID2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAdminID)
+                            .addComponent(labelAdminID1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtAdminID)
+                            .addComponent(jComboBox1, 0, 471, Short.MAX_VALUE))))
+                .addGap(150, 150, 150))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(278, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelTitle)
+                        .addGap(268, 268, 268))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(319, 319, 319))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,16 +123,22 @@ public class CompanyRegistration extends javax.swing.JPanel {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID)
-                    .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID1)
-                    .addComponent(txtAdminID1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID2)
-                    .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAdminID2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID3)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -134,12 +150,38 @@ public class CompanyRegistration extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminIDActionPerformed
 
-    private void txtAdminID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminID1ActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminID1ActionPerformed
+//        String username = txtUsername.getText();
+//        String password = new String(txtPassword.getPassword());
+//        String adminID= UUID.randomUUID().toString();
+//
+//        try{
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+//            Statement stm= con.createStatement();
+//
+//            String sqlS2= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+adminID+"','"+username+"','"+password+"', 'Company Admin')";
+//
+//            stm.executeUpdate(sqlS2);
+//
+//            DefaultTableModel model=(DefaultTableModel)CompanyAdminTable.getModel();
+//            model.setRowCount(0);
+//            show_user();
+//            showMessageDialog(this,"Company Admin Created Successfully !!");
+//            txtUsername.setText("");
+//            txtPassword.setText("");
+//
+//            con.close();
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel labelAdminID;
     private javax.swing.JLabel labelAdminID1;
@@ -147,7 +189,6 @@ public class CompanyRegistration extends javax.swing.JPanel {
     private javax.swing.JLabel labelAdminID3;
     private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtAdminID;
-    private javax.swing.JTextField txtAdminID1;
     private javax.swing.JTextField txtAdminID2;
     // End of variables declaration//GEN-END:variables
 }

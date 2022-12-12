@@ -186,6 +186,7 @@ public class UserDashboard extends javax.swing.JFrame {
 
     private void btnPortfolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPortfolioActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnPortfolioActionPerformed
 
     private void btnBuyStocksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyStocksActionPerformed

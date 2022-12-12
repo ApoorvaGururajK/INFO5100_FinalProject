@@ -4,29 +4,94 @@
  */
 package UI;
 import java.awt.Image;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import static javax.swing.JOptionPane.showMessageDialog;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
+import javax.swing.JOptionPane;
+import model.Article_Directory;
+import model.Article;
 /**
  *
  * @author rishi
  */
-public class Home extends javax.swing.JFrame {
+public final class Home extends javax.swing.JFrame {
 
+    
     ImageIcon icon = new ImageIcon("Logo.png");
     Image image = icon.getImage();
     Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
     ImageIcon ticon= new ImageIcon(newimg);
-//    UserSelectionDetails selections;
-//    UserRegistrationDetails newUser;
+    String val;
+//    List<String> NewsOnLandingPage;
     /**
      * Creates new form Home
      */
+    public ArrayList<Article> news= new ArrayList<>();
+    public ArrayList<Article> news_= new ArrayList<>();
+    public ArrayList<Article> getNews() {
+        return news;
+    }
+    public void setNews(ArrayList<Article> news) {
+        this.news = news;
+    }
+    public Home(int n){
+    }
     public Home() {
         initComponents();
         logoImg.setIcon(ticon);
+        Home a= new Home(1);
+//        ArrayList<Article> news_fin= new ArrayList<>();
+        news_=a.news_fetch();
+        
+         StringBuilder sb1 = new StringBuilder("");
+        		for(Article art: news_) {
+			 sb1.append("\n").append(art).append("\n");	
+        }
+//                jLabel2.setText("Make");
+//                news_=news;
+String val= sb1.toString();
+//            jLabel2.setText(val);
+                System.out.println(sb1.toString());
+               String tim="<html>";
+                for(Article sap:news_){
+                    tim += "Title :"+sap.getTitle() + "<br>";
+                    tim += "Description :"+sap.getDesc() + "<br>";
+                    tim += "For more details :"+sap.getUrl() + "<br>";
+                    tim += "<br>";
+                    
+                }
+                jLabel2.setText(tim);
+                
+        
+//        jLabel2.setText("Make");
+        
+//        for(Article art: a.news) {	
+//                val=art.getTitle();
+////                System.out.println("Val in Home.java"+val + "\n");
+//                JOptionPane.showMessageDialog(null, val);    
+//               }
+//                title_1.setText(val);
+//        Article_Directory arts= new  Article_Directory();
+//        arts.news_fetch();
+//          this.NewsOnLandingPage = new ArrayList<>();
+        
+//        
+//        for(Article art: news) {	
+//                val=art.getTitle();
+//                System.out.println("Val in Home.java"+val + "\n");
+//                JOptionPane.showMessageDialog(null, val);    
+//	}
+//        title_1.setText("title");
+//        JOptionPane.showMessageDialog(null, val);    
     }
     
 //    public Home(UserSelectionDetails selections, UserRegistrationDetails newUser) {
@@ -44,42 +109,49 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         labelCurrency = new javax.swing.JLabel();
-        txtAdminID = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         btnRegisteration = new javax.swing.JButton();
         btnInspiration = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         logoImg = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(248, 248, 248))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 825));
 
         labelCurrency.setBackground(new java.awt.Color(0, 0, 0));
         labelCurrency.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
-
-        txtAdminID.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminIDActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setBackground(new java.awt.Color(255, 0, 0));
-        btnSearch.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
-        btnSearch.setText("Search");
-        btnSearch.setBorder(null);
-        btnSearch.setBorderPainted(false);
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
 
         btnLogin.setBackground(new java.awt.Color(0, 0, 0));
         btnLogin.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
@@ -136,33 +208,66 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Yuppy SC", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jLabel3.setFont(new java.awt.Font("October Tamil", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Top News Headlines");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRegisteration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnRegisteration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,18 +280,18 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnRegisteration, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addComponent(jLabel3)
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,14 +300,6 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminIDActionPerformed
-
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
@@ -223,12 +320,15 @@ public class Home extends javax.swing.JFrame {
 
     private void btnInspirationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspirationActionPerformed
         // TODO add your handling code here:
+                dispose();
+        Inspiration I= new Inspiration();
+        I.setVisible(true);
     }//GEN-LAST:event_btnInspirationActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, InterruptedException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -258,18 +358,307 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+        
+
+        
     }
+    
+    
+      public ArrayList<Article> news_fetch() {
+      
+      ArrayList<Article> news_fin= new ArrayList<>();
+	  
+//	  HttpRequest request = HttpRequest.newBuilder()
+//				.uri(URI.create("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=amazon"))
+//				.header("X-RapidAPI-Key", "7003839037msh36f6df26a42e70dp19c9aajsn8cd72eff0a33")
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.method("GET", HttpRequest.BodyPublishers.noBody())
+//				.build();
+//		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		System.out.println(response.body());
+	  
+	  try{
+	  HttpRequest request = HttpRequest.newBuilder()
+			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&apiKey=35b728f919ec471eaa48b80c208b46b1"))
+				.header("apikey", "35b728f919ec471eaa48b80c208b46b1")
+//				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
+//				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+				// 1047e1b7d1d4419c9d2047b7c880f6f6
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+				.method("GET", HttpRequest.BodyPublishers.noBody())
+				.build();
+		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		response.body().split("source");
+		ArrayList<String> raw= new ArrayList<>();
+		ArrayList<String> raw_title= new ArrayList<>();
+		ArrayList<String> raw_desc= new ArrayList<>();
+		ArrayList<String> raw_url= new ArrayList<>();
+		ArrayList<String> raw_img= new ArrayList<>();
+		String ans = response.body();
+//                System.out.println("\n" + ans);
+		Home t= new Home(1);
+		String tokens[] = ans.split("source");
+		int i=1;
+		String temp;
+		String val1,val2,val3,val4,val5,val6,val7,val8;
+		while(i<5) {
+			temp=tokens[i];
+			String tokens_title[] = temp.split("title");
+			raw.add(temp);
+//                     for(int j=0;j<1;j++){
+//			raw.forEach(System.out::println);
+//			raw_title.forEach(System.out::println);
+//			raw_desc.forEach(System.out::println);
+//			raw_url.forEach(System.out::println);
+//			raw_img.forEach(System.out::println);
+		
+			val1=tokens_title[1];
+			String tokens_desc[] = val1.split("description");
+			val2=tokens_desc[0];
+			val3=tokens_desc[1];
+			String tokens_url[] = val3.split("url");
+			String tokens_image[] = val3.split("urlToImage");
+			val4=tokens_url[0];
+			val5=tokens_url[1];
+			val6=tokens_image[1];
+			String tokens_com[] = val6.split(",");
+			val7=tokens_com[0];
+			
+			String title_;
+			String desc_;
+			String url_;
+			String image_;
+			
+			raw_title.add(val2.substring(3, val2.length() - 3) );
+			raw_desc.add(val4.substring(3, val4.length() - 3));
+			raw_url.add(val5.substring(3, val5.length() - 3));
+			raw_img.add(val7.substring(3, val7.length() - 1));
+			
+			title_=val2.substring(3, val2.length() - 3);
+			desc_=val4.substring(3, val4.length() - 3);
+			url_=val5.substring(3, val5.length() - 3);
+			image_=val7.substring(3, val7.length() - 1);
+			
+			Article art= new Article(title_,desc_,url_,image_);
+			
+			
+			t.news.add(art);
+			
+			i++;
+		}
+                news_fin=t.news;
+//		for(int j=0;j<1;j++){
+////			raw.forEach(System.out::println);
+//			raw_title.forEach(System.out::println);
+//			raw_desc.forEach(System.out::println);
+//			raw_url.forEach(System.out::println);
+//			raw_img.forEach(System.out::println);
+//		}
+
+		
+        StringBuilder sb1 = new StringBuilder("");
+        
+		
+		for(Article a: t.news) {
+			 sb1.append("\n").append(a).append("\n");	
+		}
+////                jLabel2.setText("Make");
+////                news_fin=news;
+//                System.out.println(sb1.toString());
+		
+//                news_=t.news;
+		
+//		System.out.println("\n" + ans);
+//		System.out.println(ans.split("source"));
+//                for(Article art: t.news) {	
+//                val=art.getTitle();
+////                System.out.println("Val in Home.java"+val + "\n");
+//                
+//                }
+             //   JOptionPane.showMessageDialog(null, val);    
+//                title_1.setText(val);
+
+		System.out.println("\n done");
+              
+              
+          }catch(Exception e){
+              System.out.println("");
+//            e.printStackTrace();
+          }
+       
+          return news_fin;
+      }
+	  
+	  
+//	  HttpRequest request = HttpRequest.newBuilder()
+//			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1047e1b7d1d4419c9d2047b7c880f6f6"))
+//				.header("apikey", "1047e1b7d1d4419c9d2047b7c880f6f6")
+////				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
+////				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//			  
+//			  
+//			  
+//				// 1047e1b7d1d4419c9d2047b7c880f6f6
+////				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.method("GET", HttpRequest.BodyPublishers.noBody())
+//				.build();
+//		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		response.body().split("source");
+//		ArrayList<String> raw= new ArrayList<>();
+//		ArrayList<String> raw_title= new ArrayList<>();
+//		ArrayList<String> raw_desc= new ArrayList<>();
+//		ArrayList<String> raw_url= new ArrayList<>();
+//		ArrayList<String> raw_img= new ArrayList<>();
+//		String ans = response.body();
+//		Article_Directory t= new Article_Directory();
+//		String tokens[] = ans.split("source");
+//		int i=1;
+//		String temp;
+//		String val1,val2,val3,val4,val5,val6,val7,val8;
+//		while(i<10) {
+//			temp=tokens[i];
+//			String tokens_title[] = temp.split("title");
+//			raw.add(temp);
+//			val1=tokens_title[1];
+//			String tokens_desc[] = val1.split("description");
+//			val2=tokens_desc[0];
+//			val3=tokens_desc[1];
+//			String tokens_url[] = val3.split("url");
+//			String tokens_image[] = val3.split("urlToImage");
+//			val4=tokens_url[0];
+//			val5=tokens_url[1];
+//			val6=tokens_image[1];
+//			String tokens_com[] = val6.split(",");
+//			val7=tokens_com[0];
+//			
+//			String title_;
+//			String desc_;
+//			String url_;
+//			String image_;
+//			
+//			raw_title.add(val2.substring(3, val2.length() - 3) );
+//			raw_desc.add(val4.substring(3, val4.length() - 3));
+//			raw_url.add(val5.substring(3, val5.length() - 3));
+//			raw_img.add(val7.substring(3, val7.length() - 1));
+//			
+//			title_=val2.substring(3, val2.length() - 3);
+//			desc_=val4.substring(3, val4.length() - 3);
+//			url_=val5.substring(3, val5.length() - 3);
+//			image_=val7.substring(3, val7.length() - 1);
+//			
+//			Article art= new Article(title_,desc_,url_,image_);
+//			
+//			
+//			t.news.add(art);
+//			
+//			i++;
+//		}
+////		for(int j=0;j<1;j++){
+//////			raw.forEach(System.out::println);
+////			raw_title.forEach(System.out::println);
+////			raw_desc.forEach(System.out::println);
+////			raw_url.forEach(System.out::println);
+////			raw_img.forEach(System.out::println);
+////		}
+//		
+//		
+//        StringBuilder sb1 = new StringBuilder("");
+//        
+//		
+//		for(Article a: t.news) {
+//			
+//			 sb1.append("\n").append(a).append("\n");
+//			
+//			
+//		}
+//        System.out.println(sb1.toString());
+//		
+//		
+////		System.out.println("\n" + ans);
+////		System.out.println(ans.split("source"));
+//		System.out.println("\n done");
+//		
+//		
+//		
+		
+		
+		
+	  
+//	  OkHttpClient client = new OkHttpClient().newBuilder().build();
+////	  OkHttpClient client = new OkHttpClient();
+//	    Request request = new Request.Builder()
+//	      .url("https://api.apilayer.com/financelayer/news?tickers=tickers&tags=tags&sources=sources&sort=sort&offset=offset&limit=limit&keywords=keywords&fallback=fallback&date=date")
+//	      .addHeader("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//	      .method("GET", null)
+//	      .build();
+////	    OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+////	    OkHttpClient.Builder newBuilder = okHttpClient.newBuilder();
+////	    OkHttpClient client = new OkHttpClient().newBuilder().build();
+//	    
+//	    Response response = client.newCall(request).execute();
+//	    System.out.println(response.body().string());
+	  
+	  
+//	  NewsApiClient newsApiClient = new NewsApiClient("YOUR_API_KEY");
+//
+//	// /v2/everything
+//	newsApiClient.getEverything(
+//	  new EverythingRequest.Builder()
+//	          .q("trump")
+//	          .build(),
+//	  new NewsApiClient.ArticlesResponseCallback() {
+//	      @Override
+//	      public void onSuccess(ArticleResponse response) {
+//	          System.out.println(response.getArticles().get(0).getTitle());
+//	      }
+//
+//	      @Override
+//	      public void onFailure(Throwable throwable) {
+//	          System.out.println(throwable.getMessage());
+//	      }
+//	  }
+//	  OkHttpClient client = new OkHttpClient();
+////    OkHttpClient client = (new OkHttpClient()).newBuilder().build();
+//	 // OkHttpClient client = new OkHttpClient();
+//
+//	  Request request = new Request.Builder()
+//	  	.url("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=tesla")
+//	  	.get()
+//	  	.addHeader("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
+//	  	.addHeader("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//	  	.build();
+//
+//	  Response response = client.newCall(request).execute();
+//	  HttpResponse<String> response = Unirest.get("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=tesla")
+//				.header("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.asString();
+
+//    Request request = new Request.Builder()
+//      .url("https://api.apilayer.com/financelayer/news?tickers=tickers&tags=tags&sources=sources&sort=sort&offset=offset&limit=limit&keywords=keywords&fallback=fallback&date=date")
+//      .addHeader("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//      .method("GET", })
+//      .build();
+//    Response response = client.newCall(request).execute();
+//    System.out.println(response.body().string());
+
+      
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInspiration;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisteration;
-    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCurrency;
     private javax.swing.JLabel logoImg;
-    private javax.swing.JTextField txtAdminID;
     // End of variables declaration//GEN-END:variables
 }
