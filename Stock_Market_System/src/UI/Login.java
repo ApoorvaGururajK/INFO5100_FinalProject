@@ -4,11 +4,13 @@
  */
 package UI;
 
+import java.awt.Image;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.HashMap;
+import javax.swing.ImageIcon;
 import static javax.swing.JOptionPane.showMessageDialog;
 import model.UserRegistrationDetails;
 import model.UserSelectionDetails;
@@ -19,6 +21,10 @@ import model.UserSelectionDetails;
  */
 public class Login extends javax.swing.JFrame {
 
+    ImageIcon icon = new ImageIcon("Logo.png");
+    Image image = icon.getImage();
+    Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
+    ImageIcon ticon= new ImageIcon(newimg);
     /**
      * Creates new form Login
      */
@@ -26,6 +32,7 @@ public class Login extends javax.swing.JFrame {
     UserRegistrationDetails newUser;
     public Login() {
         initComponents();
+         logoImg.setIcon(ticon);
         
 //        HashMap<String, String> dashboard = new HashMap<String, String>();
 //
@@ -55,7 +62,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelTitle = new javax.swing.JLabel();
         labelAdminID = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         labelAdminID1 = new javax.swing.JLabel();
@@ -64,34 +70,35 @@ public class Login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnHome = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        logoImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        labelTitle.setText("Account Login");
-
-        labelAdminID.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelAdminID.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         labelAdminID.setText("Username / Email: ");
 
-        txtUsername.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
 
-        labelAdminID1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelAdminID1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         labelAdminID1.setText("Password:");
 
-        labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelAdminID2.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         labelAdminID2.setText("Role:");
 
-        userRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Company", "System Admin", "Broker Admin", "Company Admin", "Equity Holder", "Stock Broker", "Mutual Funds Broker", " " }));
+        userRoles.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        userRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Company", "System Admin", "Broker Admin", "Company Admin", "Equity Holder", "Stock Broker", "Mutual Funds Broker", "" }));
 
-        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
-        btnLogin.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnLogin.setBackground(new java.awt.Color(255, 0, 0));
+        btnLogin.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +108,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         btnHome.setBackground(new java.awt.Color(0, 0, 0));
-        btnHome.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnHome.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnHome.setForeground(new java.awt.Color(255, 255, 255));
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +116,38 @@ public class Login extends javax.swing.JFrame {
                 btnHomeActionPerformed(evt);
             }
         });
+
+        txtPassword.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Account Login");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,41 +168,40 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsername)
                             .addComponent(userRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelTitle)
-                        .addGap(324, 324, 324))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(328, 328, 328))))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(346, 346, 346))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(labelTitle)
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelAdminID2))
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(labelAdminID2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(userRoles, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelAdminID)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelAdminID1))
-                .addGap(49, 49, 49)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(labelAdminID1)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -314,11 +352,13 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAdminID;
     private javax.swing.JLabel labelAdminID1;
     private javax.swing.JLabel labelAdminID2;
-    private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel logoImg;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JComboBox<String> userRoles;
