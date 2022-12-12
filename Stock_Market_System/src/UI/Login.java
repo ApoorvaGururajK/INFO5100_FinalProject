@@ -282,14 +282,14 @@ public class Login extends javax.swing.JFrame {
                                                                                                  
                      // 6th Role
                     case "Stock Broker":
-                                StockBrokerDashboard sBroker=new StockBrokerDashboard();
+                                StockBrokerDashboardData sBroker=new StockBrokerDashboardData();
                                 sBroker.setVisible(true);
                                 System.out.println("Stock Broker is Logging In");
                                 break;
                                                                                                 
                      // 7th Role
                     case "Mutual Funds Broker":
-                               MFBrokerDashboard mfBroker=new MFBrokerDashboard();
+                               MFBrokerDashboardData mfBroker=new MFBrokerDashboardData();
                                 mfBroker.setVisible(true);
                                 System.out.println("Mutual Funds Broker is Logging In");
                                 break;

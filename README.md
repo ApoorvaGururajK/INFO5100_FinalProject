@@ -48,6 +48,9 @@ Based on the Requirements of our project we built 8 User Roles, 4 Enterprises, 6
     - CHX
     - ISE
 
-## Features
+## Additional Features
+
+News API: Used to connect the latest news related to the
+
 
 
