@@ -128,30 +128,21 @@ public class Graph extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         graph1 = new javax.swing.JPanel();
-        graph2 = new javax.swing.JPanel();
         graph3 = new javax.swing.JPanel();
         graph4 = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Kavivanar", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Graphs");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 60));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         graph1.setLayout(new java.awt.BorderLayout());
         getContentPane().add(graph1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 410, 250));
-
-        graph2.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(graph2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 310, 200));
 
         graph3.setLayout(new java.awt.BorderLayout());
         getContentPane().add(graph3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 280, 230));
@@ -160,7 +151,7 @@ public class Graph extends javax.swing.JFrame {
         getContentPane().add(graph4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 350, 400, 230));
 
         btnHome.setBackground(new java.awt.Color(0, 0, 0));
-        btnHome.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnHome.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnHome.setForeground(new java.awt.Color(255, 255, 255));
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +159,33 @@ public class Graph extends javax.swing.JFrame {
                 btnHomeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, -1, -1));
+        getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 140, 60));
+
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Current Market Analytics");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(217, 217, 217))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29))
+        );
+
+        getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -218,9 +235,9 @@ public class Graph extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JPanel graph1;
-    private javax.swing.JPanel graph2;
     private javax.swing.JPanel graph3;
     private javax.swing.JPanel graph4;
+    private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
