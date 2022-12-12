@@ -57,11 +57,13 @@ Users can post a request to the Mutual Fund Brokers to Buy and Sell of Mutual fu
 
 System Admins can create Broker Admin and Company Admin
 System admins can read users form db 
-Broker Admin is responsible for adding 
+Broker Admin is responsible for creating new brokers in the system; there are 2 types (Stock and Mutual Fund Brokers)
+Company Admin is responsible for managing equity holders and adding companies to the system
 
-### APIs
+### APIs and Features
 News API: Used to connect the latest news related to the financial world
 Stock Prices API: Used to generate Stock Prices based on any Company or firm given
+Graphs used for visualization for Trade records and give basic analytics about the data.
 
 
 
