@@ -115,6 +115,7 @@ String val= sb1.toString();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnInspiration1 = new javax.swing.JButton();
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -236,6 +237,16 @@ String val= sb1.toString();
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Top News Headlines");
 
+        btnInspiration1.setBackground(new java.awt.Color(0, 0, 0));
+        btnInspiration1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnInspiration1.setForeground(new java.awt.Color(255, 255, 255));
+        btnInspiration1.setText("Graphs");
+        btnInspiration1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInspiration1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -254,12 +265,14 @@ String val= sb1.toString();
                                 .addGap(38, 38, 38)
                                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnInspiration1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(674, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 447, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +284,8 @@ String val= sb1.toString();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegisteration, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInspiration1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addComponent(jLabel3)
                 .addGap(42, 42, 42)
@@ -314,6 +328,13 @@ String val= sb1.toString();
         Inspiration I= new Inspiration();
         I.setVisible(true);
     }//GEN-LAST:event_btnInspirationActionPerformed
+
+    private void btnInspiration1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspiration1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Graph G= new Graph();
+        G.setVisible(true);
+    }//GEN-LAST:event_btnInspiration1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -637,6 +658,7 @@ String val= sb1.toString();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInspiration;
+    private javax.swing.JButton btnInspiration1;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegisteration;
     private javax.swing.JLabel jLabel1;
