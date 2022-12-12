@@ -4,6 +4,10 @@
  */
 package UI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +15,11 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
+import model.UserAuth;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
 
 /**
  *
@@ -28,28 +36,46 @@ public class UserBuyStocks extends javax.swing.JFrame {
     private Integer Total;
     private String Company_selected;
     private int Current_Stock_price;
+    UserSelectionDetails selections;
+    UserRegistrationDetails newUser;
+    private Integer Initial_wallet_balance;
+    private Integer Stocks_of_Apple;
+    private Integer Stocks_of_Microsoft;
+    private Integer Stocks_of_Amazon;
+    private Integer Stocks_of_Netflix;
+    public Integer no_of_stocks_owned;
+    public String UserID;
+    public Map<String, Integer> no_of_stocks_owned_company;
     
     public UserBuyStocks() {
         initComponents();
+        
     }
     
-    public UserBuyStocks(Map<String, List<Integer>> UserStockHistory) {
+    public UserBuyStocks(Map<String, Integer> no_of_stocks_owned_company, String UserID) {
         initComponents();
-//        this.SelectCompany = new ArrayList<>();
-        this.UserStockHistory = UserStockHistory;
+        this.no_of_stocks_owned_company = no_of_stocks_owned_company;
+        System.out.println("Inside the UserBuyStocks parameterized constructor");
+        System.out.println("no_of_stocks_owne: " + this.no_of_stocks_owned_company);
+        
+        this.UserID = UserID;
+        
+        this.Stocks_of_Apple = 0;
+        this.Stocks_of_Microsoft = 0;
+        this.Stocks_of_Amazon = 0;
+        this.Stocks_of_Netflix = 0;
+        
+        this.UserStockHistory = new HashMap<>();
         
         this.UserStockHistory.put("Apple", Arrays.asList(142, 0, 0));
         this.UserStockHistory.put("Microsoft", Arrays.asList(247, 0, 0));
         this.UserStockHistory.put("Amazon", Arrays.asList(90, 0, 0));
         this.UserStockHistory.put("Netflix", Arrays.asList(310, 0, 0));
-        this.UserStockHistory.put("Meta", Arrays.asList(115, 0, 0));
-        this.UserStockHistory.put("Paypal", Arrays.asList(74, 0, 0));
-        this.UserStockHistory.put("Google", Arrays.asList(93, 0, 0));
         
+        populateComboBox(this.UserStockHistory);
         
-        populateComboBox();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +85,6 @@ public class UserBuyStocks extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTitle = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         labelAdminID2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -69,11 +94,11 @@ public class UserBuyStocks extends javax.swing.JFrame {
         txtGetTotal = new javax.swing.JTextField();
         btnBuyStocks = new javax.swing.JButton();
         btnCalculateTotal1 = new javax.swing.JButton();
+        btnSignOut = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        labelTitle.setText("User Dashboard to buy Stocks");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,8 +155,8 @@ public class UserBuyStocks extends javax.swing.JFrame {
             }
         });
 
-        btnBuyStocks.setBackground(new java.awt.Color(0, 0, 0));
-        btnBuyStocks.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnBuyStocks.setBackground(new java.awt.Color(255, 0, 0));
+        btnBuyStocks.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnBuyStocks.setForeground(new java.awt.Color(255, 255, 255));
         btnBuyStocks.setText("Buy Stocks");
         btnBuyStocks.addActionListener(new java.awt.event.ActionListener() {
@@ -150,52 +175,85 @@ public class UserBuyStocks extends javax.swing.JFrame {
             }
         });
 
+        btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
+        btnSignOut.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnSignOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnSignOut.setText("Go Back");
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
+
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("User Buy Stocks");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(293, 293, 293)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(309, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(203, 203, 203)
-                            .addComponent(labelTitle))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(116, 116, 116)
-                            .addComponent(labelAdminID2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(46, 46, 46)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(labelAdminID2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelAdminID3)
-                                .addGap(48, 48, 48))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNoOfStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelAdminID3)
+                                        .addGap(48, 48, 48))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtNoOfStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(labelTitle)
-                .addGap(50, 50, 50)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID2))
-                .addGap(46, 46, 46)
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNoOfStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID3))
@@ -203,15 +261,17 @@ public class UserBuyStocks extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addGap(44, 44, 44)
+                .addComponent(btnBuyStocks, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void populateComboBox() {
+    private void populateComboBox(Map<String, List<Integer>> UserStockHistory) {
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBox1.getModel();
         model1.addAll(this.UserStockHistory.keySet());
     }
@@ -219,28 +279,24 @@ public class UserBuyStocks extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         this.Company_selected = (String) jComboBox1.getSelectedItem();
-//        System.out.println(this.Company_selected);
         populateTable(this.Company_selected);
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
     
     private void populateTable(String Company_selected) {
-//        System.out.println("Inside populate Table");
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 //        System.out.println("before");
         Object[] row = new Object[4];
-        row[0] = Company_selected;
-        for (int i = 1; i<4; i++) {
-            if (i == 1) {
-                this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(i-1);
-            }
-            row[i] = this.UserStockHistory.get(Company_selected).get(i-1);
-            
-        }
-        
+        row[0] = this.Company_selected;
+//        for (int i = 1; i<4; i++) {
+        row[1] = this.UserStockHistory.get(Company_selected).get(0);
+        this.Current_Stock_price = this.UserStockHistory.get(Company_selected).get(0);
+        row[2] = this.UserStockHistory.get(Company_selected).get(1);
+        row[3] = this.UserStockHistory.get(Company_selected).get(2);
+
         model.addRow(row);
-              
+                  
     }
     
     
@@ -258,34 +314,91 @@ public class UserBuyStocks extends javax.swing.JFrame {
         model.setRowCount(0);
         Object[] row = new Object[4];
         row[0] = this.Company_selected;
-        for (int i=1; i< 4; i++) {
-            if (i == 1) {
-                row[i] = this.UserStockHistory.get(this.Company_selected).get(i-1);
-            }
-            else if (i == 2){
-                row[i] = this.No_of_Stocks;
-                this.UserStockHistory.get(this.Company_selected).set(i-1, this.No_of_Stocks);
-            }
-            else {
-                row[i] = this.Total;
-                this.UserStockHistory.get(this.Company_selected).set(i-1, this.Total);
-            }
+        
+//        this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList());
+        
             
-        }
-        model.addRow(row);
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
-//        UserSellStocks sellStocks = new UserSellStocks(this.UserStockHistory);
+                row[1] = this.UserStockHistory.get(this.Company_selected).get(0);
+//                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
+            
+            
+                row[2] = this.No_of_Stocks;
+//                this.UserStockHistory.get(this.Company_selected).set(1, this.No_of_Stocks);
+//                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
+
+           
+            
+                row[3] = this.Total;
+//                this.UserStockHistory.get(this.Company_selected).set(2, this.Total);
+//                this.newUser.getStockHistory().put(this.Company_selected, Arrays.asList(this.UserStockHistory.get(this.Company_selected).get(i-1)));
+
+            
+            model.addRow(row);
+            
+        
+//        this.newUser.setInitialBalance(this.newUser.getInitialBalance() - this.Total);
+          this.Initial_wallet_balance = this.Initial_wallet_balance - this.Total;
+          
+        
+//        populateDB();
+        
+        
+        
+        JOptionPane.showMessageDialog(this, "Navigating to broker page to buy" +  (this.No_of_Stocks) + " stocks of " + (this.Company_selected));
+
+        BrokerBuyStocks brokerBuyStocks = new BrokerBuyStocks(this.Company_selected, this.No_of_Stocks, this.Initial_wallet_balance, this.UserID);
+        brokerBuyStocks.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuyStocksActionPerformed
 
     private void btnCalculateTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateTotal1ActionPerformed
         // TODO add your handling code here:
+        System.out.println("Inside Calculate total function");
         this.No_of_Stocks = Integer.parseInt(txtNoOfStocks.getText());
         this.Total = this.Current_Stock_price * this.No_of_Stocks;
-        txtGetTotal.setText(this.Total.toString());
-        System.out.println("The map is " + this.UserStockHistory);
-       
+        
+        try {
+            System.out.println("Inside Calculate total function try bolck");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+            ResultSet rs= stm.executeQuery(dispSt);
+            
+            if (rs.next()) {
+                this.Initial_wallet_balance = rs.getInt("Initial Wallet Balance");
+            }
+            
+            con.close();
+            
+            System.out.println("this.Initial_wallet_balance" + this.Initial_wallet_balance);
+            if (this.Total > this.Initial_wallet_balance) {
+            JOptionPane.showMessageDialog(this, "No sufficient balance in the wallet to buy the stocks");
+            }
+            else{
+            System.out.println("Inside Calculate total function else condition");
+   
+            txtGetTotal.setText(this.Total.toString());
+            
+    //        System.out.println("The map is " + this.UserStockHistory);
+            }
+
+        }
+        catch (Exception e) {
+            
+            System.out.println("In catch bolck of calculate function" + e.getMessage());
+        }
+        
         
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
+
+    private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
+        // TODO add your handling code here:
+        UserDashboard home = new UserDashboard();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSignOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,12 +438,14 @@ public class UserBuyStocks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyStocks;
     private javax.swing.JButton btnCalculateTotal1;
+    private javax.swing.JButton btnSignOut;
+    private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID3;
-    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtGetTotal;
     private javax.swing.JTextField txtNoOfStocks;
     // End of variables declaration//GEN-END:variables

@@ -4,12 +4,17 @@
  */
 package UI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import model.UserRegistrationDetails;
 
 /**
  *
@@ -22,40 +27,37 @@ public class UserBuyMF extends javax.swing.JFrame {
      */
     public Map<String, String> MututalFundIndex;
     public Map<String, Integer> MutualFundUnitPrice;
-    public Map<String, Integer> UserMutualFundsHistory;
+//    public Map<String, Integer> UserMutualFundsHistory;
     private Integer index_unit_value;
     private Integer total;
     private Integer No_of_units;
     private String MFIndex_selected;
+    private Integer Initial_wallet_balance;
+    public String UserID;
     
     public UserBuyMF() {
         initComponents();
     }
     
-    public UserBuyMF(Map<String, Integer> UserMutualFundsHistory) {
+    public UserBuyMF(String UserID) {
         initComponents();
-        this.UserMutualFundsHistory = UserMutualFundsHistory;
+        //this.UserMutualFundsHistory = UserMutualFundsHistory;
         this.MututalFundIndex = new HashMap<>();
         this.MutualFundUnitPrice = new HashMap<>();
-        this.MututalFundIndex.put("Fidelity ZERO Large Cap Index.", "Fidelity ZERO Large Cap Index Fund for $14.43");
-        this.MututalFundIndex.put( "Vanguard S&P 500 ETF." ,"Vanguard S&P 500 ETF for $374.00");
-        this.MututalFundIndex.put( "SPDR S&P 500 ETF Trust.", "SPDR S&P 500 ETF Trust for $406.91");
-        this.MututalFundIndex.put("iShares Core S&P 500 ETF.", "iShares Core S&P 500 ETF for $408.71");
-        this.MututalFundIndex.put("Schwab S&P 500 Index Fund." , "Schwab 500 Index for $39.35");
-        this.MututalFundIndex.put( "Shelton NASDAQ-100 Index Direct.", "Shelton NASDAQ-100 Index Direct for $25.90");
-        this.MututalFundIndex.put("Invesco QQQ Trust ETF.", "Invesco QQQ Trust ETF for $295.55");
-        this.MututalFundIndex.put("Vanguard Russell 2000 ETF.", "Vanguard Russell 2000 ETF for $75.98");
-
+        this.MututalFundIndex.put("Fidelity ZERO Large Cap Index", "Fidelity ZERO Large Cap Index Fund for $14.43");
+        this.MututalFundIndex.put( "Vanguard S&P 500 ETF" ,"Vanguard S&P 500 ETF for $374.00");
+        this.MututalFundIndex.put( "SPDR S&P 500 ETF Trust", "SPDR S&P 500 ETF Trust for $406.91");
+        this.MututalFundIndex.put("iShares Core S&P 500 ETF", "iShares Core S&P 500 ETF for $408.71");
+        this.MututalFundIndex.put( "Shelton NASDAQ-100 Index Direct", "Shelton NASDAQ-100 Index Direct for $25.90");
+        
+        this.UserID=UserID;
        
        
         this.MutualFundUnitPrice.put("Fidelity ZERO Large Cap Index Fund for $14.43", 14);
         this.MutualFundUnitPrice.put("Vanguard S&P 500 ETF for $374.00", 374);
         this.MutualFundUnitPrice.put("SPDR S&P 500 ETF Trust for $406.91", 406);
         this.MutualFundUnitPrice.put("iShares Core S&P 500 ETF for $408.71", 407);
-        this.MutualFundUnitPrice.put("Schwab 500 Index for $39.35", 39);
         this.MutualFundUnitPrice.put("Shelton NASDAQ-100 Index Direct for $25.90", 25);
-        this.MutualFundUnitPrice.put("Invesco QQQ Trust ETF for $295.55", 295);
-        this.MutualFundUnitPrice.put("Vanguard Russell 2000 ETF for $75.98", 75);
         populateComboBox();
     }
 
@@ -68,7 +70,6 @@ public class UserBuyMF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTitle = new javax.swing.JLabel();
         labelAdminID2 = new javax.swing.JLabel();
         jComboBoxStockMarketIndex = new javax.swing.JComboBox<>();
         btnCalculateTotal1 = new javax.swing.JButton();
@@ -78,14 +79,14 @@ public class UserBuyMF extends javax.swing.JFrame {
         jComboBoxStockMarketUnit = new javax.swing.JComboBox<>();
         labelAdminID5 = new javax.swing.JLabel();
         txtNoOfUnits = new javax.swing.JTextField();
+        btnSignOut = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        labelTitle.setText("User Dashboard to Buy Mutual Funds");
-
-        labelAdminID2.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID2.setText("Select a Stock Market Index to invest in:");
+        labelAdminID2.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        labelAdminID2.setText("Select a Stock Market :");
 
         jComboBoxStockMarketIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +95,7 @@ public class UserBuyMF extends javax.swing.JFrame {
         });
 
         btnCalculateTotal1.setBackground(new java.awt.Color(0, 0, 0));
-        btnCalculateTotal1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnCalculateTotal1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnCalculateTotal1.setForeground(new java.awt.Color(255, 255, 255));
         btnCalculateTotal1.setText("Calculate Total");
         btnCalculateTotal1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +111,8 @@ public class UserBuyMF extends javax.swing.JFrame {
             }
         });
 
-        btnBuyMF.setBackground(new java.awt.Color(0, 0, 0));
-        btnBuyMF.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnBuyMF.setBackground(new java.awt.Color(255, 0, 0));
+        btnBuyMF.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         btnBuyMF.setForeground(new java.awt.Color(255, 255, 255));
         btnBuyMF.setText("Buy Mutual Fund");
         btnBuyMF.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +121,8 @@ public class UserBuyMF extends javax.swing.JFrame {
             }
         });
 
-        labelAdminID4.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        labelAdminID4.setText("Choose a unit under the selected index:");
+        labelAdminID4.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        labelAdminID4.setText("Choose Unit:");
 
         jComboBoxStockMarketUnit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBoxStockMarketUnit.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +131,7 @@ public class UserBuyMF extends javax.swing.JFrame {
             }
         });
 
-        labelAdminID5.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        labelAdminID5.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         labelAdminID5.setText("No of units to buy:");
 
         txtNoOfUnits.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
@@ -140,6 +141,40 @@ public class UserBuyMF extends javax.swing.JFrame {
             }
         });
 
+        btnSignOut.setBackground(new java.awt.Color(0, 0, 0));
+        btnSignOut.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnSignOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnSignOut.setText("Go Back");
+        btnSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignOutActionPerformed(evt);
+            }
+        });
+
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("User Dashboard to Buy Mutual Funds");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(207, 207, 207))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,50 +182,54 @@ public class UserBuyMF extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(labelTitle))
+                        .addGap(328, 328, 328)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBuyMF, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                            .addComponent(btnSignOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(278, 278, 278)
-                        .addComponent(btnBuyMF, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60)
+                        .addComponent(txtCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(labelAdminID4)
                             .addComponent(labelAdminID2)
-                            .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelAdminID5))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNoOfUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxStockMarketIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxStockMarketIndex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNoOfUnits)
+                            .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(133, Short.MAX_VALUE))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(labelTitle)
-                .addGap(48, 48, 48)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAdminID2)
-                    .addComponent(jComboBoxStockMarketIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(jComboBoxStockMarketIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAdminID2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAdminID4)
-                    .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelAdminID5)
-                    .addComponent(txtNoOfUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77)
+                    .addComponent(txtNoOfUnits, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAdminID5))
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(btnBuyMF, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                    .addComponent(txtCalculateTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCalculateTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(97, 97, 97)
+                .addComponent(btnBuyMF, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,19 +237,19 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void jComboBoxStockMarketIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketIndexActionPerformed
         // TODO add your handling code here:
-        System.out.println("Inside jComboBoxStockMarketIndexActionPerformed");
+//        System.out.println("Inside jComboBoxStockMarketIndexActionPerformed");
         this.MFIndex_selected = (String) jComboBoxStockMarketIndex.getSelectedItem();
         System.out.println(MFIndex_selected);
         DefaultComboBoxModel model2 = (DefaultComboBoxModel) jComboBoxStockMarketUnit.getModel();
         model2.addElement(this.MututalFundIndex.get(MFIndex_selected));
-        System.out.println("After initialising next combobox");
+//        System.out.println("After initialising next combobox");
          
     }//GEN-LAST:event_jComboBoxStockMarketIndexActionPerformed
     
     private void populateComboBox() {
-        System.out.println("Inside populateComboBox");
+         System.out.println("Inside populateComboBox");
         DefaultComboBoxModel model1 = (DefaultComboBoxModel) jComboBoxStockMarketIndex.getModel();
-        System.out.println("Before initialising combobox");
+//        System.out.println("Before initialising combobox");
         model1.addAll(this.MututalFundIndex.keySet());
         System.out.println("After initialising combobox");
     }
@@ -220,9 +259,42 @@ public class UserBuyMF extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.No_of_units = Integer.parseInt(txtNoOfUnits.getText());
         this.total = this.No_of_units * this.index_unit_value;
-        txtCalculateTotal.setText(this.total.toString());
-        this.UserMutualFundsHistory.put(this.MututalFundIndex.get(MFIndex_selected), this.No_of_units);
-        System.out.println("The UserMutualFundsHistory map is " + this.UserMutualFundsHistory);
+//        txtCalculateTotal.setText(this.total.toString());
+        
+        try {
+            System.out.println("Inside Calculate total function try bolck");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
+            Statement stm= con.createStatement();
+            
+            String dispSt="SELECT `Initial Wallet Balance` FROM `info5100_finalproject`.`users`WHERE `UserID`='"+this.UserID+"'";
+            ResultSet rs= stm.executeQuery(dispSt);
+            
+            if (rs.next()) {
+                this.Initial_wallet_balance = rs.getInt("Initial Wallet Balance");
+            }
+            
+            con.close();
+            
+            System.out.println("this.Initial_wallet_balance" + this.Initial_wallet_balance);
+            if (this.total > this.Initial_wallet_balance) {
+            JOptionPane.showMessageDialog(this, "No sufficient balance in the wallet to buy the units");
+            }
+            else{
+            System.out.println("Inside Calculate total function else condition");
+   
+            txtCalculateTotal.setText(this.total.toString());
+            
+    //        System.out.println("The map is " + this.UserStockHistory);
+            }
+
+        }
+        catch (Exception e) {
+            
+            System.out.println("In catch bolck of calculate function of User Buy Mutual Funds " + e.getMessage());
+        }
+        
+
     }//GEN-LAST:event_btnCalculateTotal1ActionPerformed
 
     private void txtCalculateTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalculateTotalActionPerformed
@@ -231,8 +303,12 @@ public class UserBuyMF extends javax.swing.JFrame {
 
     private void btnBuyMFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyMFActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Successfully bought " +  (this.No_of_units) + " usnits of " + (this.MFIndex_selected));
-
+        this.Initial_wallet_balance = this.Initial_wallet_balance - this.total;
+        JOptionPane.showMessageDialog(this, "Navigating to broker page to buy" +  (this.No_of_units) + " units of " + (this.MFIndex_selected));
+        
+        BrokerInvestMF brokerMFbuy = new BrokerInvestMF(this.MFIndex_selected, this.No_of_units, this.index_unit_value, this.Initial_wallet_balance, this.UserID);
+        brokerMFbuy.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnBuyMFActionPerformed
 
     private void jComboBoxStockMarketUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxStockMarketUnitActionPerformed
@@ -244,6 +320,13 @@ public class UserBuyMF extends javax.swing.JFrame {
     private void txtNoOfUnitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoOfUnitsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoOfUnitsActionPerformed
+
+    private void btnSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignOutActionPerformed
+        // TODO add your handling code here:
+        UserDashboard home = new UserDashboard();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSignOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,12 +366,14 @@ public class UserBuyMF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyMF;
     private javax.swing.JButton btnCalculateTotal1;
+    private javax.swing.JButton btnSignOut;
+    private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBoxStockMarketIndex;
     private javax.swing.JComboBox<String> jComboBoxStockMarketUnit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID4;
     private javax.swing.JLabel labelAdminID5;
-    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtCalculateTotal;
     private javax.swing.JTextField txtNoOfUnits;
     // End of variables declaration//GEN-END:variables

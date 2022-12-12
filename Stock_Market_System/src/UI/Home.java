@@ -3,19 +3,102 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
-
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import static javax.swing.JOptionPane.showMessageDialog;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import model.UserRegistrationDetails;
+import model.UserSelectionDetails;
+import javax.swing.JOptionPane;
+import model.Article_Directory;
+import model.Article;
 /**
  *
  * @author rishi
  */
-public class Home extends javax.swing.JFrame {
+public final class Home extends javax.swing.JFrame {
 
+    
+    ImageIcon icon = new ImageIcon("Logo.png");
+    Image image = icon.getImage();
+    Image newimg=image.getScaledInstance(75, 75,Image.SCALE_SMOOTH);
+    ImageIcon ticon= new ImageIcon(newimg);
+    String val;
+//    List<String> NewsOnLandingPage;
     /**
      * Creates new form Home
      */
+    public ArrayList<Article> news= new ArrayList<>();
+    public ArrayList<Article> news_= new ArrayList<>();
+    public ArrayList<Article> getNews() {
+        return news;
+    }
+    public void setNews(ArrayList<Article> news) {
+        this.news = news;
+    }
+    public Home(int n){
+    }
     public Home() {
         initComponents();
+        logoImg.setIcon(ticon);
+        Home a= new Home(1);
+//        ArrayList<Article> news_fin= new ArrayList<>();
+        news_=a.news_fetch();
+        
+         StringBuilder sb1 = new StringBuilder("");
+        		for(Article art: news_) {
+			 sb1.append("\n").append(art).append("\n");	
+        }
+//                jLabel2.setText("Make");
+//                news_=news;
+String val= sb1.toString();
+//            jLabel2.setText(val);
+                System.out.println(sb1.toString());
+               String tim="<html>";
+                for(Article sap:news_){
+                    tim += "Title :"+sap.getTitle() + "<br>";
+                    tim += "Description :"+sap.getDesc() + "<br>";
+                    tim += "For more details :"+sap.getUrl() + "<br>";
+                    tim += "<br>";
+                    
+                }
+                jLabel2.setText(tim);
+                
+        
+//        jLabel2.setText("Make");
+        
+//        for(Article art: a.news) {	
+//                val=art.getTitle();
+////                System.out.println("Val in Home.java"+val + "\n");
+//                JOptionPane.showMessageDialog(null, val);    
+//               }
+//                title_1.setText(val);
+//        Article_Directory arts= new  Article_Directory();
+//        arts.news_fetch();
+//          this.NewsOnLandingPage = new ArrayList<>();
+        
+//        
+//        for(Article art: news) {	
+//                val=art.getTitle();
+//                System.out.println("Val in Home.java"+val + "\n");
+//                JOptionPane.showMessageDialog(null, val);    
+//	}
+//        title_1.setText("title");
+//        JOptionPane.showMessageDialog(null, val);    
     }
+    
+//    public Home(UserSelectionDetails selections, UserRegistrationDetails newUser) {
+//        initComponents();
+//        this.selections = selections;
+//        this.newUser = newUser;
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,69 +109,161 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        labelTitle = new javax.swing.JLabel();
         labelCurrency = new javax.swing.JLabel();
-        txtAdminID = new javax.swing.JTextField();
-        btnRegister = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnRegister1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnRegisteration = new javax.swing.JButton();
+        btnInspiration = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        logoImg = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnInspiration1 = new javax.swing.JButton();
+        btnRegisteration1 = new javax.swing.JButton();
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(327, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(248, 248, 248))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel4)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1100, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        labelTitle.setText("International Stock Market System ");
+        jPanel1.setPreferredSize(new java.awt.Dimension(1200, 825));
 
         labelCurrency.setBackground(new java.awt.Color(0, 0, 0));
         labelCurrency.setFont(new java.awt.Font("Inter", 1, 12)); // NOI18N
 
-        txtAdminID.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        txtAdminID.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
+        btnLogin.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminIDActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
-        btnRegister.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister.setText("Search");
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+        btnRegisteration.setBackground(new java.awt.Color(0, 0, 0));
+        btnRegisteration.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnRegisteration.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegisteration.setText("Registration");
+        btnRegisteration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
+                btnRegisterationActionPerformed(evt);
             }
         });
 
-        btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setText("Login");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnInspiration.setBackground(new java.awt.Color(0, 0, 0));
+        btnInspiration.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnInspiration.setForeground(new java.awt.Color(255, 255, 255));
+        btnInspiration.setText("Inspiration");
+        btnInspiration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnInspirationActionPerformed(evt);
             }
         });
 
-        btnRegister1.setBackground(new java.awt.Color(0, 0, 0));
-        btnRegister1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnRegister1.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegister1.setText("Registration");
-        btnRegister1.addActionListener(new java.awt.event.ActionListener() {
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("International Stock Market System");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoImg, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jLabel3.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Top News Headlines");
+
+        btnInspiration1.setBackground(new java.awt.Color(0, 0, 0));
+        btnInspiration1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        btnInspiration1.setForeground(new java.awt.Color(255, 255, 255));
+        btnInspiration1.setText("Graphs");
+        btnInspiration1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegister1ActionPerformed(evt);
+                btnInspiration1ActionPerformed(evt);
             }
         });
 
-        btnUpdate1.setBackground(new java.awt.Color(0, 0, 0));
-        btnUpdate1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        btnUpdate1.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate1.setText("Inspiration");
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegisteration1.setBackground(new java.awt.Color(0, 0, 0));
+        btnRegisteration1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        btnRegisteration1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegisteration1.setText("Analysis");
+        btnRegisteration1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
+                btnRegisteration1ActionPerformed(evt);
             }
         });
 
@@ -96,88 +271,109 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitle)
-                .addGap(206, 206, 206))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                    .addComponent(labelCurrency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 53, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnRegisteration, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(58, 58, 58))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(249, 249, 249)))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(btnRegisteration1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(labelTitle)
-                .addGap(27, 27, 27)
-                .addComponent(labelCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegister1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAdminID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addComponent(labelCurrency, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegisteration, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInspiration, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegisteration1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1104, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAdminIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminIDActionPerformed
+    private void btnRegisteration1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisteration1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminIDActionPerformed
+        dispose();
+        Graph G= new Graph();
+        G.setVisible(true);
+    }//GEN-LAST:event_btnRegisteration1ActionPerformed
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void btnInspiration1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspiration1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegisterActionPerformed
+        dispose();
+        Graph G= new Graph();
+        G.setVisible(true);
+    }//GEN-LAST:event_btnInspiration1ActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnInspirationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspirationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        dispose();
+        Inspiration I= new Inspiration();
+        I.setVisible(true);
+    }//GEN-LAST:event_btnInspirationActionPerformed
 
-    private void btnRegister1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegister1ActionPerformed
+    private void btnRegisterationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegister1ActionPerformed
 
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+        Registration reg= new Registration();
+        reg.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnRegisterationActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
+
+        Login log= new Login();
+        log.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, InterruptedException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -207,16 +403,309 @@ public class Home extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+        
+
+        
     }
+    
+    
+      public ArrayList<Article> news_fetch() {
+      
+      ArrayList<Article> news_fin= new ArrayList<>();
+	  
+//	  HttpRequest request = HttpRequest.newBuilder()
+//				.uri(URI.create("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=amazon"))
+//				.header("X-RapidAPI-Key", "7003839037msh36f6df26a42e70dp19c9aajsn8cd72eff0a33")
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.method("GET", HttpRequest.BodyPublishers.noBody())
+//				.build();
+//		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		System.out.println(response.body());
+	  
+	  try{
+	  HttpRequest request = HttpRequest.newBuilder()
+			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&apiKey=35b728f919ec471eaa48b80c208b46b1"))
+				.header("apikey", "35b728f919ec471eaa48b80c208b46b1")
+//				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
+//				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+				// 1047e1b7d1d4419c9d2047b7c880f6f6
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+				.method("GET", HttpRequest.BodyPublishers.noBody())
+				.build();
+		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		response.body().split("source");
+		ArrayList<String> raw= new ArrayList<>();
+		ArrayList<String> raw_title= new ArrayList<>();
+		ArrayList<String> raw_desc= new ArrayList<>();
+		ArrayList<String> raw_url= new ArrayList<>();
+		ArrayList<String> raw_img= new ArrayList<>();
+		String ans = response.body();
+//                System.out.println("\n" + ans);
+		Home t= new Home(1);
+		String tokens[] = ans.split("source");
+		int i=1;
+		String temp;
+		String val1,val2,val3,val4,val5,val6,val7,val8;
+		while(i<5) {
+			temp=tokens[i];
+			String tokens_title[] = temp.split("title");
+			raw.add(temp);
+//                     for(int j=0;j<1;j++){
+//			raw.forEach(System.out::println);
+//			raw_title.forEach(System.out::println);
+//			raw_desc.forEach(System.out::println);
+//			raw_url.forEach(System.out::println);
+//			raw_img.forEach(System.out::println);
+		
+			val1=tokens_title[1];
+			String tokens_desc[] = val1.split("description");
+			val2=tokens_desc[0];
+			val3=tokens_desc[1];
+			String tokens_url[] = val3.split("url");
+			String tokens_image[] = val3.split("urlToImage");
+			val4=tokens_url[0];
+			val5=tokens_url[1];
+			val6=tokens_image[1];
+			String tokens_com[] = val6.split(",");
+			val7=tokens_com[0];
+			
+			String title_;
+			String desc_;
+			String url_;
+			String image_;
+			
+			raw_title.add(val2.substring(3, val2.length() - 3) );
+			raw_desc.add(val4.substring(3, val4.length() - 3));
+			raw_url.add(val5.substring(3, val5.length() - 3));
+			raw_img.add(val7.substring(3, val7.length() - 1));
+			
+			title_=val2.substring(3, val2.length() - 3);
+			desc_=val4.substring(3, val4.length() - 3);
+			url_=val5.substring(3, val5.length() - 3);
+			image_=val7.substring(3, val7.length() - 1);
+			
+			Article art= new Article(title_,desc_,url_,image_);
+			
+			
+			t.news.add(art);
+			
+			i++;
+		}
+                news_fin=t.news;
+//		for(int j=0;j<1;j++){
+////			raw.forEach(System.out::println);
+//			raw_title.forEach(System.out::println);
+//			raw_desc.forEach(System.out::println);
+//			raw_url.forEach(System.out::println);
+//			raw_img.forEach(System.out::println);
+//		}
+
+		
+        StringBuilder sb1 = new StringBuilder("");
+        
+		
+		for(Article a: t.news) {
+			 sb1.append("\n").append(a).append("\n");	
+		}
+////                jLabel2.setText("Make");
+////                news_fin=news;
+//                System.out.println(sb1.toString());
+		
+//                news_=t.news;
+		
+//		System.out.println("\n" + ans);
+//		System.out.println(ans.split("source"));
+//                for(Article art: t.news) {	
+//                val=art.getTitle();
+////                System.out.println("Val in Home.java"+val + "\n");
+//                
+//                }
+             //   JOptionPane.showMessageDialog(null, val);    
+//                title_1.setText(val);
+
+		System.out.println("\n done");
+              
+              
+          }catch(Exception e){
+              System.out.println("");
+//            e.printStackTrace();
+          }
+       
+          return news_fin;
+      }
+	  
+	  
+//	  HttpRequest request = HttpRequest.newBuilder()
+//			  .uri(URI.create("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1047e1b7d1d4419c9d2047b7c880f6f6"))
+//				.header("apikey", "1047e1b7d1d4419c9d2047b7c880f6f6")
+////				.uri(URI.create("https://api.apilayer.com/financelayer/news?tags=Bitcoin%2C%20-money%2C%20-finance%2C%20-stocks%2C%20-Financial%20Market"))
+////				.header("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//			  
+//			  
+//			  
+//				// 1047e1b7d1d4419c9d2047b7c880f6f6
+////				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.method("GET", HttpRequest.BodyPublishers.noBody())
+//				.build();
+//		HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+//		response.body().split("source");
+//		ArrayList<String> raw= new ArrayList<>();
+//		ArrayList<String> raw_title= new ArrayList<>();
+//		ArrayList<String> raw_desc= new ArrayList<>();
+//		ArrayList<String> raw_url= new ArrayList<>();
+//		ArrayList<String> raw_img= new ArrayList<>();
+//		String ans = response.body();
+//		Article_Directory t= new Article_Directory();
+//		String tokens[] = ans.split("source");
+//		int i=1;
+//		String temp;
+//		String val1,val2,val3,val4,val5,val6,val7,val8;
+//		while(i<10) {
+//			temp=tokens[i];
+//			String tokens_title[] = temp.split("title");
+//			raw.add(temp);
+//			val1=tokens_title[1];
+//			String tokens_desc[] = val1.split("description");
+//			val2=tokens_desc[0];
+//			val3=tokens_desc[1];
+//			String tokens_url[] = val3.split("url");
+//			String tokens_image[] = val3.split("urlToImage");
+//			val4=tokens_url[0];
+//			val5=tokens_url[1];
+//			val6=tokens_image[1];
+//			String tokens_com[] = val6.split(",");
+//			val7=tokens_com[0];
+//			
+//			String title_;
+//			String desc_;
+//			String url_;
+//			String image_;
+//			
+//			raw_title.add(val2.substring(3, val2.length() - 3) );
+//			raw_desc.add(val4.substring(3, val4.length() - 3));
+//			raw_url.add(val5.substring(3, val5.length() - 3));
+//			raw_img.add(val7.substring(3, val7.length() - 1));
+//			
+//			title_=val2.substring(3, val2.length() - 3);
+//			desc_=val4.substring(3, val4.length() - 3);
+//			url_=val5.substring(3, val5.length() - 3);
+//			image_=val7.substring(3, val7.length() - 1);
+//			
+//			Article art= new Article(title_,desc_,url_,image_);
+//			
+//			
+//			t.news.add(art);
+//			
+//			i++;
+//		}
+////		for(int j=0;j<1;j++){
+//////			raw.forEach(System.out::println);
+////			raw_title.forEach(System.out::println);
+////			raw_desc.forEach(System.out::println);
+////			raw_url.forEach(System.out::println);
+////			raw_img.forEach(System.out::println);
+////		}
+//		
+//		
+//        StringBuilder sb1 = new StringBuilder("");
+//        
+//		
+//		for(Article a: t.news) {
+//			
+//			 sb1.append("\n").append(a).append("\n");
+//			
+//			
+//		}
+//        System.out.println(sb1.toString());
+//		
+//		
+////		System.out.println("\n" + ans);
+////		System.out.println(ans.split("source"));
+//		System.out.println("\n done");
+//		
+//		
+//		
+		
+		
+		
+	  
+//	  OkHttpClient client = new OkHttpClient().newBuilder().build();
+////	  OkHttpClient client = new OkHttpClient();
+//	    Request request = new Request.Builder()
+//	      .url("https://api.apilayer.com/financelayer/news?tickers=tickers&tags=tags&sources=sources&sort=sort&offset=offset&limit=limit&keywords=keywords&fallback=fallback&date=date")
+//	      .addHeader("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//	      .method("GET", null)
+//	      .build();
+////	    OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+////	    OkHttpClient.Builder newBuilder = okHttpClient.newBuilder();
+////	    OkHttpClient client = new OkHttpClient().newBuilder().build();
+//	    
+//	    Response response = client.newCall(request).execute();
+//	    System.out.println(response.body().string());
+	  
+	  
+//	  NewsApiClient newsApiClient = new NewsApiClient("YOUR_API_KEY");
+//
+//	// /v2/everything
+//	newsApiClient.getEverything(
+//	  new EverythingRequest.Builder()
+//	          .q("trump")
+//	          .build(),
+//	  new NewsApiClient.ArticlesResponseCallback() {
+//	      @Override
+//	      public void onSuccess(ArticleResponse response) {
+//	          System.out.println(response.getArticles().get(0).getTitle());
+//	      }
+//
+//	      @Override
+//	      public void onFailure(Throwable throwable) {
+//	          System.out.println(throwable.getMessage());
+//	      }
+//	  }
+//	  OkHttpClient client = new OkHttpClient();
+////    OkHttpClient client = (new OkHttpClient()).newBuilder().build();
+//	 // OkHttpClient client = new OkHttpClient();
+//
+//	  Request request = new Request.Builder()
+//	  	.url("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=tesla")
+//	  	.get()
+//	  	.addHeader("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
+//	  	.addHeader("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//	  	.build();
+//
+//	  Response response = client.newCall(request).execute();
+//	  HttpResponse<String> response = Unirest.get("https://ms-finance.p.rapidapi.com/market/v2/auto-complete?q=tesla")
+//				.header("X-RapidAPI-Key", "SIGN-UP-FOR-KEY")
+//				.header("X-RapidAPI-Host", "ms-finance.p.rapidapi.com")
+//				.asString();
+
+//    Request request = new Request.Builder()
+//      .url("https://api.apilayer.com/financelayer/news?tickers=tickers&tags=tags&sources=sources&sort=sort&offset=offset&limit=limit&keywords=keywords&fallback=fallback&date=date")
+//      .addHeader("apikey", "kvA6P1cQTfgTciggutKHRUsyzx4Yr3h7")
+//      .method("GET", })
+//      .build();
+//    Response response = client.newCall(request).execute();
+//    System.out.println(response.body().string());
+
+      
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JButton btnRegister1;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
+    private javax.swing.JButton btnInspiration;
+    private javax.swing.JButton btnInspiration1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegisteration;
+    private javax.swing.JButton btnRegisteration1;
+    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCurrency;
-    private javax.swing.JLabel labelTitle;
-    private javax.swing.JTextField txtAdminID;
+    private javax.swing.JLabel logoImg;
     // End of variables declaration//GEN-END:variables
 }
