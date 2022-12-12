@@ -385,7 +385,7 @@ String val= sb1.toString();
 		ArrayList<String> raw_url= new ArrayList<>();
 		ArrayList<String> raw_img= new ArrayList<>();
 		String ans = response.body();
-                System.out.println("\n" + ans);
+//                System.out.println("\n" + ans);
 		Home t= new Home(1);
 		String tokens[] = ans.split("source");
 		int i=1;
@@ -396,7 +396,7 @@ String val= sb1.toString();
 			String tokens_title[] = temp.split("title");
 			raw.add(temp);
 //                     for(int j=0;j<1;j++){
-			raw.forEach(System.out::println);
+//			raw.forEach(System.out::println);
 //			raw_title.forEach(System.out::println);
 //			raw_desc.forEach(System.out::println);
 //			raw_url.forEach(System.out::println);
@@ -454,7 +454,7 @@ String val= sb1.toString();
 		}
 ////                jLabel2.setText("Make");
 ////                news_fin=news;
-                System.out.println(sb1.toString());
+//                System.out.println(sb1.toString());
 		
 //                news_=t.news;
 		
