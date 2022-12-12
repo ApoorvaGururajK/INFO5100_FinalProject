@@ -91,7 +91,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         logoImg = new javax.swing.JLabel();
         labelUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
+        txtEquityUsername = new javax.swing.JTextField();
         labelPassword = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         labelUsername1 = new javax.swing.JLabel();
@@ -105,9 +105,13 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
+        txtUsername1 = new javax.swing.JTextField();
+        labelPassword2 = new javax.swing.JLabel();
+        txtEquityHolderPassword1 = new javax.swing.JPasswordField();
+        labelPassword3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 800));
+        setPreferredSize(new java.awt.Dimension(1000, 900));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,10 +147,10 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         labelUsername.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
         labelUsername.setText("Company Name:");
 
-        txtUsername.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+        txtEquityUsername.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        txtEquityUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
+                txtEquityUsernameActionPerformed(evt);
             }
         });
 
@@ -245,55 +249,69 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             }
         });
 
+        txtUsername1.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        txtUsername1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsername1ActionPerformed(evt);
+            }
+        });
+
+        labelPassword2.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
+        labelPassword2.setText("Equity Holder UserName:");
+
+        txtEquityHolderPassword1.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+
+        labelPassword3.setFont(new java.awt.Font("Poppins SemiBold", 0, 14)); // NOI18N
+        labelPassword3.setText("Equity Holder Password:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(264, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(259, 259, 259))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelPassword)
-                    .addComponent(labelUsername))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
-                        .addComponent(labelUsername1))
+                    .addComponent(labelUsername)
+                    .addComponent(labelPassword2))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEquityUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelPassword1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPassword)
-                    .addComponent(txtOrganization, 0, 191, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPassword1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelUsername1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelPassword3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword)
+                            .addComponent(txtOrganization, 0, 191, Short.MAX_VALUE)
+                            .addComponent(txtEquityHolderPassword1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(259, 259, 259))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(187, 187, 187))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(185, 185, 185)))
-                        .addGap(80, 80, 80))))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(225, 225, 225)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(512, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,33 +319,37 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelUsername)
-                    .addComponent(labelUsername1)
-                    .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtOrganization, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelUsername1))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelUsername)))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPassword1)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEquityUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword2)
+                    .addComponent(txtEquityHolderPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPassword3))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(248, 248, 248)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(504, Short.MAX_VALUE)))
+                .addGap(53, 53, 53))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -344,9 +366,9 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+    private void txtEquityUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEquityUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
+    }//GEN-LAST:event_txtEquityUsernameActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -355,7 +377,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
             DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
-            String username = txtUsername.getText();
+            String username = txtEquityUsername.getText();
             String Name = txtName.getText();
             String Organization = txtOrganization.getSelectedItem().toString();
             String password = new String(txtPassword.getPassword());
@@ -372,7 +394,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 String query="UPDATE `info5100_finalproject`.`companies` SET `Name` = '"+Name+"' ,`Organization` = '"+Organization+"',`username` = '"+username+"', `password` = '"+password+"' WHERE (`Company ID` = '"+value+"')";
                 stm.executeUpdate(query);
                 showMessageDialog(this,"Company Details Updated Successfully !!");
-                txtUsername.setText("");
+                txtEquityUsername.setText("");
             txtPassword.setText("");
             txtName.setText("");
             txtOrganization.setSelectedIndex(0);
@@ -392,8 +414,10 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         String CompanyID= UUID.randomUUID().toString();
         String Name = txtName.getText();
         String Organization = txtOrganization.getSelectedItem().toString();
-        String username = txtUsername.getText();
+        String username = txtEquityUsername.getText();
         String password = new String(txtPassword.getPassword());
+        String Equity_Holder_Name = txtEquityUsername.getText();
+        String Equity_Holder_Password = new String(txtEquityHolderPassword1.getPassword());
 //        String[] selections = { "", "Service", "Technology", "Product-based", "Financial", "Puclic", "Non- Profits"};
         
 
@@ -402,15 +426,19 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/info5100_finalproject","root","Prithvi12*");
             Statement stm= con.createStatement();
 
-            String sqlS2= "INSERT INTO `info5100_finalproject`.`companies` (`Company ID`, `Name`, `Organization`, `username`, `password`) VALUES('"+CompanyID+"','"+Name+"','"+Organization+"','"+username+"','"+password+"')";
+            String sqlS1= "INSERT INTO `info5100_finalproject`.`authdata` (`ID`, `username`, `password`,`type`) VALUES ('"+CompanyID+"','"+username+"','"+password+"', 'Equity Holder')";
+            
+            String sqlS2= "INSERT INTO `info5100_finalproject`.`companies` (`Company ID`, `Name`, `Organization`, `username`, `password`, `Equity_Holder_Name`, `Equity_Holder_Password`) VALUES('"+CompanyID+"','"+Name+"','"+Organization+"','"+username+"','"+password+"', '"+Equity_Holder_Name+"', '"+Equity_Holder_Password+"')";
 
+            stm.executeUpdate(sqlS1);
             stm.executeUpdate(sqlS2);
 
             DefaultTableModel model=(DefaultTableModel)CompanyTable.getModel();
             model.setRowCount(0);
             show_company();
             showMessageDialog(this,"Company Added Successfully !!");
-            txtUsername.setText("");
+            txtName.setText("");
+            txtEquityUsername.setText("");
             txtPassword.setText("");
             txtName.setText("");
             txtOrganization.setSelectedIndex(0);
@@ -428,7 +456,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
         String selUserName= model.getValueAt(CompanyTable.getSelectedRow(), 2).toString();
         String selPassword= model.getValueAt(CompanyTable.getSelectedRow(), 4).toString();
 
-        txtUsername.setText(selUserName);
+        txtEquityUsername.setText(selUserName);
         txtName.setText(selName);
         txtPassword.setText(selPassword);
         txtOrganization.setSelectedIndex(0);
@@ -452,7 +480,7 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
                 model.removeRow(CompanyTable.getSelectedRow());
 
                 showMessageDialog(this,"Company Deleted Successfully !!");
-                txtUsername.setText("");
+                txtEquityUsername.setText("");
             txtPassword.setText("");
             txtName.setText("");
             txtOrganization.setSelectedIndex(0);
@@ -479,6 +507,10 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtUsername1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsername1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsername1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,12 +560,16 @@ public class CompanyAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPassword;
     private javax.swing.JLabel labelPassword1;
+    private javax.swing.JLabel labelPassword2;
+    private javax.swing.JLabel labelPassword3;
     private javax.swing.JLabel labelUsername;
     private javax.swing.JLabel labelUsername1;
     private javax.swing.JLabel logoImg;
+    private javax.swing.JPasswordField txtEquityHolderPassword1;
+    private javax.swing.JTextField txtEquityUsername;
     private javax.swing.JTextField txtName;
     private javax.swing.JComboBox<String> txtOrganization;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtUsername1;
     // End of variables declaration//GEN-END:variables
 }

@@ -48,9 +48,21 @@ Based on the Requirements of our project we built 8 User Roles, 4 Enterprises, 6
     - CHX
     - ISE
 
-## Additional Features
+## Features
 
-News API: Used to connect the latest news related to the
+Users are welcomed to have a public registration 
+Users can check current trends and prices of the various companies at choose 
+Users can post a request to the Stock Brokers to Buy and Sell Stocks of various companies
+Users can post a request to the Mutual Fund Brokers to Buy and Sell of Mutual funds
+
+System Admins can create Broker Admin and Company Admin
+System admins can read users form db 
+Broker Admin is responsible for adding 
+
+### APIs
+News API: Used to connect the latest news related to the financial world
+Stock Prices API: Used to generate Stock Prices based on any Company or firm given
+
 
 
 
