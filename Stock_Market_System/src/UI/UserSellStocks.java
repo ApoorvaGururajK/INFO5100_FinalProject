@@ -89,12 +89,13 @@ public class UserSellStocks extends javax.swing.JFrame {
         labelAdminID3 = new javax.swing.JLabel();
         txtNoOfStocksSell = new javax.swing.JTextField();
         txtGetTotal = new javax.swing.JTextField();
-        labelTitle = new javax.swing.JLabel();
         btnSellStocks = new javax.swing.JButton();
         labelAdminID2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnSignOut = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -131,9 +132,6 @@ public class UserSellStocks extends javax.swing.JFrame {
                 txtGetTotalActionPerformed(evt);
             }
         });
-
-        labelTitle.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        labelTitle.setText("User Dashboard to sell Stocks");
 
         btnSellStocks.setBackground(new java.awt.Color(255, 0, 0));
         btnSellStocks.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
@@ -186,21 +184,41 @@ public class UserSellStocks extends javax.swing.JFrame {
             }
         });
 
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("User Sell Stocks");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(302, Short.MAX_VALUE))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(26, 26, 26))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(203, 203, 203)
-                            .addComponent(labelTitle))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(116, 116, 116)
-                            .addComponent(labelAdminID2)
-                            .addGap(18, 18, 18)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(labelAdminID2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -219,14 +237,16 @@ public class UserSellStocks extends javax.swing.JFrame {
                                         .addComponent(txtGetTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(btnSignOut, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(labelTitle)
-                .addGap(50, 50, 50)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID2))
@@ -433,12 +453,13 @@ public class UserSellStocks extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculateTotal1;
     private javax.swing.JButton btnSellStocks;
     private javax.swing.JButton btnSignOut;
+    private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID3;
-    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtGetTotal;
     private javax.swing.JTextField txtNoOfStocksSell;
     // End of variables declaration//GEN-END:variables

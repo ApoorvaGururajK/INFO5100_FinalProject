@@ -70,7 +70,6 @@ public class UserBuyMF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelTitle = new javax.swing.JLabel();
         labelAdminID2 = new javax.swing.JLabel();
         jComboBoxStockMarketIndex = new javax.swing.JComboBox<>();
         btnCalculateTotal1 = new javax.swing.JButton();
@@ -81,11 +80,10 @@ public class UserBuyMF extends javax.swing.JFrame {
         labelAdminID5 = new javax.swing.JLabel();
         txtNoOfUnits = new javax.swing.JTextField();
         btnSignOut = new javax.swing.JButton();
+        header = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        labelTitle.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        labelTitle.setText("User Dashboard to Buy Mutual Funds");
 
         labelAdminID2.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         labelAdminID2.setText("Select a Stock Market :");
@@ -153,15 +151,36 @@ public class UserBuyMF extends javax.swing.JFrame {
             }
         });
 
+        header.setBackground(new java.awt.Color(255, 0, 0));
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("User Dashboard to Buy Mutual Funds");
+
+        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
+        header.setLayout(headerLayout);
+        headerLayout.setHorizontalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(207, 207, 207))
+        );
+        headerLayout.setVerticalGroup(
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(labelTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(328, 328, 328)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -184,13 +203,13 @@ public class UserBuyMF extends javax.swing.JFrame {
                             .addComponent(txtNoOfUnits)
                             .addComponent(jComboBoxStockMarketUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(133, Short.MAX_VALUE))
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(labelTitle)
-                .addGap(100, 100, 100)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxStockMarketIndex, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAdminID2))
@@ -348,12 +367,13 @@ public class UserBuyMF extends javax.swing.JFrame {
     private javax.swing.JButton btnBuyMF;
     private javax.swing.JButton btnCalculateTotal1;
     private javax.swing.JButton btnSignOut;
+    private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBoxStockMarketIndex;
     private javax.swing.JComboBox<String> jComboBoxStockMarketUnit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelAdminID2;
     private javax.swing.JLabel labelAdminID4;
     private javax.swing.JLabel labelAdminID5;
-    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtCalculateTotal;
     private javax.swing.JTextField txtNoOfUnits;
     // End of variables declaration//GEN-END:variables
