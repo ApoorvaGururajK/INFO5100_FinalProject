@@ -4,6 +4,16 @@
  */
 package UI;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author meenalsarwaiya
@@ -15,6 +25,7 @@ public class StockBrokerDashboardData extends javax.swing.JFrame {
      */
     public StockBrokerDashboardData() {
         initComponents();
+        showLineChartPro();
     }
 
     /**
@@ -26,21 +37,85 @@ public class StockBrokerDashboardData extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        graphProfit = new javax.swing.JPanel();
+        btnHome = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Mutual Funds Broker Profit Analysis");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 620, 40));
+
+        graphProfit.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(graphProfit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 460, 310));
+
+        btnHome.setBackground(new java.awt.Color(0, 0, 0));
+        btnHome.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setText("Sign Out");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+        public void showLineChartPro(){
+        //create dataset for the graph
+         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(5002.54, "Amount", "july");
+        dataset.setValue(7598.98, "Amount", "august");
+        dataset.setValue(3810.13, "Amount", "september");
+        dataset.setValue(4201.62, "Amount", "october");
+        dataset.setValue(5340.85, "Amount", "november");
+        dataset.setValue(1200.45, "Amount", "december");
+        
+        //create chart
+        JFreeChart linechart = ChartFactory.createLineChart("Profit","6 months","amount", 
+                dataset, PlotOrientation.VERTICAL, false,true,false);
+        
+        //create plot object
+         CategoryPlot lineCategoryPlot = linechart.getCategoryPlot();
+       // lineCategoryPlot.setRangeGridlinePaint(Color.BLUE);
+        lineCategoryPlot.setBackgroundPaint(Color.white);
+        
+        //create render object to change the moficy the line properties like color
+        LineAndShapeRenderer lineRenderer = (LineAndShapeRenderer) lineCategoryPlot.getRenderer();
+        Color lineChartColor = new Color(204,0,51);
+        lineRenderer.setSeriesPaint(0, lineChartColor);
+        
+         //create chartPanel to display chart(graph)
+        ChartPanel lineChartPanel = new ChartPanel(linechart);
+        graphProfit.removeAll();
+        graphProfit.add(lineChartPanel, BorderLayout.CENTER);
+        graphProfit.validate();
+    }
+     
+    
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Home home= new Home();
+        home.setVisible(true);
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +153,9 @@ public class StockBrokerDashboardData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHome;
+    private javax.swing.JPanel graphProfit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
