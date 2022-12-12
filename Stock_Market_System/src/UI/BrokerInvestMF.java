@@ -283,7 +283,7 @@ public class BrokerInvestMF extends javax.swing.JFrame {
             
 //            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Fidelity ZERO Large Cap Index Fund` = '"+this.Fidelity_ZERO_Large_Cap_Index+"', `Vanguard S&P 500 ETF` = '"+this.Vanguard_SP_500_ETF+"', `SPDR S&P 500 ETF Trust` = '"+this.SPDR_SP_500_ETF_Trust+"', `iShares Core S&P 500 ETF` = '"+this.iShares_Core_SP_500_ETF+"', `Shelton NASDAQ-100 Index Direct` = '"+this.Shelton_NASDAQ_100_Index_Direct+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`Name`='apoorva')";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Fidelity ZERO Large Cap Index Fund` = '"+this.Fidelity_ZERO_Large_Cap_Index+"', `Vanguard S&P 500 ETF` = '"+this.Vanguard_SP_500_ETF+"', `SPDR S&P 500 ETF Trust` = '"+this.SPDR_SP_500_ETF_Trust+"', `iShares Core S&P 500 ETF` = '"+this.iShares_Core_SP_500_ETF+"', `Shelton NASDAQ-100 Index Direct` = '"+this.Shelton_NASDAQ_100_Index_Direct+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`UserID`='"+this.UserID+"')";
             
             stm.executeUpdate(sqlS1);
             con.close();

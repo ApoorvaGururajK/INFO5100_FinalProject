@@ -264,7 +264,7 @@ public class BrokerSellStocks extends javax.swing.JFrame {
             
 //            String UserID = "568856e6-3443-47c2-98af-ab8ea9ff8aea";
             
-            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Stocks_of_Apple` = '"+this.Stocks_of_Apple+"', `Stocks_of_Microsoft` = '"+this.Stocks_of_Microsoft+"', `Stocks_of_Amazon` = '"+this.Stocks_of_Amazon+"', `Stocks_of_Netflix` = '"+this.Stocks_of_Netflix+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`Name`='apoorva')";
+            String sqlS1= "UPDATE `info5100_finalproject`.`users` SET  `Stocks_of_Apple` = '"+this.Stocks_of_Apple+"', `Stocks_of_Microsoft` = '"+this.Stocks_of_Microsoft+"', `Stocks_of_Amazon` = '"+this.Stocks_of_Amazon+"', `Stocks_of_Netflix` = '"+this.Stocks_of_Netflix+"', `Initial Wallet Balance` = '"+this.Initial_wallet_balance+"' WHERE (`UserID`='"+this.UserID+"')";
             
             stm.executeUpdate(sqlS1);
             con.close();
