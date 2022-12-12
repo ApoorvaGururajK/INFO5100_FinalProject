@@ -391,7 +391,7 @@ String val= sb1.toString();
 		int i=1;
 		String temp;
 		String val1,val2,val3,val4,val5,val6,val7,val8;
-		while(i<11) {
+		while(i<5) {
 			temp=tokens[i];
 			String tokens_title[] = temp.split("title");
 			raw.add(temp);
@@ -472,8 +472,8 @@ String val= sb1.toString();
               
               
           }catch(Exception e){
-              System.out.println("not working");
-            e.printStackTrace();
+              System.out.println("");
+//            e.printStackTrace();
           }
        
           return news_fin;

@@ -27,22 +27,31 @@ public class Inspiration extends javax.swing.JFrame {
     Image newimgS=image_s.getScaledInstance(166, 180,Image.SCALE_SMOOTH);
     ImageIcon sIcon= new ImageIcon(newimgS);
     
+    ImageIcon icon_j = new ImageIcon("jim.png");
+    Image image_j = icon_j.getImage();
+    Image newimgJ=image_j.getScaledInstance(166, 180,Image.SCALE_SMOOTH);
+    ImageIcon jIcon= new ImageIcon(newimgJ);
+    
+    
+    ImageIcon icon_p = new ImageIcon("peter.png");
+    Image image_p = icon_p.getImage();
+    Image newimgP=image_p.getScaledInstance(166, 180,Image.SCALE_SMOOTH);
+    ImageIcon pIcon= new ImageIcon(newimgP);
+    
     public Inspiration() {
         initComponents();
         jLabel2.setIcon(wIcon);
         jLabel4.setIcon(sIcon);
+        jLabel6.setIcon(jIcon);
+        jLabel10.setIcon(pIcon);
+        jLabel12.setIcon(wIcon);
         
         String val1="<html>";
         val1+= "Rule No.1: Never lose money. <br>";
         val1+="Rule No.2: Never forget rule No.1. - Warren Buffett <br>";
         jLabel3.setText(val1);
         
-//        The Stock market is the story of cycles
-//and of the human behavior that is
-//responsible for overreactions
-//in both directions.
-//- Seth Klarman
-        
+      
         
         String val2="<html>";
         val2+= "The Stock market is the story of cycles and of the human behavior that is responsible for overreactions\n" +
@@ -50,8 +59,28 @@ public class Inspiration extends javax.swing.JFrame {
 "- Seth Klarman<br>";
 //        val2+= "<br>";
         jLabel5.setText(val2);
+        
+        String val3="<html>";
+        val3+= "Every once in a while, the market does something so stupid it takes your breath away. – By Jim Cramer <br>";
+//        val2+= "<br>";
+        jLabel7.setText(val3);
+        
+//        The Important Key To Investing Is To Remember That Stocks Are Not Lottery Tickets. - Peter Lynch
+        String val4="<html>";
+        val4+= "The Important Key To Investing Is To Remember That Stocks Are Not Lottery Tickets. - Peter Lynch <br>";
+//        val2+= "<br>";
+        jLabel11.setText(val4);
+        
+        String val5="<html>";
+        val5+= "The Most Important Quality For An Investor Is Temperament, Not Intellect. - Warren Buffett <br>";
+//        val2+= "<br>";
+        jLabel13.setText(val5);
+        
+        
     }
     
+    
+   // Every once in a while, the market does something so stupid it takes your breath away.
     
     
     /**
@@ -167,6 +196,8 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 251, 242));
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
 
+        jLabel7.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -191,6 +222,8 @@ public class Inspiration extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 251, 242));
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
 
+        jLabel11.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -214,6 +247,8 @@ public class Inspiration extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 251, 242));
         jPanel7.setBorder(new javax.swing.border.MatteBorder(null));
+
+        jLabel13.setFont(new java.awt.Font("Annai MN", 0, 22)); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -282,13 +317,13 @@ public class Inspiration extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
